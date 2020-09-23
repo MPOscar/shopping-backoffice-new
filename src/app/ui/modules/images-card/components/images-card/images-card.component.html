@@ -1,0 +1,61 @@
+<div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-column padding-0px-25px-25px-25px">
+  <div class="align-self-center display-flex width-250px  flex-shrink-1 flex-direction-row card-container">
+    <mat-card class="border-2px-solid-black box-shadow-none flex-grow-1 margin-0 mat-card-principal" #imageContainer>
+      <img class="height-100-pc width-100-pc" *ngIf="principal" imageLoad
+        [srcImage]="principal.imgUrl? principal.imgUrl : principal.file" [container]="imageContainer" src="">
+    </mat-card>
+  </div>
+
+  <div [dragula]="'faceItems'" [dragulaModel]="faceItems" fxLayout="row wrap" fxLayoutAlign="start">
+
+    <div *ngFor="let faceItem of faceItems; index as cardIndex; trackBy:trackByFn" fxFlex="50" class="padding-5px">
+      <mat-card class="text-center">
+        <div #imageContainer>
+          <img class="img" imageLoad [srcImage]="faceItem.imgUrl? faceItem.imgUrl : faceItem.file"
+            [container]="imageContainer" />
+        </div>
+        <mat-card-actions *ngIf="!disabled">
+          <mat-radio-button value="primary" [checked]="faceItem.mainImage" class="margin-top-10px" (click)="setMainImage(faceItem)"
+            matTooltip="{{ 'Principal' | translate }}"></mat-radio-button>
+          <button type="button" mat-icon-button class="margin-left-10px" (click)="deleteFace(cardIndex)">
+            <mat-icon mat-raised-button color="accent" matTooltip="{{ 'Delete' | translate }}">delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+  <!-- <div>
+    <div class="wrapper">
+      <div class="container" [dragula]="'DRAGULA_FACTS'">
+        <mat-card>You can move these elements between these two containers</mat-card>
+        <mat-card>Moving them anywhere else isn't quite possible</mat-card>
+        <mat-card>There's also the possibility of moving elements around in the same container, changing their position</mat-card>
+      </div>
+      <div class="container" [dragula]="'DRAGULA_FACTS'">
+        <mat-card>This is the default use case. You only need to specify the containers you want to use</mat-card>
+        <mat-card>More interactive use cases lie ahead</mat-card>
+        <mat-card>Make sure to check out the <a href="https://github.com/bevacqua/dragula#readme">documentation on GitHub!</a></mat-card>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div *ngIf="!disabled" class="display-flex justify-content-center width-100-pc" drop-files [faceItems]="faceItems"
+    [ngClass]="{'border-dotted': !fileIsOver, 'border-dotted-drop': fileIsOver}" (filesOver)="fileOverDropZone($event)"
+    (filesChange)="filesChange($event)">
+    <div>
+      <div class="padding-bottom-10px">
+        <p>Drop Files Here</p>
+        <button type="button" class="border-none border-radius-5px" (click)="fileInput.click()" mat-stroked-button>
+          {{ 'Select File' | translate }}
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <input #fileInput style="display:none" type="file" name="files" class="file-input glyphicon glyphicon-plus"
+        accept="image/*" multiple />
+    </div>
+  </div>
+</div>

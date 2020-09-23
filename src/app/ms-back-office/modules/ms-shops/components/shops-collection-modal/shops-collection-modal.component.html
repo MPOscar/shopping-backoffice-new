@@ -1,0 +1,30 @@
+<div class="flex-grow-1 min-height-0 display-flex flex-direction-column height-100-pc">
+  <div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </span>
+  </div>
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="margin-right-25px" fxLayout="column" fxLayout.lt-md="column">
+
+        <app-shop-tree [shops]="filteredShops" [linkedShops]="linkedShops"></app-shop-tree>
+
+      </div>
+    </div>
+  </div>
+  <div
+    class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button type="button" color="primary" (click)="save()">{{ 'Save Changes' | translate }}</button>
+
+    <span class="display-flex flex-grow-1"></span>
+
+    <!-- <button mat-raised-button type="button" class="margin-left-10px"
+      (click)="showAddShopModal()">{{ 'Add Shop' | translate }}</button> -->
+
+  </div>
+
+</div>

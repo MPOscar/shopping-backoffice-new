@@ -1,0 +1,460 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+    [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-top-25px">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div class="" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+                <div fxLayout="row" fxLayout.lt-md="column" class="width-100pct">
+
+                    <div [fxFlex]="40" fxFlex fxLayout="column" fxLayout.lt-md="column" class="margin-right-25px">
+
+                        <mat-form-field class="width-100pc margin-left-16px">
+
+                            <mat-label>Shop Name</mat-label>
+
+                            <input id="name" matInput type="text" formControlName="name" required>
+
+                            <error-messages matSuffix for="name" [validationErrorMessages]="validationErrorMessages">
+                            </error-messages>
+
+                        </mat-form-field>
+
+                        <div class="display-flex" *ngIf="formType === 'create'; else shopTypeLabel">
+
+                            <mat-slide-toggle [fxFlex]="40" class="padding-top-20px margin-left-16px"
+                                formControlName="isParent">Is Parent
+                            </mat-slide-toggle>
+
+                            <span class="flex-grow-1"></span>
+
+                            <mat-form-field *ngIf="!data.isParent" [fxFlex]="55" class=" margin-left-16px">
+
+                                <mat-select disableOptionCentering placeholder="Shop Type" formControlName="type">
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let type of shopTypes" [value]="type"
+                                        (click)="selectType(type)">
+
+                                        {{type | titlecase}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                        </div>
+
+                        <ng-template #shopTypeLabel>
+
+                            <div class="padding-top-10px padding-bottom-20px display-flex">
+                                <mat-icon *ngIf="data.isParent" class="sidenav-icon font-size-2rem">store</mat-icon>
+
+                                <mat-chip-list *ngIf="!data.isParent">
+                                    <mat-chip color="primary" class="font-size-1rem" selected>
+                                        {{data.type === 'virtual' ? 'Type: Virtual' : 'Type: Physical'}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
+
+                        </ng-template>
+
+                        <mat-form-field class="width-100pc margin-left-16px"
+                            *ngIf="typeSelected === 'virtual' && !data.isParent">
+
+                            <mat-label>Traking list base URL</mat-label>
+
+                            <input matInput type="text" formControlName="trackingListBaseUrl" required>
+
+                        </mat-form-field>
+
+                        <mat-form-field class="width-100pc" *ngIf="data.type === 'virtual' && !data.isParent">
+
+                            <mat-label>Default Offer Label</mat-label>
+
+                            <input matInput type="text" formControlName="defaultOfferLabel">
+
+                        </mat-form-field>
+
+                        <!-- poner acá -->
+                        <div *ngIf="!data.isParent && typeSelected !== 'virtual'"
+                            class="color-material padding-left-20px" fxFlex fxLayout="row" fxLayout.lt-md="column"
+                            fxLayoutGap="20px" formArrayName="workingHours">
+
+                            <div [fxFlex]="100" fxLayout="column" class="">
+
+                                <div [fxFlex]="100" fxLayout="row" class="margin-bottom-25px">
+
+                                    <div [fxFlex]="70">
+
+                                        <h3>Working Hours</h3>
+
+                                    </div>
+
+                                    <div [fxFlex]="30">
+
+                                        <h5>Non-Working</h5>
+
+                                    </div>
+
+                                </div>
+
+                                <div *ngFor="let dayOfWeek of daysOfWeek; let i=index" [fxFlex]="100" fxLayout="row">
+
+                                    <div fxLayout="row" [formGroupName]="i" class="flex-grow-1">
+
+                                        <div [fxFlex]="100">
+
+                                            {{dayOfWeek}}
+
+                                        </div>
+
+                                        <div [fxFlex]="100">
+
+                                            <div [fxFlex]="60"
+                                                class="border-radius-5px border-2px-solid-black padding-2px">
+
+                                                <input matInput atp-time-picker class="cursor-pointer"
+                                                    [formControlName]="'openHour' + dayOfWeek" />
+
+                                            </div>
+
+                                        </div>
+
+                                        <div [fxFlex]="100">
+
+                                            <div [fxFlex]="60"
+                                                class="border-radius-5px border-2px-solid-black padding-2px">
+
+                                                <input matInput atp-time-picker class="cursor-pointer"
+                                                    [formControlName]="'closeHour' + dayOfWeek" />
+
+                                            </div>
+
+                                        </div>
+
+                                        <div [fxFlex]="40">
+
+                                            <mat-checkbox (click)="changeWorkHourStatus(dayOfWeek)"
+                                                [formControlName]="'offWork' + dayOfWeek"></mat-checkbox>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div [fxFlex]="40" fxFlex fxLayout="column" fxLayout.lt-md="column" class="margin-right-25px">
+
+                        <mat-form-field *ngIf="!data.isParent" class="width-100pc">
+
+                            <mat-label>Parent Shop</mat-label>
+
+                            <mat-select disableOptionCentering placeholder="Select" formControlName="parent">
+
+                                <mat-option>...</mat-option>
+
+                                <mat-option *ngFor="let shop of parentShops" [value]="shop.id">
+
+                                    {{shop.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field class="width-100pc">
+
+                            <mat-select disableOptionCentering placeholder="Select Brands" formControlName="brands"
+                                multiple required>
+
+                                <mat-option *ngFor="let brand of brands" [value]="brand.id">
+
+                                    {{brand.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field class="width-100pc">
+
+                            <mat-select disableOptionCentering placeholder="Select Category"
+                                formControlName="categories" multiple required>
+
+                                <mat-option *ngFor="let category of categories" [value]="category.id">
+
+                                    {{category.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+
+                        <mat-form-field class="width-100pc margin-left-16px" *ngIf="!data.isParent">
+
+                            <mat-select disableOptionCentering placeholder="Show on Region"
+                                formControlName="showOnRegion">
+
+                                <mat-option>...</mat-option>
+
+                                <mat-option *ngFor="let region of showOnRegions" [value]="region.id">
+
+                                    {{region.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+
+
+                        <div [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column" *ngIf="!data.isParent">
+
+                            <div [fxFlex]="50">
+
+                                <mat-form-field class="width-100pct">
+
+                                    <mat-label>Rank</mat-label>
+
+                                    <input matInput type="number" formControlName="rank">
+
+                                </mat-form-field>
+
+                            </div>
+
+                            <span class="flex-grow-1"></span>
+
+                            <div [fxFlex]="50" class="">
+
+                                <mat-form-field class="width-100pc" *ngIf="data.type === 'virtual'">
+
+                                    <mat-select disableOptionCentering placeholder="Currency"
+                                        formControlName="currency">
+
+                                        <mat-option>...</mat-option>
+
+                                        <mat-option *ngFor="let currenc of currency" [value]="currenc.id">
+
+                                            {{currenc.name}}
+
+                                        </mat-option>
+
+                                    </mat-select>
+
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                <div [fxFlex]="40" class=" margin-right-25px margin-bottom-20px">
+
+                    <div *ngIf="!data.isParent && typeSelected !== 'virtual'">
+
+                        <mat-form-field class="width-100pc margin-left-16px">
+
+                            <mat-label>Address</mat-label>
+
+                            <input matInput type="text" formControlName="address" [matAutocomplete]="auto">
+
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                                    (click)="setMarkerByAddress(option)">
+
+                                    {{option}}
+
+                                </mat-option>
+
+                            </mat-autocomplete>
+
+                        </mat-form-field>
+
+                        <mat-form-field class="width-100pc margin-left-16px">
+
+                            <mat-label>Zip Code</mat-label>
+
+                            <input matInput type="text" formControlName="zipCode">
+
+                        </mat-form-field>
+
+                        <div [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+                            <div [fxFlex]="50">
+
+                                <mat-form-field class="width-100pct">
+
+                                    <mat-select disableOptionCentering placeholder="Region" formControlName="region">
+
+                                        <mat-option>...</mat-option>
+
+                                        <mat-option *ngFor="let region of regions" [value]="region.id"
+                                            (click)="selectCountry(region.id)">
+
+                                            {{region.name}}
+
+                                        </mat-option>
+
+                                    </mat-select>
+
+                                </mat-form-field>
+
+                            </div>
+
+                            <div [fxFlex]="50" class="">
+
+                                <mat-form-field class="width-100pc">
+
+                                    <mat-select disableOptionCentering placeholder="Country" formControlName="country">
+
+                                        <mat-option>...</mat-option>
+
+                                        <mat-option *ngFor="let country of countries" [value]="country.country">
+
+                                            {{country.country}}
+
+                                        </mat-option>
+
+                                    </mat-select>
+
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div #map id="map" class="width-100pct height-263px"
+                        [ngClass]="{ 'display-none': data.isParent || data.type !== 'physical' }">
+                    </div>
+
+                    <div *ngIf="data.type === 'virtual' && !data.isParent">
+                        <mat-form-field class="width-100pct">
+
+                            <mat-select disableOptionCentering placeholder="Shipping Countries"
+                                formControlName="shippingCountries">
+
+                                <mat-option>...</mat-option>
+
+                                <mat-option *ngFor="let option of shippingCountries" [value]="option.id">
+
+                                    {{option.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="formGroup.get('shippingCountries').value === 'Select Countries'"
+                            class="width-100pc">
+
+                            <mat-select disableOptionCentering placeholder="Countries" formControlName="countries"
+                                multiple>
+
+                                <mat-option *ngFor="let country of countriesForShipping" [value]="country.country">
+
+                                    {{country.country}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field class="width-100pc height-80pct margin-left-16px" appearance="fill">
+
+                            <mat-label [fxFlex]="40">Shipping Details</mat-label>
+
+                            <textarea class = "height-80pct" matInput formControlName="shippingDetails" class="height-200px"></textarea>
+
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+            <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between none" class="margin-right-25px">
+                <div [fxFlex]="30" class="">
+                    <div class="display-flex justify-content-center">
+                        <h3>Main Image</h3>
+                    </div>
+
+                    <image-card class="flex-grow-1" formControlName="faceMain"
+                        [principal]="(mainImage && mainImage.imgUrl) ? mainImage : null">
+                    </image-card>
+                </div>
+
+                <div [fxFlex]="30" class="">
+                    <div class="display-flex justify-content-center">
+                        <h3>Thumbnail Image</h3>
+                    </div>
+
+                    <image-card class="flex-grow-1" formControlName="faceSmall"
+                        [principal]="(smallImage && smallImage.imgUrl) ? smallImage : null">
+                    </image-card>
+                </div>
+
+                <div [fxFlex]="30" class="">
+                    <div class="display-flex justify-content-center">
+                        <h3>Header Image</h3>
+                    </div>
+
+                    <image-card class="flex-grow-1" formControlName="faceHeader"
+                        [principal]="(headerImage && headerImage.imgUrl) ? headerImage : null">
+                    </image-card>
+                </div>
+
+            </div>
+
+            <div fxLayout="row" fxLayout.lt-md="column">
+                <div [fxFlex]="100" class="padding-right-25px">
+                    <mat-form-field class="width-100pc margin-left-16px" appearance="fill">
+
+                        <mat-label>Description</mat-label>
+
+                        <textarea matInput formControlName="description" class="min-height-100px"></textarea>
+
+                    </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey"
+        [ngClass]="{'display-none': formType === 'edit'}">
+
+        <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+        <button mat-raised-button type="button" class="margin-left-10px"
+            (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+    </div>
+
+</form>

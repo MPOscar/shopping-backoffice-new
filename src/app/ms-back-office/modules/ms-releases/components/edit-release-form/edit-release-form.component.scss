@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 959px) {
+  .customized {
+      max-width: 480px !important;
+  }
+}
+
+.height-34px {
+  height: 34px !important;
+}
+
+.height-100pc {
+  height: 100%;
+}
+
+.width-100pc {
+  width: 100%;
+}
+
+mat-form-field {
+  max-width: 100% !important;
+}
+
+.min-height-145px {
+  min-height: 145px !important;
+}
+
+.display-text-area{
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+  padding-bottom: 25px;
+}

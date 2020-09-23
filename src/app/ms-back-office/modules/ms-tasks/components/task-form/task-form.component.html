@@ -1,0 +1,64 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+        <div [fxFlex]="98">
+
+
+          <mat-form-field class="width-100pc" appearance="fill">
+
+            <mat-label>Description</mat-label>
+
+            <textarea matInput formControlName="description" class="min-height-100px"></textarea>
+
+          </mat-form-field>
+
+          <mat-form-field class="width-100pc">
+
+            <mat-label>RESPONSABLE</mat-label>
+
+            <input matInput type="text" formControlName="responsable">
+
+          </mat-form-field>
+
+          <mat-form-field class="width-100pc">
+
+            <mat-label>PRIORITY</mat-label>
+
+            <mat-select disableOptionCentering placeholder="Select" formControlName="priority" required>
+
+              <mat-option>...</mat-option>
+
+              <mat-option *ngFor="let priority of priorities" [value]="priority.value">
+
+                {{priority.name}}
+
+              </mat-option>
+
+            </mat-select>
+
+            <error-messages matSuffix for="priority" [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+          </mat-form-field>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="padding-top-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+    <button mat-raised-button type="button" class="margin-left-10px" (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+  </div>
+
+</form>

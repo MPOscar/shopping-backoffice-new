@@ -1,0 +1,34 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+        <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<h1 class="margin-top-0px">NEW OFFER CREATOR</h1>
+
+<!-- <offer-form class="flex-grow-1"
+    [data]="data"  
+    [shopId]="dialogData.shopId"
+    [customized]="dialogData.customized"
+    [shops]="shopToShow" 
+    [releases]="dialogData.releases"
+    [releaseId]="releaseId"
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</offer-form> -->
+
+<offer-form-new class="flex-grow-1 overflow-auto" 
+    *ngIf="shops" 
+    [offerList]="offerList" 
+    [customized]="dialogData.customized" 
+    [shops]="shopToShow" 
+    [releases]="dialogData.releases"
+    [releaseId]="dialogData.releaseId" 
+    [releaseForm] = "true"
+    (accept)="submit($event)" 
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors" 
+    (dataChange)="dataChanged()">
+</offer-form-new>

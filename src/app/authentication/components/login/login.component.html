@@ -1,0 +1,83 @@
+<div class="login-page">
+    <div class="content">
+        <form class="login-form" [formGroup]="formGroup" (ngSubmit)="login()" capsLock (capsLock)="capsLockOn=$event" inputFocus>
+
+            <div class="text-center">
+
+                <h2 class="app-name">MoreSneakers</h2>
+
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+
+                <div fxFlexFill>
+
+                    <mat-form-field class="w-100">
+
+                        <input matInput type="email" formControlName="userName" placeholder="Email">
+
+                        <error-messages matSuffix for="userName" [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+
+                <div fxFlexFill>
+
+                    <mat-form-field class="w-100">
+
+                        <input matInput type="password" id="password" name="password" formControlName="password" placeholder="Password">
+
+                        <error-messages matSuffix for="password" [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                        <mat-icon *ngIf="capsLockOn" matSuffix color="warn" class="cursor-default" matTooltip="The Caps Lock key is activated!">warning</mat-icon>
+
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+
+                <!--div fxFlex>
+
+                    <mat-checkbox color="primary">Remember Me</mat-checkbox>
+
+                </div>
+
+                <div fxFlex fxLayoutAlign="end">
+
+                    <a href="javascript:void(0)">Forget Password</a>
+
+                </div-->
+
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column">
+
+                <div fxFlexFill>
+
+                    <button mat-raised-button color="primary" class="w-100" type="submit" id="loginSubmit">Login</button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="flex-grow-1"></div>
+
+<div class="flex-grow-1"></div>
+
+<http-request-indicator [urlExpressions]="[configService.config?.apiConfigs.authentication.loginUser.apiEndpoint + '.*']">
+
+</http-request-indicator>

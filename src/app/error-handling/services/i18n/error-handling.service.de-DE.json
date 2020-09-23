@@ -1,0 +1,8 @@
+{
+    "@c/error-handling/ErrorHandlingService/Error/410": "Der angeforderte Server ist nicht verfügbar. Bitte versuchen Sie es später noch einmal.",
+    "@c/error-handling/ErrorHandlingService/Error/unknown": "Ein unbekannter Fehler tritt auf. Bitte wenden Sie sich an die Verwaltung",
+    "@c/error-handling/ErrorHandlingService/Error/client": "Schlechte Anfrage",
+    "@c/error-handling/ErrorHandlingService/Error Title": "Fehler",
+    "@c/error-handling/ErrorHandlingService/Error/ServerError": "Der Server hat einen internen Fehler oder eine falsche Konfiguration festgestellt und konnte Ihre Anfrage nicht abschließen. Bitte kontaktieren Sie den Serveradministrator."
+
+}

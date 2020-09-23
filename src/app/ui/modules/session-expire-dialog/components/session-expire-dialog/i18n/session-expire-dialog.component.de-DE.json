@@ -1,0 +1,6 @@
+{
+    "@c/ui/SessionExpireDialogComponent/Title": "Die Sitzung läuft bald ab.",
+    "@c/ui/SessionExpireDialogComponent/Message": "Ihre Sitzung läuft wegen Inaktivität in {{param}} Sekunden ab.",
+    "@c/ui/SessionExpireDialogComponent/StayLoggedIn": "Angemeldet bleiben",
+    "@c/ui/SessionExpireDialogComponent/LogOutNow": "Schließen"
+}

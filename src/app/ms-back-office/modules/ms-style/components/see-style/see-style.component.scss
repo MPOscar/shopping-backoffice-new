@@ -1,0 +1,93 @@
+:host {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%
+  }
+  
+  ::ng-deep .mat-dialog-container {
+    padding: 25px;
+
+  }
+  
+  .mat-dialog-content {
+    height: 60%;
+    max-height: 82vh;
+    margin-bottom: 10px;
+  }
+  
+  .mat-dialog-actions {
+    padding: 10px 0;
+  }
+  
+  mat-card {
+    padding: 0px;
+    align-self: flex-start;
+    height: 200px;
+    width: 150px;
+    margin-left: 2px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+  
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .max-width-60-pct{
+    max-width: 60% !important;
+  }
+  
+  .border{
+    border: 1px solid #f1f1f1;
+  }
+  
+  td.mat-cell{
+    border: none !important;
+  }
+  th.mat-header-cell{
+    border: none !important;
+  }
+
+  :host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1 !important;
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+.max-width-480px{
+    max-width: 480px !important;
+}
+
+.margin-bottom-10px{
+    margin-bottom: 10px !important;
+}
+
+textarea{
+    height: 43px;
+}
+
+
+mat-form-field {
+    max-width: 100% !important;
+}
+
+.max-width-1000px{
+    max-width: 1000px !important;
+}
+
+@media screen and (max-width: 959px) {
+    .customized {
+        max-width: 480px !important;
+    }
+  }

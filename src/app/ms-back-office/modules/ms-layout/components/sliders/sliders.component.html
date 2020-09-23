@@ -1,0 +1,17 @@
+<sliders-form *ngIf="data"
+    [data]="data"
+    [allTabs]="data"
+    [brands]="brands"
+    [categories]="categories"
+    [collections]="collections"
+    [allDeals]="deals"
+    [allOffers]="offers"
+    [pageId]="pageId"
+    [releases]="releases"
+    [shops]="shops"
+    [styles]="styles"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</sliders-form>

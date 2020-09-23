@@ -1,0 +1,10 @@
+<h1>EDIT CATEGORY</h1>
+<category-form *ngIf="data"
+    [data]="data"
+    [faceList]="faceList"
+    [principal]="principal"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</category-form>

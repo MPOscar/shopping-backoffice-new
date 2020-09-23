@@ -1,0 +1,111 @@
+<h1>Style Table</h1>
+
+<mat-toolbar class="margin-right-25px margin-bottom-10px width-auto flex-shrink-0 background-color-secondary color-primary mat-elevation-z2"
+  [formGroup]="filter">
+
+  <mat-icon matPrefix color="primary">search</mat-icon>
+
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Brand</mat-label>
+    <mat-select disableOptionCentering placeholder="Select" formControlName="brand">
+      <mat-option>...</mat-option>
+      <mat-option *ngFor="let brand of brands" [value]="brand.id">
+        {{brand.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Category</mat-label>
+    <mat-select disableOptionCentering placeholder="Select" formControlName="category">
+      <mat-option>...</mat-option>
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span class="flex-grow-1"></span>
+  <button mat-raised-button color="primary" [routerLink]="['../create']">CREATE A NEW STYLE</button>
+</mat-toolbar>
+
+<div class="flex-grow-1 overflow-auto display-flex">
+
+  <table class="margin-top-10px margin-right-25px width-100pct" mat-table [dataSource]="styles" matSort [matSortActive]="stylesService.previousSortColumn"
+    [matSortDirection]="stylesService.previousSortDirection" matSortDisableClear (matSortChange)="onSort()">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        NAME
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        PARENT
+        <td mat-cell *matCellDef="let element"> {{ getParent(element.parent) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        BRAND
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ getBrand(element.brand) }} </td>
+    </ng-container>
+
+    <!--ng-container matColumnDef="collection">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        COLLECTION
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
+    </ng-container-->
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        CATEGORIES
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ getCategories(element.categories) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        LAST UPDATE
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.updatedAt | date: 'MM/dd/yyyy HH:mm:ss': timeZoneOffset.toString() }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+          ACTIONS
+      </th>
+      <td mat-cell *matCellDef="let element" class="min-width-80px padding-left-table-td">
+        <button mat-icon-button color="primary" type="button" matTooltip="View" class="min-width-80px" (click)="seeStyleModal(element.id)">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Edit" [routerLink]="['../edit', element.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" matTooltip="Delete" (click)="deleteStyle(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+    </tr>
+
+  </table>
+
+</div>
+
+<div class="margin-right-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+  <span class="flex-grow-1"></span>
+  <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50" showFirstLastButtons
+    (page)="onPage()">
+  </mat-paginator>
+</div>

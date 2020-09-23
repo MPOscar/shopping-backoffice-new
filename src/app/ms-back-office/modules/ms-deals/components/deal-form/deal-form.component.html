@@ -1,0 +1,216 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+    [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div [fxFlex]="" fxLayout="row">
+
+                <div [fxFlex]="40" fxLayout="column" class="margin-left-10px margin-right-10px max-width-480px">
+
+                    <mat-form-field class="width-100pc" *ngIf="!shopId">
+
+                        <mat-label>Shops</mat-label>
+
+                        <mat-select disableOptionCentering placeholder="Select Shop" formControlName="shopId" required>
+
+                            <mat-option>...</mat-option>
+
+                            <mat-option *ngFor="let shop of shops" [value]="shop.id">
+
+                                {{shop.name}}
+
+                            </mat-option>
+
+                        </mat-select>
+
+                        <error-messages matSuffix for="shopId" [validationErrorMessages]="validationErrorMessages">
+                        </error-messages>
+
+                    </mat-form-field>
+
+                    <mat-form-field class="width-100pc">
+
+                        <mat-label>Url</mat-label>
+
+                        <input matInput type="text" formControlName="url" required>
+
+                        <error-messages matSuffix for="url" [validationErrorMessages]="validationErrorMessages">
+                        </error-messages>
+
+                    </mat-form-field>
+
+                    <div fxLayout="row">
+
+                        <div [fxFlex]="50" class="margin-right-5px">
+
+                            <mat-form-field class="width-90pct">
+
+                                <input matInput [matDatepicker]="startDate" placeholder="Start Date"
+                                    formControlName="startDate">
+
+                                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+
+                                <mat-datepicker #startDate></mat-datepicker>
+
+                            </mat-form-field>
+
+                        </div>
+
+                        <div [fxFlex]="50">
+
+                            <div>
+
+                                <mat-form-field class="width-100pct">
+                                    <!-- <input matInput atp-time-picker value="00:00" class="cursor-pointer" placeholder="Start Time" formControlName="startTime"/> -->
+
+                                    <input matInput [ngxTimepicker]="picker" placeholder="Start Time"
+                                        formControlName="startTime">
+                                        <button mat-button *ngIf="formGroup.get('startTime').value" matSuffix
+                                        mat-icon-button aria-label="Clear" (click)="clearStartTime()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+
+                                    <ngx-material-timepicker #picker></ngx-material-timepicker>
+
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div fxLayout="row">
+
+                        <div [fxFlex]="50" class="margin-right-5px">
+
+                            <mat-form-field class="width-90pct">
+
+                                <input matInput [matDatepicker]="endDate" placeholder="End Date"
+                                    formControlName="endDate">
+
+                                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+
+                                <mat-datepicker #endDate></mat-datepicker>
+
+                            </mat-form-field>
+
+                        </div>
+                        <div [fxFlex]="50">
+
+                            <div>
+
+                                <mat-form-field class="width-100pct">
+
+                                    <!-- <input matInput atp-time-picker value="00:00" class="cursor-pointer" placeholder="End Time" formControlName="endTime"/> -->
+
+                                    <input matInput [ngxTimepicker]="picker2" placeholder="End Time"
+                                        formControlName="endTime">
+                                    <button mat-button *ngIf="formGroup.get('endTime').value" matSuffix
+                                        mat-icon-button aria-label="Clear" (click)="clearEndTime()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+
+                                    <ngx-material-timepicker #picker2></ngx-material-timepicker>
+
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div fxLayout="row">
+
+                        <div [fxFlex]="50">
+
+                            <mat-form-field class="width-90pct">
+
+                                <mat-label>Sale Percentage</mat-label>
+
+                                <input matInput type="text" formControlName="salePercentage">
+
+                                <error-messages matSuffix for="salePercentage"
+                                    [validationErrorMessages]="validationErrorMessages">
+                                </error-messages>
+
+                            </mat-form-field>
+
+                        </div>
+
+                        <div [fxFlex]="50" class="">
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-select disableOptionCentering placeholder="Status" formControlName="status"
+                                    required>
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let state of status" [value]="state.value">
+
+                                        {{state.status}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                                <error-messages matSuffix for="status"
+                                    [validationErrorMessages]="validationErrorMessages">
+                                </error-messages>
+
+                            </mat-form-field>
+
+                        </div>
+
+                    </div>
+
+                    <mat-form-field class="width-100pc margin-left-16px">
+
+                        <mat-label>Promo Code</mat-label>
+
+                        <input matInput type="text" formControlName="promoCode">
+
+                    </mat-form-field>
+
+                    <div fxLayout="column" class="margin-top-18px flex-grow-0">
+
+                        <div>
+
+                            <mat-checkbox formControlName="displayOnSale">Display On Sale</mat-checkbox>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div [fxFlex]="60" class="margin-left-10px margin-right-10px max-width-480px">
+
+                    <image-card name="faces" class="flex-grow-1" formControlName="faces" [principal]="principal">
+                    </image-card>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div
+        class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+        <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+        <button mat-raised-button type="button" class="margin-left-10px"
+            (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+    </div>
+</form>
+
+<!-- <pre>
+  {{ formGroup.value | json }}
+</pre> -->

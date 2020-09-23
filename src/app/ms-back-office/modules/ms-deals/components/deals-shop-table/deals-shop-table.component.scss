@@ -1,0 +1,25 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    padding-right: 5px;
+    width: 100px !important;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+.padding-bottom-10{
+    padding-bottom: 10px
+}
+

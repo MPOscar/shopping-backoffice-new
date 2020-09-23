@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{((data && data.titleKey) ? data.titleKey : titleKey) | translate}}</h1>
+<div mat-dialog-content>
+  {{((data && data.messageKey) ? data.messageKey : messageKey) | translate:((data && data.messageParam) ? data.messageParam : messageParam)}}
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="accept()">{{((data && data.okBtnKey) ? data.okBtnKey : okBtnKey) | translate }}</button>
+</div>

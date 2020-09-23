@@ -1,0 +1,110 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+  <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+  </span>
+</div>
+
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="mb-20" fxFlex fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+        <div fxLayout="row" fxLayout.lt-md="column">
+
+          <div fxLayout="column" fxLayout.lt-md="column">
+
+            <div>
+
+              <mat-radio-group formControlName="type">
+
+                <div class="display-flex padding-bottom-25px" fxLayout="row">
+
+                  <div class="display-flex margin-right-25px">
+
+                    <mat-radio-button value="Article" class="margin-top-10px" matTooltip="{{ 'Article' | translate }}" [disabled]="true">Article</mat-radio-button>
+
+                  </div>
+
+                  <div class="display-flex">
+
+                    <mat-radio-button value="Focus" class="margin-top-10px" matTooltip="{{ 'Focus' | translate }}" [disabled]="true">Focus</mat-radio-button>
+
+                  </div>
+
+                </div>
+
+              </mat-radio-group>
+
+            </div>
+
+
+                <mat-form-field class="width-100pc margin-left-16px">
+
+                  <mat-label>Author</mat-label>
+
+                  <input matInput type="text" formControlName="author" required readonly>
+
+                </mat-form-field>
+
+
+
+                <mat-form-field class="width-100pc">
+
+                  <mat-label>Brand</mat-label>
+                  <mat-select disableOptionCentering placeholder="Select" formControlName="brandId" panelOpen="true" required [disabled]="true">
+                    <mat-option>...</mat-option>
+                    <mat-option *ngFor="let brand of dialogData.brands" [value]="brand.id">
+                      {{brand.name}}
+                    </mat-option>
+                  </mat-select>
+
+                </mat-form-field>
+
+
+
+
+              <mat-form-field class="width-100pc margin-left-16px">
+
+                <mat-label>Title</mat-label>
+
+                <input matInput type="text" formControlName="title" required readonly>
+
+              </mat-form-field>
+
+
+          </div>
+          <div class="width-100pc max-width-480px">
+            <div class="display-flex justify-content-center">
+
+              <h3>Image</h3>
+
+            </div>
+
+            <image-card formControlName="faces" name="faces" class="flex-grow-1" formControlName="faces" [principal]="principal" [disabled]="true"></image-card>
+
+          </div>
+        </div>
+        <div [fxFlex]="50" class="width-100pc padding-right-25px">
+
+          <div class="padding-bottom-25px">
+
+            <mat-label>Body</mat-label>
+
+          </div>
+          <div>
+            <angular-editor formControlName="body" [config]="AngularEditorConfig"></angular-editor>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

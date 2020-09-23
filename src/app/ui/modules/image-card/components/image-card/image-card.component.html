@@ -1,0 +1,26 @@
+<div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-column padding-0px-25px-25px-25px">
+  <div class="align-self-center display-flex width-250px  flex-shrink-1 flex-direction-row card-container">
+    <mat-card class="border-2px-solid-black box-shadow-none flex-grow-1 margin-0 mat-card-principal" #imageContainer>
+      <img class="height-100-pc width-100-pc" *ngIf="principal" imageLoad [srcImage]="principal.imgUrl? principal.imgUrl : principal.file"
+        [container]="imageContainer" src="">
+    </mat-card>
+  </div>
+  <div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial">
+  </div>
+  <div *ngIf="!disabled" class="display-flex justify-content-center width-100-pc" 
+       drop-files [faceItems]="faceItems" 
+       [ngClass]="{'border-dotted': !fileIsOver, 'border-dotted-drop': fileIsOver}"
+    (filesOver)="fileOverDropZone($event)" (filesChange)="filesChange($event)">
+    <div>
+      <div class="padding-bottom-10px">
+        <p>Drop Files Here</p>
+        <button type="button" class="border-none border-radius-5px" (click)="fileInput.click()" mat-stroked-button>
+          {{ 'Select File' | translate }}
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <input #fileInput style="display:none" type="file" name="files" class="file-input glyphicon glyphicon-plus" accept="image/*"
+        multiple/>
+    </div>
+  </div>
+</div>

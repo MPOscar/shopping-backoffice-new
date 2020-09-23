@@ -1,0 +1,7 @@
+{
+    "@c/ui/ConfirmDialogComponent/Title": "Bestätigen",
+    "@c/ui/ConfirmDialogComponent/Message": "Etwas mit '{{param}}' machen?",
+    "@c/ui/ConfirmDialogComponent/Accept": "OK",
+    "@c/ui/ConfirmDialogComponent/Cancel": "Abbrechen",
+    "@c/ui/ConfirmDialogComponent/Close": "Schließen"
+}

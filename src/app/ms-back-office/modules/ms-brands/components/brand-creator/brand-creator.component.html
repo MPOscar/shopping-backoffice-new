@@ -1,0 +1,74 @@
+<div class="" [fxFlex]="100" fxLayout="column">
+    <div fxLayout="column">
+        <h1>BRAND CREATOR</h1>
+    </div>
+
+    <div class="liked-shops padding-top-25px" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+        <div [fxFlex]="30" class="margin-right-10px">
+
+            <button mat-stroked-button type="submit" class="width-90pct max-width-480px" (click)="showModal()">Add a New Brand</button>
+
+            <mat-form-field class="width-90pct padding-top-20px">
+
+                <mat-label>BRAND LIST</mat-label>
+
+                <mat-select disableOptionCentering matNativeControl placeholder="Select" panelOpen="true" [formControl]="selectedBrand">
+
+                    <mat-option>...</mat-option>
+
+                    <mat-option *ngFor="let brand of brands; let i = index" [value]="brand.id" (click)="changeBrand(brand.id)">
+
+                        {{brand.name}}
+
+                    </mat-option>
+
+                </mat-select>
+
+            </mat-form-field>
+
+        </div>
+
+        <div class="margin-top-10px flex-grow-1" [fxFlex]="70" fxLayout="row" class="border-2px-solid-black margin-bottom-25px margin-right-25px">
+            <div fxLayout="column" class="flex-grow-1">
+                <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-10px">
+
+                    <!--div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column"-->
+                    <div class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+                        <div *ngFor="let shop of shops">
+                            <mat-card *ngIf="shop.checked" class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+                                <div class="image-container margin-10px flex-grow-1" #imageContainer>
+                                    <img class="img" imageLoad [srcImage]="shop.mainImage? shop.mainImage : ''" [container]="imageContainer" src="">
+                                </div>
+                                <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+                                    <mat-checkbox [checked]="shop.checked" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}" (click)="linked(shop)"
+                                        [disabled]="true">{{ shop.name }}</mat-checkbox>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <!--/div-->
+                    </div>
+
+                </div>
+                <div class="justify-content-flex-end margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-width-2px border-top-color-grey">
+
+                    <!--button mat-stroked-button type="button" [disabled]="!brandId" (click)="save(true)">Remove Selection</button-->
+
+                    <button mat-raised-button type="button" [disabled]="!brandId" color="primary" class="margin-left-10px" (click)="linkShopsModalBrand()">{{ 'Link New Stores' | translate }}</button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+        <button mat-raised-button type="button" color="primary" (click)="close()">{{ 'Accept' | translate }}</button>
+
+        <!--button mat-raised-button type="button" class="margin-left-10px" (click)="close()">{{ 'Cancel' | translate }}</button-->
+
+    </div>
+</div>

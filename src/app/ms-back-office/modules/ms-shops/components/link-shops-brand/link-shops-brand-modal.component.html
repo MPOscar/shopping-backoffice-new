@@ -1,0 +1,105 @@
+<div class="" [fxFlex]="100" fxLayout="column">
+  <div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+      <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+        <mat-icon>clear</mat-icon>
+      </span>
+  </div>
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="" [fxFlex]="100" fxLayout="row">
+
+        <div class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+          <mat-card *ngFor="let shop of dialogData.shops" class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+            <div class="image-container margin-10px flex-grow-1" #imageContainer>
+              <img class="img" imageLoad [srcImage]="shop.mainImage? shop.mainImage : ''" [container]="imageContainer" src="">
+              {{ shop.name }}
+            </div>
+            <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+              <mat-checkbox [checked]="shop.checked" class="margin-top-10px" matTooltip="{{ 'Link' | translate }}" (click)="linked(shop)"></mat-checkbox>
+            </div>
+            <!--div *ngIf="checkIfShopIsLinked(shop)" class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+                <mat-checkbox [checked]="shop.checkedDisplayOnBrands" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}" (click)="displayOnBrands(shop, checkIfIsDisabled(shop))" [disabled]="checkIfIsDisabled(shop)">Display on brand</mat-checkbox>
+              </div-->
+          </mat-card>
+          <!--/div-->
+        </div>
+
+        <!--div [fxFlex]="40">
+          <h3>Stores Selling</h3>
+          <div fxLayout="column" class="border flex-grow-1 overflow-auto display-flex ">
+
+            <table class="width-100pct" mat-table [dataSource]="links" matSort matSortDisableClear (matSortChange)="onSort()">
+
+              <ng-container matColumnDef="checkbox">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox value="primary" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}"></mat-checkbox>
+                  </td>
+              </ng-container>
+
+              <ng-container matColumnDef="text">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Text
+                  <td mat-cell *matCellDef="let element"> {{ element.text }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Url
+                </th>
+                <td mat-cell *matCellDef="let element"> {{ element.url }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" [matTooltip]="Edit" [routerLink]="['../edit', element.id]">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary" [matTooltip]="Edit" [routerLink]="['../delete', element.id]">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+              </tr>
+
+            </table>
+
+            <div class="margin-left-25px margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+              <mat-checkbox class="margin-top-10px margin-right-25px" value="primary" matTooltip="{{ 'Principal' | translate }}">Check All</mat-checkbox>
+
+              <button mat-icon-button color="primary" [matTooltip]="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-icon-button color="primary" [matTooltip]="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+              <button mat-icon-button color="primary" [matTooltip]="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </div>
+          </div>
+        </div-->
+      </div>
+    </div>
+  </div>
+
+  <div class="margin-right-25px padding-top-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button type="button" color="primary" (click)="save()">{{ 'Save Changes' | translate }}</button>
+
+    <button mat-raised-button type="button" class="margin-left-10px" (click)="onNoClick()">{{ 'Close' | translate }}</button>
+
+  </div>
+
+</div>

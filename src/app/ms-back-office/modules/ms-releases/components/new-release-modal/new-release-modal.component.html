@@ -1,0 +1,22 @@
+<div class="overflow-y">
+
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<release-form class="flex-grow-1"
+    [brands]="brands"
+    [collections]="collections"
+    [collectionId]="collectionId"
+    [styles]="styles"
+    [shops]="shops"
+    [data]="data"
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</release-form>
+
+</div>

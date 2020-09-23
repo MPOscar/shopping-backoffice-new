@@ -1,0 +1,9 @@
+<h1>BLOG CREATOR</h1>
+<blog-form class="flex-grow-1"
+    [data]="data"        
+    [brands]="brands"
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</blog-form>

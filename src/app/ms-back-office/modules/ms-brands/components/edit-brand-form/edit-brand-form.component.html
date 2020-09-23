@@ -1,0 +1,97 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-top-25px">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <mat-tab-group>
+
+        <mat-tab label="Brand">
+
+          <mat-form-field class="width-100pc margin-left-16px margin-top-25px">
+
+            <mat-label>Brand Name</mat-label>
+
+            <input matInput type="text" formControlName="name" required #shops>
+
+            <error-messages matSuffix for="name" [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+          </mat-form-field>
+
+          <div [fxFlex]="50" class="border width-480px">
+
+            <image-card class="padding-10px" formControlName="faces" [principal]="principal"></image-card>
+
+          </div>
+
+          <mat-form-field class="width-100pc margin-left-16px" appearance="fill">
+
+            <mat-label>Description</mat-label>
+
+            <textarea matInput formControlName="description" class="min-height-100px"></textarea>
+
+          </mat-form-field>
+
+        </mat-tab>
+
+        <mat-tab label="Linked Shops" class="width-50pc" #matTab>
+
+          <div class="liked-shops padding-top-25px" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+            <div class="margin-top-10px flex-grow-1" fxLayout="row" class="margin-bottom-25px margin-right-25px">
+              <div fxLayout="column" class="flex-grow-1">
+                <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-10px">
+
+                  <div class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+                    <div *ngFor="let shop of shops2">
+                      <mat-card *ngIf="shop.checked" class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+                        <div class="image-container margin-10px flex-grow-1" #imageContainer>
+                          <img class="img" imageLoad [srcImage]="shop.mainImage? shop.mainImage : ''" [container]="imageContainer" src=""> {{ shop.name }}
+                        </div>
+
+                        <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+                          <mat-checkbox [checked]="shop.checkedDisplayOnBrands" class="margin-top-10px" matTooltip="{{ 'TOP 5 Stores' }}" (click)="displayOnBrands(shop, checkIfIsDisabled(shop))"
+                            [disabled]="checkIfIsDisabled(shop)"></mat-checkbox>
+                        </div>
+                      </mat-card>
+
+                    </div>
+
+                  </div>
+
+                  <div class="display-flex align-items-center">Select the TOP 5 Stores</div>
+
+                </div>
+
+                <div class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-width-2px border-top-color-grey">
+
+                  <button mat-raised-button type="button" [disabled]="!brandId" color="primary" class="margin-left-10px" (click)="linkShopsModalBrand()">{{ 'Link New Stores' | translate }}</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+    <button mat-raised-button type="button" class="margin-left-10px" (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+  </div>
+
+</form>

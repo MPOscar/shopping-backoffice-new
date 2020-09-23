@@ -1,0 +1,83 @@
+<h1>Collections Table</h1>
+
+<mat-toolbar class="margin-right-25px margin-bottom-10px width-auto flex-shrink-0 background-color-secondary color-primary mat-elevation-z2"
+  [formGroup]="filter">
+
+  <mat-icon matPrefix color="primary">search</mat-icon>
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Brand</mat-label>
+    <mat-select disableOptionCentering placeholder="Brand" formControlName="brand">
+      <mat-option>...</mat-option>
+      <mat-option *ngFor="let brand of brands" [value]="brand.id">
+        {{brand.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span class="flex-grow-1"></span>
+  <button mat-raised-button color="primary" [routerLink]="['../create']">CREATE A NEW COLLECTION</button>
+</mat-toolbar>
+
+<div class="flex-grow-1 overflow-auto display-flex">
+
+  <table class="margin-top-10px margin-right-25px width-100pct" mat-table [dataSource]="collections" matSort [matSortActive]="collectionsService.previousSortColumn"
+    [matSortDirection]="collectionsService.previousSortDirection" matSortDisableClear (matSortChange)="onSort()">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        NAME
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td"> {{ element.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="thumbnail">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element" class="display-flex flex-grow-1 height-100pct padding-left-0px width-100pct">
+        <div class="position-relative margin-top-5px">
+          <img [src]="element.imgUrl? element.imgUrl : 'assets/images/no-image.svg'" class="height-90pct width-90pct margin-auto" alt="50">
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        BRAND
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td"> {{ getBrand(element.brand) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+          ACTIONS
+      </th>
+      <td mat-cell *matCellDef="let element" class="min-width-80px">
+          <button mat-icon-button color="primary" type="button" [matTooltip]="Edit" class="min-width-80px" (click)="seeCollectionModal(element.id)">
+              <mat-icon>remove_red_eye</mat-icon>
+          </button>
+        <button mat-icon-button color="primary" [matTooltip]="Edit" [routerLink]="['../edit', element.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" [matTooltip]="Delete" [routerLink]="['../delete', element.id]">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+    </tr>
+
+  </table>
+
+</div>
+
+<div class="margin-right-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+  <span class="flex-grow-1"></span>
+  <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50" showFirstLastButtons
+    (page)="onPage()">
+  </mat-paginator>
+</div>

@@ -1,0 +1,91 @@
+<div>
+
+  <div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+      <mat-icon>clear</mat-icon>
+    </span>
+  </div>
+
+  <form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+    novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+      <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+        <div class="max-width-1000px" [fxFlex]="50" fxLayout="column" fxLayout.lt-md="column">
+
+          <div class="" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+            <div [fxFlex]="50" fxLayout="column" class="margin-right-25px">
+
+              <mat-form-field class="margin-left-16px max-width-480px">
+
+                <mat-label>Style Name</mat-label>
+
+                <input matInput type="text" formControlName="name" readonly>
+
+              </mat-form-field>
+
+              <mat-form-field class="max-width-480px">
+                <mat-label>Categories</mat-label>
+                <mat-select disableOptionCentering placeholder="Select" formControlName="categories" [disabled]="true" multiple>
+                  <mat-option>...</mat-option>
+                  <mat-option *ngFor="let category of dialogData.categories" [value]="category.id">
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+
+            <div class="" [fxFlex]="50" fxLayout="column">
+
+              <mat-form-field class="width-100pc max-width-480px">
+
+                <mat-label>Brands</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" formControlName="brand" panelOpen="true" [disabled]="true">
+
+                  <mat-option>...</mat-option>
+
+                  <mat-option *ngFor="let brand of dialogData.brands" [value]="brand.id">
+                    {{brand.name}}
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <mat-form-field *ngIf="dialogData.data.parent" class="margin-left-16px max-width-480px">
+
+                <mat-label>Parent</mat-label>
+
+                <input matInput type="text" formControlName="parent" readonly>
+
+              </mat-form-field>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <div class="" [fxFlex]="80" fxLayout="row">
+
+          <mat-form-field class="margin-left-16px min-height-80px width-100pct customized" appearance="fill">
+
+              <mat-label>Description</mat-label>
+
+              <textarea matInput formControlName="description" readonly></textarea>
+
+          </mat-form-field>
+
+      </div>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

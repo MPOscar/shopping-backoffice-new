@@ -1,0 +1,366 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+      [formGroup]="formGroup"
+      novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div fxLayout="row"
+         class="max-width-75pct customized justify-content-space-between flex-grow-0 padding-bottom-25px">
+        <span class="flex-grow-1"></span>
+    </div>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+                <div [fxFlex]="50" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                    <div fxLayout="row" fxLayout.lt-md="column">
+
+                        <div [fxFlex]="50" class="margin-right-35px">
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>Release Name</mat-label>
+
+                                <input matInput type="text" formControlName="name" required>
+
+                                <error-messages matSuffix for="name"
+                                                [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>SKU</mat-label>
+
+                                <input matInput type="text" formControlName="sku">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>URL</mat-label>
+
+                                <input matInput type="text" formControlName="slug">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>Gender</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select" formControlName="gender">
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let gender of genders" [value]="gender.id">
+
+                                        {{gender.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc" *ngIf="!collectionId">
+
+                                <mat-label>Collection</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select" formControlName="collectionId">
+
+                                    <mat-option>
+                                        <ngx-mat-select-search [formControl]="collectionsFilterCtrl" placeholderLabel="search"
+                                                               noEntriesFoundLabel="any result">
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let collection of filteredCollection | async" [value]="collection.id">
+
+                                        {{collection.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>Style</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select" formControlName="styleId"
+                                            required>
+                                    <mat-option>
+                                        <ngx-mat-select-search [formControl]="stylesFilterCtrl" placeholderLabel="search"
+                                                               noEntriesFoundLabel="any result">
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+
+                                    <mat-option (click)="selectBrand('')">...</mat-option>
+
+                                    <mat-option *ngFor="let style of filteredStyle | async" [value]="style.id"
+                                                (click)="selectBrand(style.brand)">
+
+                                        {{style.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                                <error-messages matSuffix for="styleId"
+                                                [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                            </mat-form-field>
+
+                            <div>
+
+                                <mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="hot">
+                                    Hot
+                                </mat-slide-toggle>
+
+                            </div>
+
+                        </div>
+
+
+                        <div [fxFlex]="50" class="margin-right-25px">
+                            <mat-form-field class="width-100pc">
+
+                                <input matInput [matDatepicker]="pickerUpdated" placeholder="Modified Date"
+                                       formControlName="updatedAt">
+
+                                <mat-datepicker-toggle matSuffix [for]="pickerUpdated"></mat-datepicker-toggle>
+
+                                <mat-datepicker #pickerUpdated></mat-datepicker>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <input matInput [matDatepicker]="pickerCreation" placeholder="Creation Date"
+                                       formControlName="createdAt" readonly="readonly">
+
+                                <mat-datepicker-toggle matSuffix [for]="pickerCreation"></mat-datepicker-toggle>
+
+                                <mat-datepicker #pickerCreation></mat-datepicker>
+
+                            </mat-form-field>
+
+                            <div [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+                                <div [fxFlex]="50">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <input matInput [matDatepicker]="picker" placeholder="Release Date"
+                                               formControlName="releaseDate" readonly="readonly"
+                                               (dateChange)="dateChanged()">
+
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+                                        <mat-datepicker #picker></mat-datepicker>
+
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div [fxFlex]="50" class="">
+
+                                    <div>
+
+                                        <mat-slide-toggle class="margin-left-10px padding-top-15px"
+                                                          formControlName="notSchedule" (click)="notSchedule()">Not
+                                            Schedule
+                                        </mat-slide-toggle>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>Colors</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select" formControlName="color" multiple
+                                            required>
+
+                                    <mat-option *ngFor="let color of colors" [value]="color.id">
+
+                                        {{color.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                                <error-messages matSuffix for="color"
+                                                [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc margin-left-16px">
+
+                                <mat-label>Supplier Color</mat-label>
+
+                                <input matInput type="text" formControlName="supplierColor">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pc">
+
+                                <mat-label>Brand</mat-label>
+
+                                <mat-select (selectionChange)="selectStyles()" disableOptionCentering placeholder="Select" matNativeControl
+                                            [formControl]="selectedBrand" required
+                                >
+
+                                    <mat-option>
+                                        <ngx-mat-select-search [formControl]="brandsFilterCtrl" placeholderLabel="search"
+                                                               noEntriesFoundLabel="any result">
+                                        </ngx-mat-select-search>
+                                    </mat-option>
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let brand of filteredBrand | async" [value]="brand.id">
+                                        {{brand.name}}
+                                    </mat-option>
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                            <div [fxFlex]="100" class="justify-content-space-between" fxLayout="row"
+                                 fxLayout.lt-md="column">
+
+                                <div [fxFlex]="32">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>USD</mat-label>
+
+                                        <input matInput type="number" formControlName="priceUSD">
+
+                                        <error-messages matSuffix for="priceUSD"
+                                                        [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div [fxFlex]="32">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>EUR</mat-label>
+
+                                        <input matInput type="number" formControlName="priceEUR">
+
+                                        <error-messages matSuffix for="priceEUR"
+                                                        [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div [fxFlex]="32">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>GBP</mat-label>
+
+                                        <input matInput type="number" formControlName="priceGBP">
+
+                                        <error-messages matSuffix for="priceGBP"
+                                                        [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="display-text-area">
+
+                        <mat-form-field class="width-100pc height-100pc" appearance="fill">
+
+                            <mat-label>Description</mat-label>
+
+                            <textarea matInput formControlName="description"
+                                      class="min-height-145px height-100pc"></textarea>
+
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
+                <div [fxFlex]="50" class="margin-right-25px">
+
+                    <div>
+
+                        <mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="customized">
+                            Customized
+                        </mat-slide-toggle>
+
+                    </div>
+
+                    <div [fxFlex]="50" class="border max-width-480px margin-bottom-20px">
+
+                        <div class="display-flex justify-content-center">
+
+                            <h3 class="margin-buttom-0px">Main Image</h3>
+
+                        </div>
+
+                        <images-card class="flex-grow-1 padding-10px" formControlName="faces" name="faces"
+                                     (deletedFace)="onDeleteFace($event)" [principal]="principal"></images-card>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column">
+
+                <offers-release-table
+                    [releaseId]="releaseId"
+                    [offerId]="offerId"
+                    [release]="data"
+                    [collections]="collections"
+                    [customized]="formGroup.get('customized').value"
+                    [releases]="releases"
+                    [shops]="shops"
+                    [sortByRank]="true">
+                </offers-release-table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+        <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+        <button (click)="submitClicked(false)" mat-raised-button type="button" class="margin-left-10px"
+                color="primary">{{ 'Save without updating date' | translate }}</button>
+
+        <button mat-raised-button type="button" class="margin-left-10px"
+                (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+    </div>
+
+</form>

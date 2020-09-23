@@ -1,0 +1,25 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+.slide-tab:hover{
+    background-color: #b6b6b6 !important;
+}
+
+.slide-tab-active{
+    background-color: #b6b6b6 !important;
+}
+
+.min-height-34px{
+    min-height: 34px !important;
+}

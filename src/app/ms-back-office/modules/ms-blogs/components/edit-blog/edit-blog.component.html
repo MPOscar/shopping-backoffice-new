@@ -1,0 +1,11 @@
+<h1>BLOG EDITOR</h1>
+<blog-form *ngIf="data && imageList"
+    [brands]="brands"
+    [data]="data"
+    [faceList]="imageList"    
+    [principal]="principal"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</blog-form>

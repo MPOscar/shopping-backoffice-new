@@ -1,0 +1,10 @@
+<hottest-form *ngIf="data"
+    [brandId]="brandId"
+    [data]="data"
+    [faceList]="faceList"
+    [principal]="principal"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</hottest-form>

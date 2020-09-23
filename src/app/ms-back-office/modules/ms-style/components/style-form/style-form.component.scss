@@ -1,0 +1,40 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1 !important;
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+.max-width-480px{
+    max-width: 480px !important;
+}
+
+.margin-bottom-10px{
+    margin-bottom: 10px !important;
+}
+
+textarea{
+    height: 43px;
+}
+
+
+mat-form-field {
+    max-width: 100% !important;
+}
+
+.max-width-1000px{
+    max-width: 1000px !important;
+}
+
+@media screen and (max-width: 959px) {
+    .customized {
+        max-width: 480px !important;
+    }
+  }

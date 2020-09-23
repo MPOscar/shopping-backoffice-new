@@ -1,0 +1,68 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+    opacity: 0;
+}
+
+::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer{
+    transform: rotate(-45deg);
+}
+::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer{
+    transform: rotate(45deg);
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+.mat-tab-header{
+    padding-bottom: 25px !important;
+}
+
+::ng-deep .mat-tab-label{
+    widows: 50% !important;
+}
+
+mat-card {
+    padding: 0px;
+    align-self: flex-start;
+    height: 200px;
+    width: 150px;
+    margin-left: 2px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+img{
+    height: 130px !important;
+    width: 100%!important;
+}
+
+mat-form-field {
+    max-width: 100% !important;
+}
+
+.myPanelClass{
+    margin-top: 100px !important; 
+}
+
+.height-263px{
+    height: 263px !important;
+}
+
+.border-radius-5px{
+    border-radius: 5px !important;
+}
+
+.padding-2px{
+    padding: 2px !important;
+}

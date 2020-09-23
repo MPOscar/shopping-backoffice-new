@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+::ng-deep .mat-dialog-container {
+    padding: 0px 0px 25px 25px;
+}
+
+.margin-top-0px{
+    margin-top: 0px !important;
+}

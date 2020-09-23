@@ -1,0 +1,440 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+    [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-bottom-25px">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div [fxFlex]="100" fxLayout="row" class="padding-top-10px">
+
+                <div [fxFlex]="25" class="margin-right-25px">
+
+                    <mat-radio-group *ngIf="!customized" formControlName="raffle">
+
+                        <div class="display-flex padding-bottom-25px" fxLayout="row">
+
+                            <div class="display-flex margin-right-25px">
+
+                                <mat-radio-button [value]="false" class="margin-top-10px"
+                                    matTooltip="{{ 'Principal' | translate }}">Release</mat-radio-button>
+
+                            </div>
+
+                            <div class="display-flex">
+
+                                <mat-radio-button [value]="true" class="margin-top-10px"
+                                    matTooltip="{{ 'Principal' | translate }}">Raffle</mat-radio-button>
+
+                            </div>
+
+                        </div>
+
+                    </mat-radio-group>
+
+                    <mat-form-field *ngIf="!shopId" class="width-100pc">
+
+                        <mat-label>Shops</mat-label>
+
+                        <mat-select disableOptionCentering placeholder="Select Shop" formControlName="shopId" required>
+
+                            <mat-option>...</mat-option>
+
+                            <mat-option *ngFor="let shop of shops" [value]="shop.id" (click)="changeShop(shop)">
+
+                                {{shop.name}}
+
+                            </mat-option>
+
+                        </mat-select>
+
+                        <error-messages matSuffix for="shopId" [validationErrorMessages]="validationErrorMessages">
+                        </error-messages>
+
+                    </mat-form-field>
+
+                    <mat-form-field class="width-100pc" *ngIf="!releaseId && !releaseForm">
+
+                        <mat-label>Releases</mat-label>
+
+                        <mat-select disableOptionCentering placeholder="Select Release" formControlName="releaseId"
+                            required>
+
+                            <mat-option>...</mat-option>
+
+                            <mat-option *ngFor="let release of releases" [value]="release.id">
+
+                                {{release.name}}
+
+                            </mat-option>
+
+                        </mat-select>
+
+                        <error-messages matSuffix for="releaseId" [validationErrorMessages]="validationErrorMessages">
+                        </error-messages>
+
+                    </mat-form-field>
+
+
+                    <!-- SHIPPING COUNTRY -->
+                    <div>
+                        <mat-form-field *ngIf="shopSelected.type === 'virtual' && !shopSelected.isParent"
+                            class="width-100pct">
+
+                            <mat-select disableOptionCentering placeholder="Shipping Countries"
+                                formControlName="shipping">
+
+                                <mat-option>...</mat-option>
+
+                                <mat-option *ngFor="let option of shippingCountries" [value]="option.id">
+
+                                    {{option.name}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                        <mat-form-field
+                            *ngIf="shopSelected.type === 'virtual' && !shopSelected.isParent && formGroup.get('shipping').value === 'Select Countries'"
+                            class="width-100pc">
+
+                            <mat-select disableOptionCentering placeholder="Countries" formControlName="countries"
+                                multiple>
+
+                                <mat-option *ngFor="let country of countriesForShipping" [value]="country.country">
+
+                                    {{country.country}}
+
+                                </mat-option>
+
+                            </mat-select>
+
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+
+                <div [fxFlex]="75" fxLayout="column" class="margin-left-10px">
+
+                    <div fxLayout="row">
+
+                        <div [fxFlex]="25" fxLayout="column">
+
+                            <mat-card
+                                class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+
+                                <div class="image-container flex-grow-1" #imageContainer>
+
+                                    <img class="img" imageLoad
+                                        [srcImage]="shopSelected.mainImage? shopSelected.mainImage : ''"
+                                        [container]="imageContainer" src="">
+
+                                </div>
+
+                            </mat-card>
+
+                        </div>
+
+                        <div [fxFlex]="60" fxLayout="row" class="margin-left-25px">
+
+                            <div [fxFlex]="50">
+
+                                <h3>{{ shopSelected.name }}</h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div [fxFlex]="100" fxLayout="row">
+
+                        <div [fxFlex]="30" fxLayout="column" class="margin-right-25px">
+
+                            <div class="justify-content-space-between padding-top-10px" fxLayout="row"
+                                fxLayout.lt-md="column">
+
+                                <div [fxFlex]="32" formGroupName="prices">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>USD</mat-label>
+
+                                        <input id="name" matInput type="number" formControlName="priceUSD">
+
+<!--                                        <mat-icon matSuffix *ngIf="pricesInvalid" class="cursor-default" color="warn"-->
+<!--                                            matTooltip="At least 1 price is required">error-->
+<!--                                        </mat-icon>-->
+
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div [fxFlex]="32" formGroupName="prices">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>EUR</mat-label>
+
+                                        <input matInput type="number" formControlName="priceEUR">
+
+<!--                                        <mat-icon matSuffix *ngIf="pricesInvalid" class="cursor-default" color="warn"-->
+<!--                                            matTooltip="At least 1 price is required">error-->
+<!--                                        </mat-icon>-->
+
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div [fxFlex]="32" formGroupName="prices">
+
+                                    <mat-form-field class="width-100pc">
+
+                                        <mat-label>GBP</mat-label>
+
+                                        <input matInput type="number" formControlName="priceGBP">
+
+<!--                                        <mat-icon matSuffix *ngIf="pricesInvalid" class="cursor-default" color="warn"-->
+<!--                                            matTooltip="At least 1 price is required">error-->
+<!--                                        </mat-icon>-->
+
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <!-- STATUS FOR RELEASE TYPE -->
+                            <mat-form-field class="width-100pc" *ngIf="!isRaffle">
+
+                                <mat-label>Status</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select Status" formControlName="status"
+                                    required>
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let state of releaseStatus" [value]="state.id"
+                                        (click)="changeStatus(state.id)">
+
+                                        {{state.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                                <error-messages matSuffix for="status"
+                                    [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                            </mat-form-field>
+                            <!-- STATUS FOR RELEASE TYPE -->
+
+                            <!-- STATUS FOR RAFFLE TYPE -->
+                            <mat-form-field class="width-100pc" *ngIf="isRaffle">
+
+                                <mat-label>Status</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select Status" formControlName="status"
+                                    required>
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let state of raffleStatus" [value]="state.id"
+                                        (click)="changeStatus(state.id)">
+
+                                        {{state.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                                <error-messages matSuffix for="status"
+                                    [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                            </mat-form-field>
+                            <!-- STATUS FOR RAFFLE TYPE -->
+
+                            <div *ngIf="!isRaffle && statusSelected === 'coming_soon'" fxLayout="column"
+                                class="margin-top-18px flex-grow-0">
+
+                                <mat-label>Release Time</mat-label>
+
+                                <div fxLayout="row" class="margin-top-18px flex-grow-0">
+
+                                    <div [fxFlex]="45" class="margin-right-5px">
+
+                                        <mat-form-field class="width-100pc">
+
+                                            <input matInput [matDatepicker]="releaseDate" placeholder="Release Date"
+                                                formControlName="releaseTime">
+
+                                            <mat-datepicker-toggle matSuffix [for]="releaseDate">
+                                            </mat-datepicker-toggle>
+
+                                            <mat-datepicker #releaseDate></mat-datepicker>
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div [fxFlex]="35" class="margin-left-5px">
+
+                                        <mat-form-field class="width-90pct">
+
+                                            <mat-label>Release Time</mat-label>
+
+                                            <input matInput atp-time-picker class="cursor-pointer"
+                                                formControlName="releaseTimeHours" />
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div [fxFlex]="20" class="margin-left-5px">
+                                        <mat-form-field class="width-100pc">
+                                            <mat-select disableOptionCentering placeholder="Timezone" formControlName="timezone">
+                                                <mat-option *ngFor="let timezone of timezones" [value]="timezone">
+                                                    {{timezone}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="isRaffle && statusSelected !== 'coming_soon'" fxLayout="column" class="margin-top-18px flex-grow-0">
+
+                                <mat-label>Raffle Time</mat-label>
+
+                                <div fxLayout="row" class="margin-top-18px flex-grow-0">
+
+                                    <div [fxFlex]="36" class="margin-right-5px">
+
+                                        <mat-form-field class="width-100pc">
+
+                                            <input matInput [matDatepicker]="raffleEnd" placeholder="End Date"
+                                                formControlName="raffleEnd">
+
+                                            <mat-datepicker-toggle matSuffix [for]="raffleEnd"></mat-datepicker-toggle>
+
+                                            <mat-datepicker #raffleEnd></mat-datepicker>
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div [fxFlex]="32" class="margin-left-5px">
+
+                                        <mat-form-field class="width-100pct">
+
+                                            <mat-label>End Time</mat-label>
+
+                                            <input matInput atp-time-picker formControlName="raffleEndTime"
+                                                class="cursor-pointer" />
+                                            <button mat-button *ngIf="formGroup.get('raffleEndTime').value" matSuffix
+                                                mat-icon-button aria-label="Clear" (click)="clearTime()">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div [fxFlex]="32" class="margin-left-5px">
+                                        <mat-form-field class="width-100pc">
+                                            <mat-select disableOptionCentering placeholder="Timezone" formControlName="timezone">
+                                                <mat-option *ngFor="let timezone of timezones" [value]="timezone">
+                                                    {{timezone}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <mat-form-field class="width-100pct">
+
+                                <mat-label>Sale Percentage</mat-label>
+
+                                <input numbersOnly min="0" max="100" pattern="[0-9]" matInput type="number"
+                                    matNativeControl [formControl]="salePercentage" (change)="salePercentKeyPress()"
+                                    (keyup)="salePercentKeyPress()">
+
+                            </mat-form-field>
+
+                            <mat-form-field class="width-100pct">
+
+                                <mat-label>Sale Price</mat-label>
+
+                                <input matInput type="number" value="0" matNativeControl [formControl]="salePrice"
+                                    (change)="salePriceKeyPress()" (keyup)="salePriceKeyPress()">
+
+                            </mat-form-field>
+
+                            <div>
+
+                                <mat-checkbox value="true" class="margin-top-10px"
+                                    matTooltip="{{ 'Display on Whats New' | translate }}"
+                                    formControlName="displayWhatsNew">Display on What's New</mat-checkbox>
+
+                            </div>
+
+                            <div class="padding-top-10px">
+
+                                <mat-checkbox value="true" class="margin-top-10px"
+                                    matTooltip="{{ 'Display on Sales' | translate }}" formControlName="displayOnSale">
+                                    Display on Sales</mat-checkbox>
+
+                            </div>
+
+                        </div>
+
+                        <div [fxFlex]="50" fxLayout="column" class="margin-right-25px margin-left-25px">
+
+                            <h3>Links</h3>
+
+                            <div fxLayout="column" class="flex-grow-1 overflow-auto display-flex max-height-350px">
+
+                                <div
+                                    class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-bottom-25px">
+
+                                    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+                                        <error-messages matSuffix for="links"
+                                                        [validationErrorMessages]="validationErrorMessages">
+                                        </error-messages>
+                                        <links-table [links]="links" [shop]="shopSelected"
+                                            (linksEventEmiter)="updateLinks($event)"></links-table>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="margin-right-25px padding-top-15px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+        <button mat-raised-button type="submit" color="primary">{{ 'Save' | translate }}</button>
+
+        <button mat-raised-button type="button" class="margin-left-10px"
+            (click)="cancelClicked()">{{ 'Cancel' | translate }}</button>
+
+    </div>
+</form>

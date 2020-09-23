@@ -1,0 +1,50 @@
+<!--h1>Select the page you want to configure</h1-->
+<layout-slider-topnav (layoutEventEmitter)="layoutEvent($event)"></layout-slider-topnav>
+<div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+        <mat-tab-group class="padding-top-25px display-flex flex-grow-1" *ngIf="flag">
+
+            <mat-tab label="Slider">
+                <sliders
+                    [filters]="filters"
+                    [pageId]="pageId"
+                    [brands]="brands"
+                    [categories]="categories"
+                    [collections]="collections"
+                    [deals]="deals"
+                    [releases]="releases"
+                    [offers]="offers"
+                    [shops]="shops"
+                    [styles]="styles">
+                </sliders>
+            </mat-tab>
+
+            <mat-tab label="Header">
+               <headers [pageId]="pageId"  class="height-100-pc"></headers>
+            </mat-tab>
+
+            <mat-tab label="Hottest">
+                <hottest [pageId]="pageId" class="height-100-pc"></hottest>
+            </mat-tab>
+
+            <mat-tab label="Heading">
+                <edit-heading [filters]="filters" [pageId]="pageId" [brands]="brands" [categories]="categories" [collections]="collections"
+                    [shops]="shops" [styles]="styles"></edit-heading>
+            </mat-tab>
+
+            <mat-tab label="Our Partners" *ngIf="pageId ==='home' || pageId ==='whats_new'">
+                <ours-partners [filters]="filters" [pageId]="pageId" [brands]="brands" [categories]="categories" [collections]="collections"
+                    [deals]="deals" [releases]="releases" [offers]="offers" [shops]="shops" [styles]="styles"></ours-partners>
+            </mat-tab>
+
+            <mat-tab label="Menu" *ngIf="pageId ==='brands'">
+                <menu-brands [filters]="filters" [pageId]="pageId" [brands]="brands" [styles]="styles" [collections]="collections"> </menu-brands>
+            </mat-tab>
+
+        </mat-tab-group>
+
+    </div>
+
+</div>

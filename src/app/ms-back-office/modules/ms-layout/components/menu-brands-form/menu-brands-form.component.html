@@ -1,0 +1,147 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+    [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+        <div class="flex-grow-1 flex-shrink-0 flex-direction-column">
+
+            <div class="mb-20 padding-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+                <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                    <div fxLayout="row" fxLayout.lt-md="column" class="padding-top-10px">
+
+                        <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+
+                            <mat-label>New Menu Item</mat-label>
+
+                            <div class="display-flex padding-top-20px padding-bottom-20px">
+                                <button mat-raised-button type="button" color="primary"
+                                    [ngClass]="{'color-danger' : !productValid}" (click)="newProduct()"
+                                    class="margin-top-10px font-height-custom">SELECT BRAND *</button>
+                            </div>
+
+                            <div class="max-width-480px" >
+                                <div class="display-flex">
+                                    <div [fxFlex]="60">
+                                        <!-- <img class="width-100pct "
+                                            [src]="imgUrl ? imgUrl : 'assets/images/no-image.svg'"> -->
+                                        <div class="max-width-480px">
+                                            <image-card formControlName="faces" [principal] = "image" [disabled] = "true"></image-card>
+                                        </div>
+                                    </div>
+                                    <div [fxFlex]="40" class="display-flex align-items-center padding-left-5px" *ngIf="setProductFlag">
+                                        <div class="">
+                                            <div class="">Name: </div>
+                                            <div>{{getProductName()}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <mat-form-field class="padding-top-5px max-width-480px">
+
+                                <mat-label>Collections</mat-label>
+
+                                <mat-select
+                                    [multiple]="true"
+                                    disableOptionCentering
+                                    placeholder="Select"
+                                    formControlName="collections">
+
+                                    <mat-option *ngFor="let collection of filteredCollections" [value]="collection.id">
+                                        {{collection.name}}
+                                    </mat-option>
+
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="padding-top-5px max-width-480px">
+                                <mat-label>Styles</mat-label>
+                                <mat-select
+                                    [multiple]="true"
+                                    disableOptionCentering
+                                    placeholder="Select"
+                                    formControlName="styles">
+
+                                    <mat-option *ngFor="let style of filteredStyles" [value]="style.id">
+                                        {{style.name}}
+                                    </mat-option>
+
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div [fxFlex]="10"
+                            class="margin-right-25px padding-bottom-25px align-items-center display-flex">
+                            <div *ngIf="!editSlideBoolean; else saveSlideButtom">
+                                <button mat-raised-button type="submit">{{ 'Add' }}</button>
+                            </div>
+                            <ng-template #saveSlideButtom>
+                                <div>
+                                    <button mat-raised-button type="submit">{{ 'Save' }}</button>
+                                </div>
+                            </ng-template>
+                        </div>
+
+                        <div [fxFlex]="40" class="margin-right-25px">
+
+                            <mat-label>Current Menu Items</mat-label>
+
+                            <div class="padding-top-25px">
+                                <div *ngFor="let slide of slides">
+                                    <hr>
+                                    <div fxLayout="row"
+                                        class="padding-top-10px">
+
+                                        <div [fxFlex]="30" class="margin-right-25px">
+                                            <img with="60" height="60"
+                                                [src]="slide.imgUrl ? slide.imgUrl : getImageBrand(slide.entityId)">
+                                        </div>
+                                        <mat-chip-list>
+                                            <mat-chip *ngFor="let collectionId of slide.collections">{{getCollectionName(collectionId)}}</mat-chip>
+                                            <mat-chip *ngFor="let styleId of slide.styles">{{getStyleName(styleId)}}</mat-chip>
+                                        </mat-chip-list>
+                                    </div>
+
+                                    <div>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit"
+                                            (click)="editSlide(slide.id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Delete"
+                                            (click)="deleteSlide(slide.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="MoveUp"
+                                                (click)="moveSlide(slide.id, -1)">
+                                            <mat-icon>arrow_upward</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="MoveDown"
+                                                (click)="moveSlide(slide.id, 1)">
+                                            <mat-icon>arrow_downward</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+        <span class="flex-grow-1"></span>
+        <button mat-raised-button type="button" color="primary"
+            (click)="saveTab()">{{ 'Save Changes' | translate }}</button>
+    </div>
+</form>

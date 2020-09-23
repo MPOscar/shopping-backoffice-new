@@ -1,0 +1,20 @@
+<div>
+
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<h1 class="margin-top-0px">COLLECTION CREATOR</h1>
+
+<collection-form class="flex-grow-1 padding-right-20px"
+    [brands]="dialogData.brands"
+    [data]="data"        
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</collection-form>
+
+</div>

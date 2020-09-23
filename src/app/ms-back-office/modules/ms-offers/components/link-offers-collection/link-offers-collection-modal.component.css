@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%
+}
+
+.mat-dialog-container {
+  padding: 10px;
+}
+
+.mat-dialog-actions {
+  padding: 10px 0;
+}

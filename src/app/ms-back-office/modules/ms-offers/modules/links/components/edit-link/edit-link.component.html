@@ -1,0 +1,9 @@
+<h1>EDIT URL</h1>
+<link-form
+    [data]="dialogData.data"
+    (accept)="submit($event)"
+    [shop]="dialogData.shop" 
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</link-form>

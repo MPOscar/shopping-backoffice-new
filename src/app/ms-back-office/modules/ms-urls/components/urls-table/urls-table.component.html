@@ -1,0 +1,63 @@
+<h1>Urls Table</h1>
+
+<mat-toolbar class="margin-right-25px margin-bottom-10px width-auto flex-shrink-0 background-color-secondary color-primary mat-elevation-z2"
+  [formGroup]="filter">
+
+  <mat-icon matPrefix color="primary">search</mat-icon>
+  <mat-form-field>
+    <input matInput formControlName="url" placeholder="URL">
+  </mat-form-field>
+  
+  <span class="flex-grow-1"></span>
+  <button mat-raised-button color="primary" (click)="addUrlModalBrand()">ADD URL</button>
+</mat-toolbar>
+
+<div class="flex-grow-1 overflow-auto display-flex">
+
+  <table class="margin-top-10px margin-right-25px width-100pct"
+        mat-table [dataSource]="urls"
+        matSort [matSortActive]="urlsService.previousSortColumn" [matSortDirection]="urlsService.previousSortDirection"
+        matSortDisableClear (matSortChange)="onSort()">
+
+        <ng-container matColumnDef="URL">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              URL
+            </th>
+            <td mat-cell *matCellDef="let element"> {{ element.url }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="VANITY URL">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              VANITY URL
+            </th>
+            <td mat-cell *matCellDef="let element" class="padding-table-td"> {{ element.vanityUrl }} </td>
+        </ng-container>        
+
+        <ng-container matColumnDef="ACTIONS">
+          <th mat-header-cell *matHeaderCellDef>  
+              ACTIONS
+          </th>
+          <td mat-cell *matCellDef="let element"  class="min-width-80px"> 
+              <button mat-icon-button color="primary" [matTooltip]="Edit" (click)="editUrlModalBrand(element.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" [matTooltip]="Delete" [routerLink]="['../delete', element.id]">
+                <mat-icon>delete</mat-icon>
+              </button>        
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+        </tr>
+
+    </table>
+
+</div>
+
+<div class="margin-right-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+  <span class="flex-grow-1"></span>
+  <mat-paginator
+      [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="" showFirstLastButtons (page)="onPage()">
+  </mat-paginator>
+</div>

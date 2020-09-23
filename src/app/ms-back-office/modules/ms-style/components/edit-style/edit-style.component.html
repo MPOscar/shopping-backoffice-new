@@ -1,0 +1,13 @@
+<h1>EDIT STYLE</h1>
+<style-form *ngIf="data"
+    [data]="data"
+    [brands]="brands"
+    [styles]="styles"
+    [styleId]="styleId"
+    [shops]="shops"
+    [categories]="categories"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</style-form>

@@ -1,0 +1,69 @@
+<div class="padding-right-25px height-100pct overflow-auto">
+    <mat-horizontal-stepper [linear]="false" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+
+            <ng-template matStepLabel>Select Shops</ng-template>
+
+            <div class="display-flex" fxLayout="row">
+                <app-shop-tree [shops]="shops" [release] = "true"></app-shop-tree>
+            </div>
+
+            <div class="padding-top-15px">
+                <button mat-button matStepperNext (click)="shopSelectedToOffers()">
+                    Next
+                </button>
+            </div>
+
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <div class="overflow-auto">
+                <ng-template matStepLabel>
+                    <p (click)="shopSelectedToOffers()">Offer Forms</p>
+                </ng-template>
+
+                <!-- <offer-forms-accordion [data]="data" [shopId]="shopId" [customized]="customized" [shops]="shopsToShow"
+                [releases]="releases" [releaseId]="releaseId" [validationErrors]="validationErrors">
+            </offer-forms-accordion> -->
+
+                <mat-card *ngFor="let shop of shopsToShow">
+                    <mat-card-header class="background-color-gainsboro ">
+                        <!-- <mat-panel-title>{{shop.name}}</mat-panel-title>
+                    <mat-panel-description>SHOP_FORM_INPUTS</mat-panel-description> -->
+                        <div class="display-flex width-100pct justify-content-center">
+                            <H3>{{shop.name}}</H3>
+                        </div>
+                    </mat-card-header>
+
+                    <offer-form-multiple id="{{'form-'+ shop.id}}" *ngIf="shopsToShow" [customized]="customized" [shop]="shop"
+                        [data]="data"
+                        [releases]="releases" [releaseId]="releaseId" [validationErrors]="validationErrors"
+                        (accept)="formDataResponce($event)" (cancel)="cancel()" (dataChange)="dataChanged()"
+                        [releaseForm] = "releaseForm"
+                        [countriesForShipping] = "countriesForShipping">
+                    </offer-form-multiple>
+
+                </mat-card>
+                <div>
+                    <button (click)="backToTree()"  mat-button matStepperPrevious class="padding-top-15px">
+                        Back
+                    </button>
+                </div>
+            </div>
+
+        </mat-step>
+    </mat-horizontal-stepper>
+
+</div>
+
+<div
+    class="margin-right-25px padding-top-15px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button *ngIf="isOffersPage" mat-raised-button type="button" (click)="submitClicked()" color="primary">
+        {{ 'Save' | translate }}
+    </button>
+
+    <button mat-raised-button type="button" class="margin-left-10px" (click)="cancelClicked()">
+        {{ 'Cancel' | translate }}
+    </button>
+
+</div>

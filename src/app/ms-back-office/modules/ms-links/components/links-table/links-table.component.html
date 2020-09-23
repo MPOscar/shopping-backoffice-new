@@ -1,0 +1,40 @@
+<div class=" overflow-auto display-flex width-100pct">
+
+  <table class="margin-top-10px width-100pct" mat-table [dataSource]="links" matSort>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        URL
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.linkUrl }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="text">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        TEXT
+      </th>
+      <td mat-cell *matCellDef="let element" class=""> {{ element.linkText }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let element" class="min-width-80px direction-rtl">
+        <button type="button" mat-icon-button color="primary" [matTooltip]="Edit" (click)="editLinkModal(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button type="button" mat-icon-button color="primary" [matTooltip]="Delete" (click)="deleteLinks(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+
+  </table>  
+
+</div>
+
+<button mat-raised-button type="button" color="primary" (click)="addUrlModalBrand()" class="margin-top-10px">ADD URL</button>

@@ -1,0 +1,57 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+mat-form-field {
+    max-width: 100% !important;
+}
+
+.height-263px{
+    height: 263px !important;
+}
+
+.border-radius-5px{
+    border-radius: 5px !important;
+}
+
+.padding-2px{
+    padding: 2px !important;
+}
+
+.padding-left-60px {
+    padding-left: 60px;
+}
+
+.width-30pct {
+    width: 30%;
+}
+
+.padding-bottom-20px {
+    padding-bottom: 20px;
+}
+
+.font-size-1rem {
+    font-size: 1rem;
+}
+
+.font-size-2rem {
+    font-size: 2rem;
+}
+
+.width-45pct {
+    width: 45pct !important;
+}
+
+.height-200px {
+    height: 200px;
+}

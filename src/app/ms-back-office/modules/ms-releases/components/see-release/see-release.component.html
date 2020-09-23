@@ -1,0 +1,298 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div fxLayout="row" class="max-width-75pct customized justify-content-space-between flex-grow-0 padding-bottom-25px">
+    <span class="flex-grow-1"></span>
+  </div>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+        <div [fxFlex]="50" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+          <div fxLayout="row" fxLayout.lt-md="column">
+
+            <div [fxFlex]="50" class="margin-right-35px">
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Release Name</mat-label>
+
+                <input matInput type="text" formControlName="name" required readonly>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>SKU</mat-label>
+
+                <input matInput type="text" formControlName="sku" readonly>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Gender</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" formControlName="gender" [disabled]="true">
+
+                  <mat-option>...</mat-option>
+
+                  <mat-option *ngFor="let gender of genders" [value]="gender.id">
+
+                    {{gender.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Collection</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" formControlName="collectionId" [disabled]="true">
+
+                  <mat-option>...</mat-option>
+
+                  <mat-option *ngFor="let collection of dialogData.collections" [value]="collection.id">
+
+                    {{collection.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Style</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" formControlName="styleId" required [disabled]="true">
+
+                  <mat-option (click)="selectBrand('')">...</mat-option>
+
+                  <mat-option *ngFor="let style of dialogData.styles" [value]="style.id" (click)="selectBrand(style.brand)">
+
+                    {{style.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <div>
+
+                <div *ngIf="formGroup.get('hot').value" class="display-flex">
+
+                  <span class="padding-top-25px">Hot</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div [fxFlex]="50" class="padding-right-25px">
+
+              <div [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+                <div [fxFlex]="40">
+
+                  <mat-form-field class="width-100pc">
+
+                    <input matInput [matDatepicker]="picker" placeholder="Release Date" formControlName="releaseDate" readonly="readonly">
+
+                    <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="true"></mat-datepicker-toggle>
+
+                    <mat-datepicker #picker></mat-datepicker>
+
+                  </mat-form-field>
+
+                </div>
+
+                <div [fxFlex]="60" class="">
+
+                  <div *ngIf="formGroup.get('notSchedule').value" class="display-flex">
+
+                    <span class="padding-top-25px">Not Schedule</span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!--div>
+
+            <mat-checkbox class="padding-bottom-15px" value="primary" matTooltip="{{ 'Upcomming' | translate }}">Upcoming</mat-checkbox>
+
+          </div-->
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Colors</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" formControlName="color" multiple [disabled]="true">
+
+                  <mat-option *ngFor="let color of colors" [value]="color.id">
+
+                    {{color.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pc margin-left-16px">
+
+                <mat-label>Supplier Color</mat-label>
+
+                <input matInput type="text" formControlName="supplierColor" readonly>
+
+              </mat-form-field>
+
+              <div [fxFlex]="100" class="justify-content-space-between" fxLayout="row" fxLayout.lt-md="column" *ngIf="!formGroup.get('customized').value">
+
+                <div [fxFlex]="50">
+
+                  <mat-form-field class="width-100pc">
+
+                    <mat-label>Price</mat-label>
+
+                    <input matInput type="number" formControlName="price" required readonly>
+
+                  </mat-form-field>
+
+                </div>
+
+                <div [fxFlex]="40" class="margin-left-10px">
+
+                  <mat-form-field class="width-100pc">
+
+                    <mat-select disableOptionCentering placeholder="Currency" formControlName="currency" [disabled]="true">
+
+                      <mat-option>...</mat-option>
+
+                      <mat-option *ngFor="let currenc of currency" [value]="currenc.id">
+
+                        {{currenc.name}}
+
+                      </mat-option>
+
+                    </mat-select>
+
+                  </mat-form-field>
+
+                </div>
+
+              </div>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Brand</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select" matNativeControl [formControl]="selectedBrand" [disabled]="true">
+
+                  <mat-option (click)="selectStyle('')">...</mat-option>
+
+                  <mat-option *ngFor="let brand of dialogData.brands" [value]="brand.id" (click)="selectStyle(brand.id)">
+
+                    {{brand.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <!--mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="children">Children</mat-slide-toggle-->
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <mat-form-field class="width-100pc padding-top-25px" appearance="fill">
+
+              <mat-label>Description</mat-label>
+
+              <textarea matInput formControlName="description" class="min-height-100px" readonly></textarea>
+
+            </mat-form-field>
+
+          </div>
+
+        </div>
+
+        <div [fxFlex]="50" class="margin-right-25px">
+
+          <div>
+
+            <div *ngIf="formGroup.get('customized').value" class="display-flex">
+
+              <span class="padding-top-25px">Customized</span>
+
+            </div>
+
+          </div>
+
+          <div [fxFlex]="50" class="max-width-480px margin-bottom-20px">
+
+            <div class="display-flex justify-content-center">
+
+              <h3 class="margin-buttom-0px">Main Image</h3>
+
+            </div>
+
+            <images-card class="flex-grow-1 padding-10px" formControlName="faces" name="faces" (deletedFace)="onDeleteFace($event)" [principal]="principal"
+              [disabled]="true"></images-card>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!--div class="align-items-center padding-top-25px padding-bottom-25px" [fxFlex]="100"
+        fxLayout="column" fxLayout.lt-md="column">
+
+        <button mat-stroked-button type="button" class="max-width-480px" (click)="MakeANewOffer()">Add an offer to this Release</button>
+
+      </div-->
+
+      <div class="mb-20" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+        <div>
+          <h3>Linked Offers</h3>
+        </div>
+
+        <offers-release-table 
+          [releaseId]="dialogData.id" 
+          [offerId]="dialogData.offerId" 
+          [release]="dialogData.data" 
+          [collections]="dialogData.collections"
+          [customized]="formGroup.get('customized').value" 
+          [disabled]="true"
+          [shops]="dialogData.shops">
+        </offers-release-table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

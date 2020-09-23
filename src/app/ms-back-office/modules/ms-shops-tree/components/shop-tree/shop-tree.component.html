@@ -1,0 +1,25 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="flex-grow-1">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding class="flex-grow-1">
+    <button mat-icon-button disabled></button>
+    <mat-checkbox class="checklist-leaf-node" [checked]="treeControl.isSelected(node)"
+      (change)="treeControl.toggleNode(node);">{{node.item}}</mat-checkbox>
+    <!-- <button mat-icon-button *ngIf="treeControl.isSelected(node)" (click)="editLinkModal(node)">
+      <mat-icon *ngIf="!node.linkText && !node.linkUrl">add</mat-icon>
+      <mat-icon *ngIf="node.linkText || node.linkUrl">edit</mat-icon>
+    </button> -->
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="flex-grow-1">
+    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    <mat-checkbox [checked]="descendantsAllSelected(node)" [indeterminate]="descendantsPartiallySelected(node)"
+      (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+    <!-- <button mat-icon-button *ngIf="descendantsAllSelected(node) || descendantsPartiallySelected(node)" (click)="editLinkModal(node)">
+      <mat-icon *ngIf="!node.linkText && !node.linkUrl">add</mat-icon>
+      <mat-icon *ngIf="node.linkText || node.linkUrl">edit</mat-icon>
+    </button> -->
+  </mat-tree-node>
+</mat-tree>

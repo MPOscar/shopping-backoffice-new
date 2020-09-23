@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="fix-nav">
+    <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <div class="nav-brand cursor-pointer" [routerLink]="['/backoffice/home']">
+        MoreSneakers
+    </div>
+    <span class="nav-spacer"></span>
+    <!--button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="language">
+        <mat-icon>language</mat-icon>
+    </button>
+    <mat-menu #language="matMenu">
+        <button mat-menu-item (click)="changeLang('en')">
+            <span>{{ 'English' | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="changeLang('fr')">
+            <span>{{ 'French' | translate }}</span>
+        </button>
+    </mat-menu-->
+    <span class="flex-grow-1"></span>
+    <!--div class="marging-right-10px width-80px">
+        <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
+            <mat-icon>account_circle</mat-icon> Admin
+        </button>
+        <mat-menu #profile="matMenu">
+            <button mat-menu-item>
+                <mat-icon>person</mat-icon>
+                <span>{{ 'Profile' | translate }}</span>
+            </button>
+        </mat-menu>
+    </div-->
+    <div class="marging-right-10px width-80px">
+        <button class="hidden-sm" mat-icon-button>
+            <mat-icon>account_circle</mat-icon> Admin
+        </button>
+        
+    </div>
+    <div>
+        <button mat-icon-button [routerLink]="['/logout']" [queryParams]="" matTooltip="{{ 'Exit' | translate }}">
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>

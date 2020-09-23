@@ -1,0 +1,65 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+table {
+    width: 100%;
+}
+.mat-card {
+    text-align: center;
+    img {
+        border-radius: 5px;
+        margin-top: -25px;
+    }
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.box-shadow-none{
+    box-shadow: none !important;
+}
+
+.google-analythic{
+    background-image: url("../../../../../../assets/images/google-analytics_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.mat-card-home {
+    border-radius: 5px;
+    color: white;
+    background-color: #6f6f6f;
+
+}
+
+.border-radius-5px {
+    border-radius: 5px !important;
+}
+
+td.mat-cell {
+    border: none !important;
+}
+
+th.mat-header-cell {
+    border: none !important;
+}
+
+tr.mat-header-row {
+    background-color: #f1f1f1; 
+}
+
+.max-height-200px{
+    max-height: 200px;
+}
+
+.height-100px{
+    height: 100px !important;
+}
+
+.width-150-px {
+    width: 150px;
+}

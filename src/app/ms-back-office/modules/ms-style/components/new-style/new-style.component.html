@@ -1,0 +1,12 @@
+<h1>STYLE CREATOR</h1>
+<style-form class="flex-grow-1"
+    [brands]="brands"
+    [categories]="categories"
+    [shops]="shops"
+    [styles]="styles"
+    [data]="data"        
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</style-form>

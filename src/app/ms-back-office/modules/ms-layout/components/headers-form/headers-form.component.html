@@ -1,0 +1,58 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+  [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-top-25px">
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+      <div class="mb-20 margin-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+        <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
+          <div fxLayout="row" fxLayout.lt-md="column">
+            <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+              <mat-radio-group formControlName="display">
+                <div class="display-flex padding-bottom-25px" fxLayout="row">
+                  <div class="display-flex margin-right-25px">
+                    <mat-radio-button value="top" class="margin-top-10px" matTooltip="{{ 'Top' | translate }}">
+                      Top
+                    </mat-radio-button>
+                  </div>
+                  <div class="display-flex">
+                    <mat-radio-button value="bottom" class="margin-top-10px" matTooltip="{{ 'Bottom' | translate }}">
+                      Bottom
+                    </mat-radio-button>
+                  </div>
+                </div>
+              </mat-radio-group>
+              <div class="padding-top-10px">
+                <mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="displayOnPage">
+                  Display
+                  on this page
+                </mat-slide-toggle>
+              </div>
+              <mat-form-field class="margin-left-16px width-100pct customized" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="label" class="min-height-100px"></textarea>
+              </mat-form-field>
+              <mat-form-field class="width-100pc margin-left-16px margin-top-25px">
+                <mat-label>Link</mat-label>
+                <input matInput type="text" formControlName="link" required #shops>
+              </mat-form-field>
+            </div>
+
+            <div [fxFlex]="60" class="margin-right-25px">
+              <div class="border width-480px">
+                <image-card class="padding-10px" formControlName="images"></image-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+    <span class="flex-grow-1"></span>
+    <button mat-raised-button type="submit" color="primary">
+      {{ 'Save Changes' | translate }}
+    </button>
+  </div>
+
+</form>

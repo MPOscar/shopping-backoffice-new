@@ -1,0 +1,25 @@
+<h3>Sub-shops</h3>
+<div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-10px border-top-width-2px border-top-color-grey">
+
+  <!--div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column"-->
+  <div class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+    <mat-card *ngFor="let shop of subShops" class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+      <div class="image-container margin-10px flex-grow-1" #imageContainer>
+        <img class="img" imageLoad [srcImage]="shop.mainImage? shop.mainImage : ''" [container]="imageContainer" src="">
+      </div>
+      <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+        <mat-checkbox [checked]="true" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}" (click)="linked(shop)"
+          [disabled]="true">{{ shop.name }}</mat-checkbox>
+      </div>
+    </mat-card>
+    <!--/div-->
+  </div>
+
+</div>
+<div class="justify-content-flex-end margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-width-2px border-top-color-grey">
+
+  <!--button mat-stroked-button type="button">Remove Selection</button-->
+
+  <button mat-raised-button type="button" color="primary" class="" (click)="showLinkSubShopsModal()">{{ 'Link New Stores' | translate }}</button>
+
+</div>

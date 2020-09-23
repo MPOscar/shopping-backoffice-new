@@ -1,0 +1,245 @@
+<h1>MoreSnakers Admin</h1>
+<div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+        <div class="mb-20 margin-right-25px" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <div [fxFlex]="65">
+                <div [fxFlex]="100" class="border-2px-solid-black">
+                    <mat-card fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+                        <div [fxFlex]="100" class="mb-20" fxFlex fxLayout="row" fxLayout.lt-md="column"
+                            fxLayoutGap="20px">
+                            <h2>Page Manager</h2>
+                        </div>
+                        <div class="justify-content-space-around width-100-pc" fxFlex fxLayout="row"
+                            fxLayout.lt-md="column" fxLayoutGap="20px">
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/styles']">
+                                    <h2>Style</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/releases']">
+                                    <h2>Release</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/offers']">
+                                    <h2>Offer</h2>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="justify-content-space-around padding-top-20px width-100-pc" fxFlex fxLayout="row"
+                            fxLayout.lt-md="column" fxLayoutGap="20px">
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/brands']">
+                                    <h2>Brand</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/categories']">
+                                    <h2>Category</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/shops']">
+                                    <h2>Shop</h2>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="justify-content-space-around padding-top-20px width-100-pc" fxFlex fxLayout="row"
+                            fxLayout.lt-md="column" fxLayoutGap="20px">
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/blogs']">
+                                    <h2>Blog</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/collections']">
+                                    <h2>Collection</h2>
+                                </mat-card>
+                            </div>
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/urls']">
+                                    <h2>URL</h2>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="justify-content-space-around padding-top-20px width-100-pc" fxFlex fxLayout="row"
+                            fxLayout.lt-md="column" fxLayoutGap="20px">
+                            <!-- <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center" class="cursor-pointer mat-card-home box-shadow-none" [routerLink]="['/backoffice/become-partner/create']">
+                                    <h2>Become a Partner</h2>
+                                </mat-card>
+                            </div> -->
+                            <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center"
+                                    class="cursor-pointer mat-card-home box-shadow-none"
+                                    [routerLink]="['/backoffice/layouts']">
+                                    <h2>Layout</h2>
+                                </mat-card>
+                            </div>
+                            <!-- <div [fxFlex]="25">
+                                <mat-card fxFlexFill fxLayoutAlign="center center" class="cursor-pointer mat-card-home box-shadow-none" [routerLink]="['/backoffice/who-are-we/create']">
+                                    <h2>Who are we ?</h2>
+                                </mat-card>
+                            </div> -->
+                        </div>
+                    </mat-card>
+                </div>
+                <div [fxFlex]="100" class="border-2px-solid-black margin-top-25px">
+                    <mat-card fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+                        <div [fxFlex]="100" fxFlex fxLayout="row" fxLayout.lt-md="column"
+                            fxLayoutGap="20px">
+                            <h2>Configuration Panel</h2>
+                        </div>
+                        <div class="width-100-pc flex-wrap-wrap justify-content-center" fxFlex fxLayout="row" fxLayoutGap="20px">
+                            <!-- <div [fxFlex]="25">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black" mat-stroked-button (click)="editContactDetailModal()">Contact Details</button>
+                            </div> -->
+                            <div class="margin-top-20px">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black"
+                                    mat-stroked-button (click)="editPrivacyModal()">Privacy Policy</button>
+                            </div>
+                            <div class="margin-top-20px">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black"
+                                    mat-stroked-button (click)="EditSocialNetworksModal()">Social Networks</button>
+                            </div>
+                            <div class="margin-top-20px">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black"
+                                    mat-stroked-button (click)="editGDPRModal()">GDPR</button>
+                            </div>
+                            <div class="margin-top-20px">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black"
+                                    mat-stroked-button (click)="editBecomePartnerModal()">Become a Partner</button>
+                            </div>
+                            <div class="margin-top-20px">
+                                <button class=" width-150-px border-radius-5px border-2px-solid-black"
+                                    mat-stroked-button (click)="editWhoAreWeModal()">Who are we ?</button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div [fxFlex]="100" class="border-2px-solid-black margin-top-25px margin-bottom-25px">
+                    <pending-tasks-table></pending-tasks-table>
+                </div>
+            </div>
+            <span class="flex-grow-1"></span>
+            <div class="border-2px-solid-black padding-10px height-100-pc">
+                <div fxFlexFill fxLayout="column" class="padding-10px">
+                    <h2>Control Sheet</h2>
+                    <div [fxFlex]="100" class="border-2px-solid-black padding-10px">
+                        <div>
+                            <h3>Traked Links</h3>
+                        </div>
+                        <div>
+                            Number of clicks today: {{ totalNumberOfClicks }}
+                        </div>
+                        <div>
+                            <a href="https://analytics.google.com/analytics/web/#/realtime/rt-event/"
+                                target="_blank">See details of activity</a>
+                        </div>
+                    </div>
+
+                    <div [fxFlex]="100" class="border-2px-solid-black margin-top-25px padding-10px">
+                        <releases-out-of-date></releases-out-of-date>
+                    </div>
+
+                    <div [fxFlex]="100" class="border-2px-solid-black  margin-top-25px padding-10px">
+                        <div class="google-analythic display-flex height-100px">
+                        </div>
+                        <div class="padding-top-10px">
+                            <a href="https://analytics.google.com/analytics/web/#/report-home/" target="_blank">Keep
+                                track of users</a>
+                        </div>
+                    </div>
+
+                    <div [fxFlex]="100" class="border-2px-solid-black margin-top-25px padding-10px">
+                        Deeplink Generator
+
+                        <form class="flex-grow-1 min-height-0 display-flex flex-direction-column"
+                            [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()"
+                            autocomplete="off" inputFocus>
+
+                            <div [fxFlex]="100" fxLayout="column" fxLayout.lt-md="column">
+
+                                <mat-form-field>
+
+                                    <mat-select disableOptionCentering placeholder="Shop" formControlName="shopId"
+                                        required>
+
+                                        <mat-option>...</mat-option>
+
+                                        <mat-option *ngFor="let shop of shops" [value]="shop.id">
+
+                                            {{shop.name}}
+
+                                        </mat-option>
+
+                                    </mat-select>
+
+                                    <error-messages matSuffix for="shopId"
+                                        [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                                </mat-form-field>
+
+                                <mat-form-field>
+
+                                    <mat-label>Url</mat-label>
+
+                                    <input matInput type="text" formControlName="url" required>
+
+                                    <error-messages matSuffix for="url"
+                                        [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+                                </mat-form-field>
+
+                                <mat-form-field>
+
+                                    <mat-label>Simplified Url</mat-label>
+
+                                    <input matInput type="text" formControlName="simplifiedUrl">
+
+                                </mat-form-field>
+
+                            </div>
+
+                            <div
+                                class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex">
+
+                                <span class="display-flex flex-grow-1"></span>
+
+                                <div>
+
+                                    <button class="border-radius-5px border-2px-solid-black"
+                                        mat-stroked-button>Generate</button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

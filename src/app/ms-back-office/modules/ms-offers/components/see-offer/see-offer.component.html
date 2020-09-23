@@ -1,0 +1,377 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-bottom-25px">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div [fxFlex]="100" fxLayout="row" class="padding-top-10px">
+
+        <div [fxFlex]="50" fxLayout="column" class="margin-right-25px">
+
+          <mat-radio-group *ngIf="!customized" formControlName="raffle" [disabled]="true">
+
+            <div class="display-flex padding-bottom-25px" fxLayout="row">
+
+              <div class="display-flex margin-right-25px">
+
+                <mat-radio-button value="true" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}">Release</mat-radio-button>
+
+              </div>
+
+              <div class="display-flex">
+
+                <mat-radio-button value="false" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}">Raffle</mat-radio-button>
+
+              </div>
+
+            </div>
+
+          </mat-radio-group>
+
+          <mat-form-field class="width-100pc">
+
+            <mat-label>Shops</mat-label>
+
+            <mat-select disableOptionCentering placeholder="Select Shop" formControlName="shopId" required [disabled]="true">
+
+              <mat-option>...</mat-option>
+
+              <mat-option *ngFor="let shop of dialogData.shops" [value]="shop.id" (click)="changeShop(shop)">
+
+                {{shop.name}}
+
+              </mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+          <mat-form-field class="width-100pc" *ngIf="!releaseId">
+
+            <mat-label>Releases</mat-label>
+
+            <mat-select disableOptionCentering placeholder="Select Release" formControlName="releaseId" required [disabled]="true">
+
+              <mat-option>...</mat-option>
+
+              <mat-option *ngFor="let release of dialogData.releases" [value]="release.id">
+
+                {{release.name}}
+
+              </mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+
+
+          <mat-form-field class="width-100pc">
+
+            <mat-label>Shipping</mat-label>
+
+            <mat-select disableOptionCentering placeholder="Select Status" formControlName="shipping" required [disabled]="true">
+
+              <mat-option>...</mat-option>
+
+              <mat-option *ngFor="let _shipping of shipping" [value]="_shipping.id">
+
+                {{_shipping.name}}
+
+              </mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+
+              <mat-label>Description</mat-label>
+
+              <textarea matInput formControlName="description" class="min-height-100px" readonly></textarea>
+
+            </mat-form-field>
+
+        </div>
+
+        <div [fxFlex]="50" fxLayout="column" class="margin-left-10px">
+
+          <div fxLayout="row">
+
+            <div [fxFlex]="60" fxLayout="column">
+
+              <mat-card class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+                <div class="image-container flex-grow-1" #imageContainer>
+                  <img class="img" imageLoad [srcImage]="shopSelected.mainImage? shopSelected.mainImage : ''" [container]="imageContainer" src="">
+                </div>
+              </mat-card>
+
+            </div>
+
+            <div [fxFlex]="40" fxLayout="row" class="margin-left-25px">
+
+              <div>
+
+                <h3>{{ shopSelected.name }}</h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div [fxFlex]="100" fxLayout="row">
+
+            <div fxLayout="column" class="margin-right-25px">
+
+              <div fxLayout="row" class="margin-top-18px flex-grow-0">
+
+                <div [fxFlex]="50">
+
+                  <mat-form-field class="width-90pct">
+
+                    <mat-label>Retail Price</mat-label>
+
+                    <input matInput type="number" formControlName="price" required readonly>
+
+                  </mat-form-field>
+
+                </div>
+
+                <div [fxFlex]="50">
+
+                  <mat-form-field class="width-100pct">
+
+                    <mat-label>Currency</mat-label>
+
+                    <mat-select disableOptionCentering placeholder="Select Shop" [disabled]="true">
+
+                      <mat-option>...</mat-option>
+
+                      <mat-option *ngFor="let _currency of currency" [value]="_currency.id">
+
+                        {{_currency.name}}
+
+                      </mat-option>
+
+                    </mat-select>
+
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+              <mat-form-field class="width-100pc">
+
+                <mat-label>Status</mat-label>
+
+                <mat-select disableOptionCentering placeholder="Select Status" formControlName="status" required [disabled]="true">
+
+                  <mat-option>...</mat-option>
+
+                  <mat-option *ngFor="let state of status" [value]="state.id">
+
+                    {{state.name}}
+
+                  </mat-option>
+
+                </mat-select>
+
+              </mat-form-field>
+
+              <div *ngIf="formGroup.get('raffle').value === 'true'" fxLayout="column" class="margin-top-18px flex-grow-0">
+
+                <mat-label>Release Time</mat-label>
+
+                <div fxLayout="row" class="margin-top-18px flex-grow-0">
+
+                  <div [fxFlex]="50">
+
+                    <mat-form-field class="width-90pct">
+
+                      <mat-label>Time</mat-label>
+
+                      <input matInput class="cursor-pointer" value="00:00" readonly/>
+
+                    </mat-form-field>
+
+                  </div>
+
+                  <div [fxFlex]="50">
+
+                    <mat-form-field class="width-100pct">
+
+                      <mat-label>Time Zone</mat-label>
+
+                      <mat-select disableOptionCentering placeholder="Select Shop" [disabled]="true">
+
+                        <mat-option>...</mat-option>
+
+                        <mat-option *ngFor="let _timeZone of timeZone" [value]="_timeZone.id">
+
+                          {{_timeZone.name}}
+
+                        </mat-option>
+
+                      </mat-select>
+
+                    </mat-form-field>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div *ngIf="formGroup.get('raffle').value === 'false'" fxLayout="column" class="margin-top-18px flex-grow-0">
+
+                <mat-label>Raffle Time</mat-label>
+
+                <div fxLayout="row" class="margin-top-18px flex-grow-0">
+
+                  <!-- <div [fxFlex]="50">
+
+                    <mat-form-field class="width-90pct">
+
+                      <mat-label>Start</mat-label>
+
+                      <input matInput  class="cursor-pointer" value="00:00" readonly/>
+
+                    </mat-form-field>
+
+                  </div> -->
+
+                  <div [fxFlex]="50">
+
+                    <mat-form-field class="width-100pct">
+
+                      <mat-label>End</mat-label>
+
+                      <input matInput  class="cursor-pointer" value="00:00" readonly/>
+
+                    </mat-form-field>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <mat-form-field class="width-100pct">
+
+                <mat-label>Sale Price</mat-label>
+
+                <input matInput type="text" readonly>
+
+              </mat-form-field>
+
+              <mat-form-field class="width-100pct">
+
+                <mat-label>Sale Percentage</mat-label>
+
+                <input matInput type="number" formControlName="salePercentage" readonly>
+
+              </mat-form-field>
+
+              <div>
+
+                <mat-checkbox value="primary" class="margin-top-10px" matTooltip="{{ 'Display on Whats New' | translate }}" [disabled]="true">Display on What's New</mat-checkbox>
+
+              </div>
+
+            </div>
+
+            <!--div [fxFlex]="50" fxLayout="column" class="margin-right-25px margin-left-25px">
+
+             
+
+              <!--h3>Links</h3-->
+
+              <!--div fxLayout="column" class="border flex-grow-1 overflow-auto display-flex max-height-350px">
+
+                <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-bottom-25px">
+
+                  <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+                    <!--table class="width-100pct" mat-table [dataSource]="links" matSort matSortDisableClear (matSortChange)="onSort()">
+
+                      <ng-container matColumnDef="checkbox">
+
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+                          <td mat-cell *matCellDef="let element">
+
+                            <mat-checkbox value="primary" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}"></mat-checkbox>
+
+                          </td>
+
+                      </ng-container>
+
+                      <ng-container matColumnDef="text">
+
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                          Text
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.text }} </td>
+
+                      </ng-container>
+
+                      <ng-container matColumnDef="url">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                          Url
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.url }} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                          <button mat-icon-button color="primary" [matTooltip]="Edit" [routerLink]="['../edit', element.id]">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                          <button mat-icon-button color="primary" [matTooltip]="Edit" [routerLink]="['../delete', element.id]">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+                      </tr>
+
+                    </table-->
+                  <!--/div>
+                </div>
+                <div class="margin-left-25px margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+                  <mat-checkbox class="margin-top-10px margin-right-25px" value="primary" matTooltip="{{ 'Principal' | translate }}">Check All</mat-checkbox>
+
+                  <button mat-icon-button color="primary" [matTooltip]="Edit">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="primary" [matTooltip]="Delete">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="primary" [matTooltip]="Delete">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div-->
+            <!--/div-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

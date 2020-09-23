@@ -1,0 +1,176 @@
+<!--mat-tab-group class="padding-top-25px display-flex flex-grow-1">
+    <mat-tab *ngFor="let tab of tabs" [label]="tab.label">
+    </mat-tab>
+    <mat-tab label="+" (click)="addNewTab()">
+    </mat-tab>
+</mat-tab-group-->
+
+<div class="width-100pct height-34px margin-top-25px" fxLayout="row">
+    <div *ngFor="let tab of allTabs" [fxFlex]="10" class="cursor-pointer display-flex height-34px align-items-center justify-content-center slide-tab"
+        (click)="getTabInfo(tab.id)" [ngClass]="{'slide-tab-active': tab.label === tabInfo.label }">
+        {{tab.label}}
+    </div>
+    <div [fxFlex]="5" class="cursor-pointer display-flex height-34px align-items-center justify-content-center slide-tab" (click)="addNewTab()">
+        <mat-icon>add</mat-icon>
+    </div>
+</div>
+
+<form #formDirective="ngForm" class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+    novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div class="mb-20 padding-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+                <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                    <div class="width-100pct">
+
+                        <div [fxFlex]="40">
+
+                            <mat-form-field class="margin-left-16px max-width-480px width-100pct">
+
+                                <mat-label>Label</mat-label>
+
+                                <input matInput type="text" matNativeControl [formControl]="tabLabelName" required>
+
+                            </mat-form-field>
+
+                        </div>
+                        <div class="min-height-34px">
+                            <div *ngIf="tabInfo">
+                                <button *ngIf="tabInfo.id" mat-raised-button type="button" color="secondary" (click)="deleteTab()">{{ 'Delete Tab' | translate }}</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div fxLayout="row" fxLayout.lt-md="column" class="padding-top-10px">
+
+                        <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+
+                            <mat-label>New Slide</mat-label>
+
+                            <mat-form-field>
+                                <mat-label>Select a Shop</mat-label>
+                                <mat-select disableOptionCentering placeholder="Slect a Shop" formControlName="shop" required>
+                                    <mat-option>...</mat-option>
+                                    <mat-option *ngFor="let shop of shops" [value]="shop.id" (click)="getOffersDeals(shop.id)">
+                                        {{shop.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>Select Offer/Deal</mat-label>
+                                <mat-select disableOptionCentering formControlName="offerDeal" required>
+                                    <mat-optgroup [label]="'Offers'">
+                                        <mat-option *ngFor="let offer of offers" [value]="offer.id" (click)="setTypeOfferOrDealSelectedOption('offer', offer.id)">
+                                            <div class="display-flex">
+                                                <img with="50" height="50" [src]="getReleaseImage(offer.releaseId)? getReleaseImage(offer.releaseId) : 'assets/images/no-image.svg'"> {{getReleaseName(offer.releaseId)}} {{offer.priceEUR | currency:'EUR':'€'}}
+                                            </div>
+                                        </mat-option>
+                                    </mat-optgroup>
+                                    <mat-optgroup [label]="'Deals'">
+                                        <mat-option *ngFor="let deal of deals" [value]="deal.id" (click)="setTypeOfferOrDealSelectedOption('deal', deal.id)">
+                                            <div class="display-flex">
+                                                <img with="50" height="50" [src]="deal.imgUrl? deal.imgUrl : 'assets/images/no-image.svg'"> {{deal.url}}
+                                            </div>
+                                        </mat-option>
+                                    </mat-optgroup>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="margin-left-16px max-width-480px">
+
+                                <mat-label>Descriptive Text</mat-label>
+
+                                <input matInput type="text" formControlName="description" required>
+
+                            </mat-form-field>
+
+                        </div>
+
+                        <div [fxFlex]="10" class="margin-right-25px align-items-center display-flex">
+                            <div *ngIf="!editSlideBoolean; else saveSlideButtom">
+                                <button mat-raised-button type="submit">{{ 'Add' }}</button>
+                            </div>
+                            <ng-template #saveSlideButtom>
+                                <div>
+                                    <button mat-raised-button type="submit">{{ 'Save' }}</button>
+                                </div>
+                            </ng-template>
+                        </div>
+
+                        <div [fxFlex]="40" class="margin-right-25px">
+
+                            <mat-label>Current Slides</mat-label>
+
+                            <div class="padding-top-25px">
+                                <div *ngFor="let offerDeal of slides">
+                                    <hr>
+                                    <div *ngIf="offerDeal.type === 'offer'; else deal" fxLayout="row" class="padding-top-10px">
+
+                                        <div [fxFlex]="30" class="margin-right-25px">
+                                            <img with="60" height="60" [src]="getImageOffer(offerDeal.entityId)">
+                                        </div>
+                                        <div [fxFlex]="70" class="margin-right-25px">
+                                            <div>
+                                                Offer {{offerDeal.entityId}}
+                                            </div>
+                                            <div class="margin-top-10px">
+                                                {{offerDeal.description}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <ng-template #deal>
+                                        <div fxLayout="row" class="padding-top-10px">
+
+                                            <div [fxFlex]="30" class="margin-right-25px">
+                                                <img with="60" height="60" [src]="getImageDeal(offerDeal.entityId)">
+                                            </div>
+                                            <div [fxFlex]="70" class="margin-right-25px">
+                                                <div>
+                                                    Deal {{offerDeal.entityId}}
+                                                </div>
+                                                <div class="margin-top-10px">
+                                                    {{offerDeal.description}}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </ng-template>
+                                    <div>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit" (click)="editSlide(offerDeal.id)">
+                                            <mat-icon>image</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit" (click)="editSlide(offerDeal.id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Delete" (click)="deleteSlide(offerDeal.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+        <span class="flex-grow-1"></span>
+        <button mat-raised-button type="button" color="primary" (click)="saveTab()">{{ 'Save Changes' | translate }}</button>
+    </div>
+</form>

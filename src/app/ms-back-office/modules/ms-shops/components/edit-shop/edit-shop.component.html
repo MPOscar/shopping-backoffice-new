@@ -1,0 +1,18 @@
+<h1>EDIT SHOP</h1>
+
+<edit-shop-form *ngIf="data"
+    [data]="data"
+    [brands]="brands"
+    [shopId]="shopId"
+    [shops]="shops"
+    [dealId]="dealId"
+    [categories]="categories"
+    [collections]="collections"
+    [faceList]="faceList"
+    [releases]="releases"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</edit-shop-form>
+

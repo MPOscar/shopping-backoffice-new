@@ -1,0 +1,8 @@
+<h1>BECOME PARTNER EDITOR</h1>
+<become-partner-form *ngIf="data"
+    [data]="data"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</become-partner-form>

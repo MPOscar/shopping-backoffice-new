@@ -1,0 +1,58 @@
+.example-panel-red.mat-select-panel {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.example-panel-green.mat-select-panel {
+  /*background: rgba(0, 255, 0, 0.5);*/
+  background-color:transparent;
+  box-shadow: none !important;
+  align-items: flex-end;
+}
+
+.example-panel-blue.mat-select-panel {
+  background: rgba(0, 0, 255, 0.5);
+}
+
+.possition-absolute-bottom{
+    position: absolute;
+    left: 300px;
+    bottom: 0;
+}
+
+.mat-menu-item{
+  height: 58px !important;
+  padding: 0px !important;
+}
+
+.margin-top-10px{
+  margin-top: 10px;
+}
+
+::ng-deep .mat-menu-panel{  
+  max-height: 256px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 0;
+  margin-top: 5px;
+}
+
+.margin-right-10px{
+  margin-right: 10px;
+}
+
+.mat-fab{
+  box-shadow: none !important;
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: 250px !important;
+  max-width: 480px !important;
+  margin-top: 25px !important;
+}
+
+.width-100pc{
+  width: 100% !important;
+}

@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.height-34px {
+    height: 34px !important;
+}
+
+.min-height-145px {
+    min-height: 145px !important;
+}
+
+.width-100pc {
+    width: 100%;
+}
+
+@media screen and (max-width: 959px) {
+    .customized {
+        max-width: 480px !important;
+    }
+}
+
+mat-form-field {
+    max-width: 100% !important;
+  }

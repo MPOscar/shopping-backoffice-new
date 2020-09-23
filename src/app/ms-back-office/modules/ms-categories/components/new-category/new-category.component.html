@@ -1,0 +1,8 @@
+<h1>CATEGORY CREATOR</h1>
+<category-form class="flex-grow-1"
+    [data]="data"        
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</category-form>

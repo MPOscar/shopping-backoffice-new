@@ -1,0 +1,14 @@
+
+<release-form class="flex-grow-1"
+    [brands]="brands"
+    [collections]="collections"
+    [styles]="styles"
+    [shops]="shops"
+    [styleId]="styleId"
+    [data]="data"
+    [copyReleaseId]="copyReleaseId"    
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</release-form>

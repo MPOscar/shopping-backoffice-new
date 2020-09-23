@@ -1,0 +1,13 @@
+<h1>SHOP CREATOR</h1>
+
+<shop-form class="flex-grow-1" 
+    [data]="data" 
+    [brands]="brands" 
+    [categories]="categories" 
+    [shops]="shops"
+    (accept)="submit($event)" 
+    (cancel)="cancel()" 
+    [validationErrors]="validationErrors" 
+    (dataChange)="dataChanged()">
+</shop-form>
+

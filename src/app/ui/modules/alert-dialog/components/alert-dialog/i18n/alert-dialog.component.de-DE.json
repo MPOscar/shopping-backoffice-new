@@ -1,0 +1,5 @@
+{
+    "@c/ui/AlertDialogComponent/Title": "Bestätigen",
+    "@c/ui/AlertDialogComponent/Message": "Etwas mit '{{param}}' machen?",
+    "@c/ui/AlertDialogComponent/OK": "OK"
+}

@@ -1,0 +1,73 @@
+<div *ngIf="!disabled" class="display-flex justify-content-center">
+
+  <button mat-stroked-button type="button" class="max-width-480px" (click)="addNewOfferModal()">Add an offer</button>
+
+</div>
+<div class="flex-grow-1 overflow-auto display-flex">
+
+  <table *ngIf="editStatus" class="margin-top-10px margin-right-25px width-100pct" mat-table [dataSource]="offers" matSort [matSortActive]="offersService.previousSortColumn"
+    [matSortDirection]="offersService.previousSortDirection" matSortDisableClear (matSortChange)="onSort()">
+
+    <ng-container matColumnDef="shopId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        SHOP
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td" [ngClass]="{'background-td': element.id === offerId}"> {{ getShop(element.shopId) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="officialRelease">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        OFFICIAL RELEASE
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td" [ngClass]="{'background-td': element.id === offerId}"> {{ releaseDateForOffers | date: 'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        STATUS
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td" [ngClass]="{'background-td': element.id === offerId}"> {{ element.status }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shiping">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        SHIPING
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td" [ngClass]="{'background-td': element.id === offerId}"> {{ element.shipping }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        UPDATED
+      </th>
+      <td mat-cell *matCellDef="let element" class="padding-table-td" [ngClass]="{'background-td': element.id === offerId}"> {{ element.updatedAt | date: 'MM/dd/yyyy HH:mm:ss': timeZoneOffset.toString() }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+        ACTIONS
+      </th>
+      <td mat-cell *matCellDef="let element" [ngClass]="{'background-td': element.id === offerId}"  class="min-width-80px">
+        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit" (click)="editOfferModal(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" type="button" [matTooltip]="Delete" (click)="getOfferToDelete(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+    </tr>
+
+  </table>
+
+</div>
+
+<div class="margin-right-25px flex-shrink-0 display-flex">
+  <span class="flex-grow-1"></span>
+  <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50" showFirstLastButtons
+    (page)="onPage()">
+  </mat-paginator>
+</div>

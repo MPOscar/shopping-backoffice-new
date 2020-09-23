@@ -1,0 +1,19 @@
+<h1>EDIT RELEASE</h1>
+<edit-release-form class="flex-grow-1" *ngIf="data"
+                [collections]="collections"
+                [caseProperties]="caseProperties"
+                [data]="data"
+                [releaseId]="releaseId"
+                [styles]="styles"
+                [releases]="releases"
+                [offerId]="offerId"
+                [imageList]="imageList"
+                [brands]="brands"
+                [shops]="shops"                
+                [overview]="false"
+                (accept)="submit($event)"
+                (cancel)="cancel()"
+                [validationErrors]="validationErrors"
+                [imageCardEditAction]="imageCardEditActionTemplate"
+                (dataChange)="dataChanged()">
+</edit-release-form>

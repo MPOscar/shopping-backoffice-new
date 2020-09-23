@@ -1,0 +1,194 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+    [formGroup]="formGroup" novalidate role="form" autocomplete="off" inputFocus>
+
+    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+        <div class="flex-grow-1 flex-shrink-0 flex-direction-column">
+
+            <div class="mb-20 padding-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+
+                <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                    <mat-radio-group matNativeControl [formControl]="display">
+
+                        <div class="display-flex padding-bottom-25px" fxLayout="row">
+
+                            <div class="display-flex margin-right-25px">
+
+                                <mat-radio-button value="top" class="margin-top-10px"
+                                    matTooltip="{{ 'Top' | translate }}">Top</mat-radio-button>
+
+                            </div>
+
+                            <div class="display-flex">
+
+                                <mat-radio-button value="bottom" class="margin-top-10px"
+                                    matTooltip="{{ 'Bottom' | translate }}">Bottom</mat-radio-button>
+
+                            </div>
+
+                        </div>
+
+                    </mat-radio-group>
+
+                    <div class="padding-top-10px">
+
+                        <mat-slide-toggle class="padding-top-15px padding-bottom-15px" matNativeControl
+                            [formControl]="displayOnPage">
+                            Display on this page</mat-slide-toggle>
+
+                    </div>
+
+                    <div fxLayout="row" fxLayout.lt-md="column" class="padding-top-10px">
+
+                        <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+
+                            <mat-label>New Slide</mat-label>
+
+                            <div class="display-flex padding-top-20px padding-bottom-20px">
+                                <button mat-raised-button type="button" color="primary"
+                                    [ngClass]="{'color-danger' : !productValid}" (click)="newProduct()"
+                                    class="margin-top-10px font-height-custom">SELECT PRODUCT *</button>
+                            </div>
+
+
+                            <div class="max-width-480px" >
+                                <div class="display-flex">
+                                    <div [fxFlex]="60">
+                                        <div class="max-width-480px">
+                                            <image-card formControlName="faces" [principal] = "image" [disabled] = "disabledDropDown"></image-card>
+                                        </div>
+                                    </div>
+                                    <div [fxFlex]="40" class="display-flex align-items-center padding-left-5px" *ngIf="setProductFlag">
+                                        <div class="">
+                                            <div class="text-color">Type: </div>
+                                            <div class="display-flex align-items-center padding-bottom-20px">
+                                                <mat-icon *ngIf="typeOfProduct === 'collection'" class="sidenav-icon">
+                                                    collections</mat-icon>
+                                                <mat-icon *ngIf="typeOfProduct === 'offer'" class="sidenav-icon">
+                                                    business_center</mat-icon>
+                                                <mat-icon *ngIf="typeOfProduct === 'release'" class="sidenav-icon">
+                                                    new_releases</mat-icon>
+                                                {{typeOfProduct}}
+                                            </div>
+                                            <div class="">Name: </div>
+                                            <div>{{getProductName()}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <mat-form-field class="margin-left-16px max-width-480px">
+
+                                <mat-label>Descriptive Text</mat-label>
+
+                                <input matInput type="text" formControlName="description" #type
+                                    id="descriptive">
+
+                            </mat-form-field>
+
+                        </div>
+
+                        <div [fxFlex]="10"
+                            class="margin-right-25px padding-bottom-25px align-items-center display-flex">
+                            <div *ngIf="!editSlideBoolean; else saveSlideButtom">
+                                <button mat-raised-button (click) = "submitClicked()">{{ 'Add' }}</button>
+                            </div>
+                            <ng-template #saveSlideButtom>
+                                <div>
+                                    <button mat-raised-button (click) = "submitClicked()">{{ 'Save' }}</button>
+                                </div>
+                            </ng-template>
+                        </div>
+
+                        <div [fxFlex]="40" class="margin-right-25px">
+
+                            <mat-label>Current Slides</mat-label>
+
+                            <div class="padding-top-25px">
+                                <div *ngFor="let offerDeal of slides">
+                                    <hr>
+                                    <div *ngIf="offerDeal.entityType === 'offer'" fxLayout="row"
+                                        class="padding-top-10px">
+
+                                        <div [fxFlex]="30" class="margin-right-25px">
+                                            <img with="60" height="60"
+                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageOffer(offerDeal.entityId)">
+                                        </div>
+                                        <div [fxFlex]="70" class="margin-right-25px">
+                                            <div>
+                                                Offer {{offerDeal.entityId}}
+                                            </div>
+                                            <div class="margin-top-10px">
+                                                {{offerDeal.description}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div *ngIf="offerDeal.entityType === 'collection'" fxLayout="row"
+                                        class="padding-top-10px">
+
+                                        <div [fxFlex]="30" class="margin-right-25px">
+                                            <img with="60" height="60"
+                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageCollection(offerDeal.entityId)">
+                                        </div>
+                                        <div [fxFlex]="70" class="margin-right-25px">
+                                            <div>
+                                                Coollection {{offerDeal.entityId}}
+                                            </div>
+                                            <div class="margin-top-10px">
+                                                {{offerDeal.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="offerDeal.entityType === 'release'" fxLayout="row"
+                                        class="padding-top-10px">
+
+                                        <div [fxFlex]="30" class="margin-right-25px">
+                                            <img with="60" height="60"
+                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageRelease(offerDeal.entityId)">
+                                        </div>
+                                        <div [fxFlex]="70" class="margin-right-25px">
+                                            <div>
+                                                Release {{offerDeal.entityId}}
+                                            </div>
+                                            <div class="margin-top-10px">
+                                                {{offerDeal.description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit"
+                                            (click)="editSlide(offerDeal.id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Delete"
+                                            (click)="deleteSlide(offerDeal.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+        <span class="flex-grow-1"></span>
+        <button mat-raised-button type="button" color="primary"
+            (click)="saveTab()">{{ 'Save Changes' | translate }}</button>
+    </div>
+</form>

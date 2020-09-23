@@ -1,0 +1,21 @@
+<div class="overflow-y">
+    <div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+        <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+            <mat-icon>clear</mat-icon>
+        </span>
+    </div>
+
+    <h1>EDIT OFFER</h1>
+    <offer-form *ngIf="data"
+        [data]="data"
+        [shops]="dialogData.shops"
+        [shopId]="shop ? shop.shopId : ''"
+        [shopSelected]="shop"
+        [releaseId]="dialogData.releaseId"
+        [releases]="dialogData.releases"
+        (accept)="submit($event)"
+        [validationErrors]="validationErrors"
+        (cancel)="cancel()"
+        (dataChange)="dataChanged()">
+    </offer-form>
+</div>

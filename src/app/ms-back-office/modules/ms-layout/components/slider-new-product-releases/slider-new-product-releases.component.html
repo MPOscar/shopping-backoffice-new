@@ -1,0 +1,89 @@
+<mat-toolbar
+    class="margin-right-25px margin-bottom-10px width-auto flex-shrink-0 background-color-secondary color-primary mat-elevation-z2"
+    [formGroup]="filter">
+
+    <mat-icon matPrefix color="primary">search</mat-icon>
+    <mat-form-field class = "width-150px">
+      <input matInput formControlName="name" placeholder="NAME">
+    </mat-form-field>
+
+    <span class="flex-grow-1"></span>
+</mat-toolbar>
+
+<div class="flex-grow-1 custom-overflow display-flex">
+
+    <table class="margin-top-10px margin-right-25px width-100pct" mat-table [dataSource]="releases" matSort
+        [matSortActive]="releasesService.previousSortColumn" [matSortDirection]="releasesService.previousSortDirection"
+        matSortDisableClear (matSortChange)="onSort()">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                RELEASE NAME
+            </th>
+            <td mat-cell *matCellDef="let element" class="padding-table-td"> {{ element.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mainImage">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"
+                class="display-flex flex-grow-1 height-100pct padding-left-0px width-100pct">
+                <!--div class="position-relative margin-top-5px">
+                    <img [src]="element.mainImage? element.mainImage : 'assets/images/no-image.svg'" class="margin-auto" alt="50">
+                </div-->
+                <div class="position-relative w-100">
+                    <!-- <div *ngIf="element.hot" class="hot-image-div">
+                        <img src="assets/images/hot-release-fire.svg" class="hot-image">
+                    </div> -->
+
+                    <div class="item-image-div">
+                        <img class="img-fluid w-100"
+                            [src]="element.mainImage? element.mainImage : 'assets/images/no-image.svg'">
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Description
+            </th>
+            <td mat-cell *matCellDef="let element" class="padding-table-td"> {{ element.description }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                CREATION DATE
+            </th>
+            <td mat-cell *matCellDef="let element" class="padding-table-td">
+                {{ element.createdAt | date: 'MM/dd/yyyy HH:mm:ss': timeZoneOffset.toString() }} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>
+                    ACTIONS
+                </th>
+                <td mat-cell *matCellDef="let element" class="">
+                    <button mat-icon-button color="primary" type="button" [matTooltip]="Select" class=""
+                        (click)="selectedProduct(element)">
+                        <mat-icon>check_circle_outline</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            [ngClass]="row.is_active ? '' : 'text-decoration-line-through'">
+        </tr>
+
+    </table>
+
+</div>
+
+<div
+    class="margin-right-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+    <span class="flex-grow-1"></span>
+    <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50"
+        showFirstLastButtons (page)="onPage()">
+    </mat-paginator>
+</div>

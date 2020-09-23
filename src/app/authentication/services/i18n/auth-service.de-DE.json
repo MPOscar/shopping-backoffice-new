@@ -1,0 +1,7 @@
+{
+    "@c/authentication/AuthService/error/1":    "Ein unbekannter Fehler ist aufgetreten.",
+    "@c/authentication/AuthService/error/1401": "Falscher Benutzername oder Passwort.",
+    "@c/authentication/AuthService/error/1402": "Sitzung abgelaufen. Bitte loggen Sie sich noch mal ein.",
+    "@c/authentication/AuthService/error/1403": "Zu viele fehlgeschlagene Anmeldeversuche; Bitte versuchen Sie es in fünf Minuten erneut, oder wenden Sie sich an den Systemadministrator.",
+    "@c/authentication/AuthService/error/1405": "Zugriff verweigert, Sie können auf diese Seite nicht zugreifen."
+}

@@ -1,0 +1,42 @@
+<mat-menu #appMenu="matMenu" disableOptionCentering>
+    <form (click)="stopPropagation($event)">
+        <mat-form-field class="width-100-pc ">
+            <input matInput placeholder="Search" (input)="filterChanged($event.target.value)">
+        </mat-form-field>
+    </form>
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding [matTreeNodePaddingIndent]="20">
+            <button mat-icon-button disabled></button>
+            <mat-radio-button (click)="selectNode($event, node); menuTrigger.closeMenu()" [checked]="checkedNode(node)">
+                {{node.item}}</mat-radio-button>
+        </mat-tree-node>
+
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding [matTreeNodePaddingIndent]="20">
+            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+                <mat-icon class="mat-icon-rtl-mirror">
+                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            <mat-radio-button (click)="selectNode($event, node); menuTrigger.closeMenu()" [checked]="checkedNode(node)">
+                {{node.item}}</mat-radio-button>
+        </mat-tree-node>
+    </mat-tree>
+</mat-menu>
+
+<mat-form-field class="width-100pc max-width-480px" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="appMenu">
+
+    <mat-label>SELECT PARENT</mat-label>
+
+    <mat-select disableOptionCentering placeholder="Select" [disabled]="true" matNativeControl
+        [formControl]="selectedStyleParent">
+
+        <mat-option *ngFor="let style of styles" [value]="style.name">
+
+            {{style.name}}
+
+        </mat-option>
+
+    </mat-select>
+
+</mat-form-field>

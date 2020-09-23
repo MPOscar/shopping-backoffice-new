@@ -1,0 +1,7 @@
+<user-form *ngIf="data"
+    [data]="data"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</user-form>

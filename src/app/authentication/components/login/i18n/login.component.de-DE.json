@@ -1,0 +1,9 @@
+{
+    "@c/authentication/LoginComponent/Login": "Einloggen",
+    "@c/authentication/LoginComponent/Username": "Benutzername",
+    "@c/authentication/LoginComponent/Password": "Passwort",
+    "@c/authentication/LoginComponent/Error": "Fehler",
+    "@c/authentication/LoginComponent/Required Field": "Pflichtfeld",
+    "@c/authentication/LoginComponent/Required Username and Password": "Benutzername und Passwort sind für die Anmeldung erforderlich.",    
+    "@c/authentication/LoginComponent/Warning: The Caps Lock key is activated!": "Warnung: Die Feststelltaste ist aktiviert!"
+}

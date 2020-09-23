@@ -1,0 +1,15 @@
+<h1>EDIT COLLECTION</h1>
+
+<edit-collection-form *ngIf="data"
+    [data]="data"
+    [brands]="brands"
+    [releases]="releases"
+    [collections]="collections"
+    [collectionId]="collectionId"
+    [faceList]="faceList"
+    [principal]="principal"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</edit-collection-form>

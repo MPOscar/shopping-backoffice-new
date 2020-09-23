@@ -1,0 +1,40 @@
+<div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-column padding-0px-25px-25px-25px">
+  <!--div class="align-self-center display-flex width-250px  flex-shrink-1 flex-direction-row card-container">
+    <mat-card class="border-2px-solid-black box-shadow-none flex-grow-1 margin-0 mat-card-principal" #imageContainer>
+      <img class="height-100-pc width-100-pc" *ngIf="principal" imageLoad [srcImage]="principal.imgUrl? principal.imgUrl : principal.file"
+        [container]="imageContainer" src="">
+    </mat-card>
+  </div-->
+  <div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial">
+    <mat-card *ngFor="let faceItem of faceItems; index as cardIndex; trackBy:trackByFn" class="display-flex background-color-secondary flex-direction-column flex-shrink-1 mat-card-images">
+      <div class="image-container margin-10px flex-grow-1" #imageContainer>
+        <img class="img" imageLoad [srcImage]="faceItem.url? faceItem.url : faceItem.file" [container]="imageContainer" src="">
+      </div>
+      <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-20px">
+        <mat-radio-button value="primary" class="margin-top-10px" (click)="setMainImage(faceItem)" matTooltip="{{ 'Principal' | translate }}"></mat-radio-button>
+        <button type="button" mat-icon-button class="margin-left-10px" (click)="deleteFace(cardIndex)">
+          <mat-icon mat-raised-button color="accent" matTooltip="{{ 'Delete' | translate }}">delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <div *ngIf="!disabled" class="display-flex justify-content-center width-100-pc"
+  drop-files
+  [faceItems]="faceItems"
+  [ngClass]="{'border-dotted': !fileIsOver, 'border-dotted-drop': fileIsOver}"
+  (filesOver)="fileOverDropZone($event)"
+  (filesChange)="filesChange($event)"
+  >
+    <div>
+      <div class="padding-bottom-10px">
+        <p>Drop Files Here</p>
+        <button type="button" class="border-none border-radius-5px" (click)="fileInput.click()" mat-stroked-button>
+          {{ 'Select File' | translate }}
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <input #fileInput style="display:none" type="file" name="files" class="file-input glyphicon glyphicon-plus"
+        accept="image/*" multiple/>
+    </div>
+  </div>
+</div>

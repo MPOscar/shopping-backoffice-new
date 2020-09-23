@@ -1,0 +1,9 @@
+<h1>ADD URL</h1>
+<link-form class="flex-grow-1"
+    [data]="data"    
+    [shop]="dialogData.shop"    
+    (accept)="submit($event)"
+    (cancel)="cancel()"
+    [validationErrors]="validationErrors"
+    (dataChange)="dataChanged()">
+</link-form>

@@ -1,0 +1,80 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty" [formGroup]="formGroup"
+  novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <mat-tab-group>
+
+        <mat-tab label="Brand">
+
+          <mat-form-field class="width-100pc margin-left-16px margin-top-25px">
+
+            <mat-label>Brand Name</mat-label>
+
+            <input matInput type="text" formControlName="name" required readonly>
+
+          </mat-form-field>
+
+          <div class="border width-480px">
+
+            <image-card class="padding-10px" formControlName="faces" [principal]="dialogData.principal" [disabled]="true"></image-card>
+
+          </div>
+
+          <mat-form-field class="width-100pc margin-left-16px padding-top-25px" appearance="fill">
+
+            <mat-label>Description</mat-label>
+
+            <textarea matInput formControlName="description" class="min-height-100px" readonly></textarea>
+
+          </mat-form-field>
+
+
+        </mat-tab>
+
+        <mat-tab label="Linked Shops" class="width-50pc">
+
+          <div class="liked-shops padding-top-25px" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+            <div class="margin-top-10px flex-grow-1" fxLayout="row" class="margin-bottom-25px margin-right-25px">
+              <div fxLayout="column" class="flex-grow-1">
+                <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-10px">
+
+                  <!--div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column"-->
+                  <div class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+                    <div *ngFor="let shop of shops">
+                      <mat-card *ngIf="shop.checked" class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
+                        <div class="image-container margin-10px flex-grow-1" #imageContainer>
+                          <img class="img" imageLoad [srcImage]="shop.mainImage? shop.mainImage : ''" [container]="imageContainer" src="">
+                        </div>
+                        <div class="image-card-btns display-flex margin-left-10px margin-right-10px margin-bottom-10px">
+                          <mat-checkbox [checked]="shop.checked" class="margin-top-10px" matTooltip="{{ 'Principal' | translate }}" (click)="linked(shop)" [disabled]="true">{{ shop.name }}</mat-checkbox>
+                        </div>
+                      </mat-card>
+                      <!--/div-->
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </div>
+
+  </div>
+
+</form>

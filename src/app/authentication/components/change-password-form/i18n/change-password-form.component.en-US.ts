@@ -1,0 +1,15 @@
+export const EN_US_TRANSLATIONS: any = {
+    '@c/authentication/ChangePasswordFormComponent/Change password': 'Change Password',
+    '@c/authentication/ChangePasswordFormComponent/Old password': 'Current Password',
+    '@c/authentication/ChangePasswordFormComponent/New password': 'New Password',
+    '@c/authentication/ChangePasswordFormComponent/Confirm new password': 'Confirm New Password',
+    '@c/authentication/ChangePasswordFormComponent/ErrorTitle': 'Error',
+    '@c/authentication/ChangePasswordFormComponent/Password Match': 'Passwords doesn\'t match',
+    '@c/authentication/ChangePasswordFormComponent/SuccessfulTitle': 'Success',
+    '@c/authentication/ChangePasswordFormComponent/Updated Password Message': 'Password updated',
+    '@c/authentication/ChangePasswordFormComponent/Password Strength': 'The password must contain more than {{numberCount}} numbers, {{uppercase}} uppercase characters, {{lowercase}} lowercase characters, {{minSize}} characters,{{specialCharacters}} special characters',
+    '@c/authentication/ChangePasswordFormComponent/Warning: The Caps Lock key is activated!': 'Warning: Caps Lock is on!',
+    '@c/authentication/ChangePasswordFormComponent/Required Field': 'Required Field',
+    '@c/authentication/ChangePasswordFormComponent/Save': 'Save',
+    '@c/authentication/ChangePasswordFormComponent/Cancel': 'Cancel',
+};

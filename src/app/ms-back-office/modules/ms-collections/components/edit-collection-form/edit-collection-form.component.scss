@@ -1,0 +1,40 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.height-34px{
+    height: 34px !important;
+}
+
+.width-100pc{
+    width: 100%;
+}
+
+
+mat-card {
+    padding: 0px;
+    align-self: flex-start;
+    height: 230px;
+    width: 150px;
+    margin-left: 2px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+  img{
+    height: 130px !important;
+    width: 100%!important;
+}
+
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+    opacity: 0;
+}
+
+::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer{
+    transform: rotate(-45deg);
+}
+::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer{
+    transform: rotate(45deg);
+}

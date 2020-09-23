@@ -1,0 +1,13 @@
+<h1>EDIT DEAL</h1>
+
+<deal-form *ngIf="data"
+    [data]="data"
+    [urls]="dialogData.urls"
+    [shops]="dialogData.shops"
+    [faceList]="faceList"
+    [principal]="principal"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</deal-form>

@@ -1,0 +1,8 @@
+<h1>Social Networks</h1>
+<social-networks-form *ngIf="socialInstagram && socialFacebook && socialTwitter"
+    [data]="data"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</social-networks-form>

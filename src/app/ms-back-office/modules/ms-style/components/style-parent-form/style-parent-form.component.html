@@ -1,0 +1,124 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+  [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="margin-right-25px" [fxFlex]="50" fxLayout="column" fxLayout.lt-md="column">
+
+        <div class="margin-right-25px" [fxFlex]="80" fxLayout.lt-md="column">
+
+          <mat-form-field class="margin-left-16px width-100pct customized" appearance="fill">
+
+            <mat-label>Description</mat-label>
+
+            <textarea matInput formControlName="description" class="min-height-100px"></textarea>
+
+          </mat-form-field>
+
+        </div>
+
+        <div class="margin-right-25px margin-top-20px" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+          <div [fxFlex]="50" fxLayout="column" class="margin-right-25px">
+
+            <mat-form-field class="margin-left-16px max-width-480px">
+
+              <mat-label>Style Name</mat-label>
+
+              <input matInput type="text" formControlName="name" required>
+
+            </mat-form-field>
+
+            <mat-form-field class="padding-top-5px max-width-480px">
+              <mat-label>Categories</mat-label>
+              <mat-select 
+                [multiple]="true"
+                disableOptionCentering 
+                placeholder="Select" 
+                formControlName="categories" 
+                required>
+                <!-- <mat-option>...</mat-option> -->
+                <mat-option *ngFor="let category of categories" [value]="category.id">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!--mat-form-field class="max-width-480px">
+              <mat-label>Select Parent</mat-label>
+              <mat-select disableOptionCentering placeholder="Select" formControlName="parent">
+                <mat-option>...</mat-option>
+                <mat-option *ngFor="let style of styles" [value]="style.id">
+                  {{style.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field-->
+
+          </div>
+
+          <div class="" [fxFlex]="50" fxLayout="column">
+
+            <mat-form-field class="width-100pc max-width-480px">
+
+              <mat-label>SELECT BRAND</mat-label>
+
+              <mat-select disableOptionCentering placeholder="Select" formControlName="brand" panelOpen="true" required>
+
+                <mat-option (click)="selectParent('')">...</mat-option>
+
+                <mat-option *ngFor="let brand of brands" [value]="brand.id" (click)="selectParent(brand.id)">
+                  {{brand.name}}
+                </mat-option>
+
+              </mat-select>
+
+            </mat-form-field>
+
+          </div>
+
+          <!--div class="margin-top-10px" [fxFlex]="30" fxLayout="column">
+          <button class="margin-bottom-25px max-width-480px" mat-stroked-button type="button">Add a new Parent</button>
+
+          <mat-form-field class="width-100pc">
+
+            <mat-label>SELECT PARENT</mat-label>
+            <mat-select disableOptionCentering placeholder="Select" formControlName="parent">
+              <mat-option *ngFor="let style of styles" [value]="style.id">
+                {{style.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div-->
+        </div>
+
+
+
+      </div>
+
+      <div *ngIf="styleId" class="display-flex padding-bottom-10px justify-content-center">
+        <button mat-stroked-button type="button" class="max-width-480px" (click)="showModalStoresSelling()">See Stores
+          Selling this Style</button>
+        <button mat-stroked-button type="button" class="margin-left-25px max-width-480px"
+          [routerLink]="['../../../releases/create']"
+          [queryParams]="{styleId: styleId, returnUrl: location.path()}">Create a Release</button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div
+    class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button type="submit" color="primary">{{'Accept' | translate}}</button>
+
+    <button mat-raised-button type="button" class="margin-left-10px"
+      (click)="cancelClicked()">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</form>

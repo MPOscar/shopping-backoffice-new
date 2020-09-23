@@ -1,0 +1,28 @@
+<div class="overflow-y">
+
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+    <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<h1>EDIT RELEASE</h1>
+<edit-release-form class="flex-grow-1" *ngIf="data"
+                [collections]="dialogData.collections"
+                [collectionId]="collectionId"
+                [caseProperties]="caseProperties"
+                [data]="data"
+                [releaseId]="releaseId"
+                [imageList]="dialogData.imageList"
+                [brands]="dialogData.brands"
+                [shops]="dialogData.shops"
+                [styles]="dialogData.styles"
+                [releases]="dialogData.releases"
+                [overview]="false"
+                (accept)="submit($event)"
+                (cancel)="cancel()"
+                [validationErrors]="validationErrors"
+                [imageCardEditAction]="imageCardEditActionTemplate"
+                (dataChange)="dataChanged()">
+</edit-release-form>
+</div>

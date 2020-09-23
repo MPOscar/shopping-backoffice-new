@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  padding-right: 5px;
+  width: 100px !important;
+}
+
+td,
+th {
+  width: 25%;
+}
+
+.padding-bottom-10 {
+  padding-bottom: 10px
+}
+
+img {
+  height: 60px !important;
+  width: 100px !important;
+}
+
+::ng-deep mat-paginator {
+  padding-top: 2px !important;
+}
+
+
+.padding-right-50px {
+  padding-right: 50px;
+}
+
+.width-150px {
+  width: 150px !important;
+}
+
+
+
+@media screen and (max-width: 899px) {
+  .custom-overflow {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .custom-overflow {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,8 @@
+<h1>GDPR</h1>
+<gdpr-form *ngIf="data"
+    [data]="data"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</gdpr-form>

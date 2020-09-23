@@ -1,0 +1,38 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+        <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<div class="display-flex">
+    <h1>Products</h1>
+
+    <span class="flex-grow-1"></span>
+
+    <div class="padding-right-50px width-150px" [formGroup]="filter">
+        <!-- <mat-icon matPrefix color="primary">search</mat-icon> -->
+        <mat-form-field class="width-150px">
+            <mat-label>SELECT TYPE</mat-label>
+            <mat-select disableOptionCentering placeholder="Select" formControlName="typeProd">
+                <mat-option [value]="'offer'">Offers</mat-option>
+                <mat-option [value]="'release'">Releases</mat-option>
+                <mat-option [value]="'collection'">Collections</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<slider-new-product-collections *ngIf="type === 'collection'" class="overflow-auto"
+    [brands] = "brands"
+    (accept) = "selectedProduct($event)">
+</slider-new-product-collections>
+
+<slider-new-product-offers *ngIf="type === 'offer'" class="overflow-auto"
+    [releases]="releases"
+    [shops] = "shops"
+    (accept) = "selectedProduct($event)">
+</slider-new-product-offers>
+
+<slider-new-product-releases *ngIf="type === 'release'" class="overflow-auto"
+    (accept) = "selectedProduct($event)">
+</slider-new-product-releases>

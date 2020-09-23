@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 99%
+  }
+    
+  .mat-dialog-content {
+    height: 100%;
+    max-height: 82vh;
+    margin-bottom: 10px;
+  }
+  
+  .mat-dialog-actions {
+    padding: 10px 0;
+  }
+
+  ::ng-deep .mat-dialog-container {
+    padding: 0px 0px 15px 25px;
+}

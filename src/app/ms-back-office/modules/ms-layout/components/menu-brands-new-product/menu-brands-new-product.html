@@ -1,0 +1,27 @@
+<div class="flex-shrink-0 display-flex justify-content-end close-mat-dialog-buttom">
+    <span class="mat-button-wrapper cursor-pointer" (click)="close()">
+        <mat-icon>clear</mat-icon>
+    </span>
+</div>
+
+<div class="display-flex">
+    <h1>Products</h1>
+
+    <span class="flex-grow-1"></span>
+
+    <div class="padding-right-50px width-150px" [formGroup]="filter">
+        <!-- <mat-icon matPrefix color="primary">search</mat-icon> -->
+        <mat-form-field class="width-150px">
+            <mat-label>SELECT TYPE</mat-label>
+            <mat-select disableOptionCentering placeholder="Select" formControlName="typeProd">
+                <mat-option [value]="'brand'">Brands</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<menu-brands-new *ngIf="type === 'brand'" class="overflow-auto"
+    [brands] = "brands"
+    [selectedBrands]="selected"
+    (accept) = "selectedProduct($event)">
+</menu-brands-new>

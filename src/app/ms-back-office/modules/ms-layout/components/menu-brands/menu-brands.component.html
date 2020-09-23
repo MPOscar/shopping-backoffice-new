@@ -1,0 +1,12 @@
+<menu-brands-form *ngIf="data"
+    [data]="data"
+    [allTabs]="data"
+    [brands]="brands"
+    [collections]="collections"
+    [styles]="styles"
+    [pageId]="pageId"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</menu-brands-form>

@@ -1,0 +1,8 @@
+<h1>Contact Detail</h1>
+<contact-detail-form *ngIf="timePeriodEnd && timePeriodStart && workingHours"
+    [data]="data"
+    (accept)="submit($event)"
+    [validationErrors]="validationErrors"
+    (cancel)="cancel()"
+    (dataChange)="dataChanged()">
+</contact-detail-form>

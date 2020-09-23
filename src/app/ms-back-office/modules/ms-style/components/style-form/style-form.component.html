@@ -1,0 +1,146 @@
+<form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
+  [formGroup]="formGroup" novalidate role="form" autocomplete="off" inputFocus>
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+      <div class="margin-right-25px" fxLayout="column" fxLayout.lt-md="column">
+
+        <div class="margin-right-25px" [fxFlex]="80" fxLayout.lt-md="column">
+
+          <mat-form-field class="margin-left-16px width-100pct customized" appearance="fill">
+
+            <mat-label>Description</mat-label>
+
+            <textarea matInput formControlName="description" class="min-height-100px"></textarea>
+
+          </mat-form-field>
+
+        </div>
+
+        <div class="margin-right-25px" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+          <div [fxFlex]="50" fxLayout="column" class="margin-right-25px">
+
+            <mat-form-field class="margin-left-16px max-width-480px">
+
+              <mat-label>Style Name</mat-label>
+
+              <input matInput type="text" formControlName="name" required>
+
+              <error-messages matSuffix for="name" [validationErrorMessages]="validationErrorMessages"></error-messages>
+
+            </mat-form-field>
+
+            <mat-form-field class="padding-top-5px max-width-480px">
+
+              <mat-label>Category</mat-label>
+
+              <mat-select [multiple]="true" disableOptionCentering placeholder="Select" formControlName="categories"
+                required #singleSelect>
+
+                <mat-option>
+                  <ngx-mat-select-search [formControl]="categoriesFilterCtrl" placeholderLabel="search"
+                    noEntriesFoundLabel="any result">
+                  </ngx-mat-select-search>
+                </mat-option>
+
+                <mat-option *ngFor="let category of filteredCategory | async" [value]="category.id">
+
+                  {{category.name}}
+
+                </mat-option>
+
+              </mat-select>
+
+              <error-messages matSuffix for="categories" [validationErrorMessages]="validationErrorMessages">
+              </error-messages>
+
+            </mat-form-field>
+
+          </div>
+
+          <div class="margin-top-10px margin-right-25px" [fxFlex]="50" fxLayout="column">
+
+            <button class="margin-bottom-25px max-width-480px" mat-stroked-button type="button"
+              (click)="showModalAddNewBrand()">Add a new Brand</button>
+
+            <mat-form-field class="width-100pc max-width-480px">
+
+              <mat-label>SELECT BRAND</mat-label>
+
+              <mat-select disableOptionCentering placeholder="Select" formControlName="brand" panelOpen="true" required>
+
+                <mat-option>
+                  <ngx-mat-select-search [formControl]="brandsFilterCtrl" placeholderLabel="search"
+                    noEntriesFoundLabel="any result">
+                  </ngx-mat-select-search>
+                </mat-option>
+                
+                <mat-option (click)="selectBrand('')">...</mat-option>
+
+                <mat-option *ngFor="let brand of filteredBrand | async" [value]="brand.id" (click)="selectBrand(brand.id)">
+
+                  {{brand.name}}
+
+                </mat-option>
+
+              </mat-select>
+
+              <error-messages matSuffix for="brand" [validationErrorMessages]="validationErrorMessages">
+              </error-messages>
+
+            </mat-form-field>
+
+            <div>
+              <!--mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="isParent">Is Parent</mat-slide-toggle-->
+            </div>
+
+          </div>
+
+          <div class="margin-top-10px" [fxFlex]="30" fxLayout="column">
+
+            <button class="margin-bottom-25px max-width-480px" mat-stroked-button type="button"
+              (click)="showModalAddNewParent()">Add a new Parent</button>
+
+            <div>
+              <styles-parent [styleId]="styleId" [styles]="stylesParent" [styleName]="styleName"
+                (styleEventEmiter)="setParent($event)" [parent]="parent"></styles-parent>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--div class="display-flex padding-bottom-10px padding-top-25px justify-content-center">
+        <button mat-stroked-button type="button" class="max-width-480px" (click)="showModalStoresSelling()">Edit Stores</button>
+        
+      </div-->
+
+    </div>
+
+  </div>
+
+  <div
+    class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+    <button mat-raised-button (click)="submitClicked()" color="primary">{{'Accept' | translate}}</button>
+
+    <button mat-raised-button type="button" class="margin-left-10px"
+      (click)="cancelClicked()">{{'Cancel' | translate}}</button>
+
+    <span class="display-flex flex-grow-1"></span>
+
+    <button mat-stroked-button type="button" class="max-width-480px" (click)="showModalShopsStyle()">Edit
+      Stores</button>
+    <button *ngIf="styleId" mat-stroked-button type="button" class="margin-left-25px max-width-480px"
+      [routerLink]="['../../../releases/create']" [queryParams]="{styleId: styleId, returnUrl: location.path()}">Create
+      a Release</button>
+    <!-- <button *ngIf="!styleId" mat-stroked-button type="buttom" (click)="submitClickedCreateRelease()" class="margin-left-25px max-width-480px">Create a Release</button> -->
+
+  </div>
+
+</form>

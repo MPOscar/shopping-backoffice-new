@@ -1,0 +1,116 @@
+<div class="" [fxFlex]="100" fxLayout="column">
+    <div fxLayout="column" class="padding-bottom-25px">
+        <h1>COLLECTION CREATOR</h1>
+    </div>
+    <div
+        class="flex-grow-1 display-flex flex-direction-column padding-10px overflow-auto border-top-width-2px border-top-color-grey">
+
+        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+            <div class="" [fxFlex]="100" fxLayout="row" fxLayout.lt-md="column">
+
+                <div [fxFlex]="40" class="margin-right-10px">
+
+                    <button mat-stroked-button type="submit" class="width-90pct max-width-480px"
+                        (click)="showModal()">Add a New Collection</button>
+
+                    <mat-form-field class="width-90pct padding-top-20px">
+
+                        <mat-label>COLLECTION LIST</mat-label>
+
+                        <mat-select disableOptionCentering placeholder="Select" panelOpen="true" matNativeControl
+                            [formControl]="selectedCollection">
+
+                            <mat-option (click)="changeCollection(null, null)">...</mat-option>
+
+                            <mat-option *ngFor="let collection of collections" [value]="collection.id"
+                                (click)="changeCollection(collection.id, collection.brand)">
+
+                                {{collection.name}}
+
+                            </mat-option>
+
+                        </mat-select>
+
+                    </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row" class="border-2px-solid-black margin-bottom-25px margin-right-10px padding-10px">
+
+                    <div fxLayout="column" class="flex-grow-1">
+
+                        <div class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex">
+
+                            <mat-form-field class="width-90pct">
+
+                                <mat-label>SELECT BRAND</mat-label>
+
+                                <mat-select disableOptionCentering placeholder="Select" panelOpen="true"
+                                    matNativeControl [formControl]="selectedBrand">
+
+                                    <mat-option>...</mat-option>
+
+                                    <mat-option *ngFor="let brand of brands" [value]="brand.id">
+
+                                        {{brand.name}}
+
+                                    </mat-option>
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                        </div>
+                        <h3>Linked Stores</h3>
+                        <div class="mb-20" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                            <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+                                <shops-collection-table *ngIf="shops" [collectionId]="collectionId" [shops]="shops"
+                                    [selectedShops]="linkedShops">
+                                </shops-collection-table>
+
+                            </div>
+
+                        </div>
+
+                        <h3>Linked Releases</h3>
+                        <div class="mb-20" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                            <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
+                                <releases-collection-table [collectionId]="collectionId" [collections]="collections"
+                                    [brands]="brands" [styles]="styles" [shops]="shops" (newRelease)="newRelease($event)">
+                                </releases-collection-table>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+    <div
+        class="margin-right-25px padding-top-25px padding-bottom-25px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">
+
+        <button mat-raised-button type="button" color="primary"
+            (click)="close()">{{ 'Save Changes' | translate }}</button>
+
+        <button mat-raised-button type="button" class="margin-left-10px" (click)="discardAllChanges()"
+            [disabled]="!collectionId">{{ 'Discard All Changes' | translate }}</button>
+
+    </div>
+</div>
