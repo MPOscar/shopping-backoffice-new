@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-//import { setTranslations } from 'ngx-translate';
+// import { setTranslations } from 'ngx-translate';
 import { TRANSLATIONS } from './i18n/login.component.translations';
 import { ConfigService } from '../../../config/services/config.service';
 import { BaseReactiveFormComponent } from '../../../ui/components/base-reactive-form/base-reactive-form-component';

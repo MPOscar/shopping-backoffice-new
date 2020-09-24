@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-nav',
+    selector: 'aapp-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss']
 })

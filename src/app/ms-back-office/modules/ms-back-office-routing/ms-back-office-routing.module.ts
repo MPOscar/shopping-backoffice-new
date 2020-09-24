@@ -69,7 +69,6 @@ const routes: Routes = [
                 path: 'layouts',
                 loadChildren: '../ms-layout/ms-layout.module#MsLayoutModule'
             }
-
         ]
     }
 ];

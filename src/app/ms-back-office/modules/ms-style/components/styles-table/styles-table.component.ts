@@ -47,7 +47,7 @@ export class StyleTableComponent implements OnInit, OnDestroy {
 
     filter: FormGroup;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

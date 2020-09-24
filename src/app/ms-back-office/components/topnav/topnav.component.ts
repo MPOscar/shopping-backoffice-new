@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../authentication/services/auth.service';
 
 @Component({
-    selector: 'app-topnav',
+    selector: 'aapp-topnav',
     templateUrl: './topnav.component.html',
     styleUrls: ['./topnav.component.scss']
 })

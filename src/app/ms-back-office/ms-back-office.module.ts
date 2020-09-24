@@ -13,13 +13,15 @@ import { ConfigModule } from '../config/config.module';
 import { SharedModule } from '../shared/shared.module';
 import {TruncatePipe} from '../shared/pipes/truncate.pipe';
 import {PipesModule} from '../shared/pipes/pipes.module';
+import {ComponentsModule} from '../components/components.module';
 
 @NgModule({
     imports: [
         CommonModule,
         MsBackOfficeRoutingModule,
         ConfigModule,
-        SharedModule
+        SharedModule,
+        ComponentsModule
     ],
     declarations: [
         BackOfficeComponent,
