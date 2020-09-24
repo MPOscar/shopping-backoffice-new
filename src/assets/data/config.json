@@ -1,0 +1,75 @@
+{
+  "productName": "More Snakers",
+  "systemName": "More Sneaker Systems",
+  "external": false,
+  "apiConfigs": {
+    "authentication": {
+      "loginUser": {
+        "apiEndpoint": "token/"
+      },
+      "revokeUser": {
+        "apiEndpoint": "revoke-token/"
+      },
+      "changePassword": {
+        "apiEndpoint": "passwordchange/"
+      },
+      "tokenExpirationTime": {
+        "apiEndpoint": "token/expirationtime/"
+      }
+    },   
+    "analythics": {
+      "apiEndpoint": "analytics/"
+    }, 
+    "brands": {
+      "apiEndpoint": "brands/"
+    },
+    "categories": {
+      "apiEndpoint": "categories/"
+    },
+    "collections": {
+      "apiEndpoint": "collections/"
+    },
+    "deepLinkGenerator": {
+      "apiEndpoint": "deeplink/"
+    },
+    "offers": {
+      "apiEndpoint": "offers/"
+    },
+    "shops": {
+      "apiEndpoint": "shops/"
+    },
+    "styles": {
+      "apiEndpoint": "styles/"
+    },
+    "releases": {
+      "apiEndpoint": "releases/"
+    },
+    "users": {
+      "apiEndpoint": "users/"
+    },
+    "images": {
+      "apiEndpoint": "image/"
+    },
+    "deals": {
+      "apiEndpoint": "deals/"
+    },
+    "blogs": {
+      "apiEndpoint": "blogs/"
+    },
+    "urls": {
+      "apiEndpoint": "urls/"
+    },
+    "tasks": {
+      "apiEndpoint": "tasks/"
+    },
+    "layouts": {
+      "apiEndpoint": "layouts/"
+    },
+    "server": {
+      "apiEndpoint": "/"
+    },
+    "settings": {
+      "apiEndpoint": "settings/"
+    }
+  }
+}

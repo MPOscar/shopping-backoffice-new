@@ -5,13 +5,24 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import {AuthGuardService} from './authentication/services/auth-guard.service';
+import {ConfigResolveService} from './config/services/config-resolve.service';
 
 const routes: Routes =[
   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }, {
+  },
+  {
+    path: 'backoffice',
+    loadChildren: './ms-back-office/ms-back-office.module#MsBackOfficeModule',
+    // canActivate: [AuthGuardService],
+    resolve: {
+      config: ConfigResolveService
+    }
+  },
+  {
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -39,8 +50,8 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-      useHash: true
+    RouterModule.forRoot(routes, {
+      useHash: false
     })
   ],
   exports: [
