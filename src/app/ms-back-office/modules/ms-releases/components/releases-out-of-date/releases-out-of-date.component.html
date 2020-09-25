@@ -90,7 +90,7 @@
             <td mat-cell *matCellDef="let element" class="max-width-15px">
                 <button mat-icon-button color="primary" type="button" [matTooltip]="Edit" class="min-width-80px" (click)="hideRelease(element.id)">
                     <mat-icon>close_red_eye</mat-icon>
-                </button>                
+                </button>
             </td>
         </ng-container>
 
@@ -104,8 +104,14 @@
 
 <div class="margin-right-25px flex-shrink-0 display-flex">
     <span class="flex-grow-1"></span>
-    <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="5" showFirstLastButtons
-        (page)="onPage()">
+    <mat-paginator
+      #paginator
+      [length]="totalLength"
+      [pageSizeOptions]="[5, 10, 20, 50, 100]"
+      [pageIndex]=""
+      [pageSize]="5"
+      showFirstLastButtons
+      (page)="onPage()">
     </mat-paginator>
 </div>
 

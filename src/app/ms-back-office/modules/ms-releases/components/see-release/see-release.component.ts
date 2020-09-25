@@ -93,7 +93,7 @@ export class SeeReleaseComponent extends BaseReactiveFormComponent<Release> impl
 
   @Input() shops: Array<Shop>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 

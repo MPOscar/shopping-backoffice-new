@@ -63,7 +63,7 @@ export class OffersCollectionTableComponent implements AfterViewInit, OnInit {
 
     modalRef: MatDialogRef<NewOfferComponent | EditOfferComponent | ConfirmDialogComponent>;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

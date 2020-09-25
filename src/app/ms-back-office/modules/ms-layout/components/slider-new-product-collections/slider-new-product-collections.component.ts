@@ -50,7 +50,7 @@ export class SlidersNewProductCollectionsComponent implements OnInit, AfterViewI
 
   filterValueChanges: Subscription;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 

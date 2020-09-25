@@ -57,7 +57,7 @@ export class OffersShopTableComponent implements AfterViewInit, OnInit, OnDestro
 
     modalRef: MatDialogRef<NewOfferShopCreatorComponent | EditOfferComponent | ConfirmDialogComponent>;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

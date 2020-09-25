@@ -55,7 +55,7 @@ export class DealsTableComponent implements AfterViewInit, OnInit, OnDestroy {
 
     filterValueChanges: Subscription;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

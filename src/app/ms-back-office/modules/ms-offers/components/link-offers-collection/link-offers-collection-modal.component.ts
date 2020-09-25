@@ -55,7 +55,7 @@ export class LinkOffersCollentionModalComponent implements OnInit, AfterViewInit
 
   //modalRef: MatDialogRef<NewOfferComponent | EditOfferComponent | ConfirmDialogComponent>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 

@@ -44,7 +44,7 @@ export class ShopsTableComponent implements OnInit {
 
     status: Status[] = STATUS;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

@@ -30,7 +30,7 @@ export class CategoriesTableComponent implements OnInit, OnDestroy, AfterViewIni
 
     filter: FormGroup;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

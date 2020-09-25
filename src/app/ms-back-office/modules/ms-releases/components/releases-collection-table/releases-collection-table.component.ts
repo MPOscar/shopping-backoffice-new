@@ -70,7 +70,7 @@ export class ReleasesCollectionTableComponent implements OnInit {
 
     genders: Gender[] = GENDERS;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

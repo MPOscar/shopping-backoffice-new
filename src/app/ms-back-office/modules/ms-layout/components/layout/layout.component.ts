@@ -65,7 +65,7 @@ export class LayoutComponent implements OnInit {
 
     filterValueChanges: Subscription;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

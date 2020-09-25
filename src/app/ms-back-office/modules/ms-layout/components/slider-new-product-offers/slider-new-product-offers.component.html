@@ -88,7 +88,13 @@
 
     <span class="flex-grow-1"></span>
 
-    <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50"
-        showFirstLastButtons (page)="onPage()">
+    <mat-paginator
+      #paginator
+      [length]="totalLength"
+      [pageSizeOptions]="[5, 10, 20, 50, 100]"
+      [pageIndex]=""
+      [pageSize]="50"
+      showFirstLastButtons
+      (page)="onPage()">
     </mat-paginator>
 </div>

@@ -69,7 +69,7 @@ export class OffersNewReleaseTableComponent implements AfterViewInit, OnInit {
 
     modalRef: MatDialogRef<NewOfferReleaseCreatorComponent | EditOfferReleaseCreatorComponent | ConfirmDialogComponent>;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

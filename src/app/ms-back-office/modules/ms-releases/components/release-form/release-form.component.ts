@@ -76,7 +76,7 @@ export class ReleaseFormComponent extends BaseReactiveFormComponent<Release> imp
 
     @Input() copyReleaseId: string;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 

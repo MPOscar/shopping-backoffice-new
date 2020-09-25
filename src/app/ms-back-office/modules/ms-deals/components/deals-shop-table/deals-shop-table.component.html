@@ -30,7 +30,7 @@
       </th>
       <td mat-cell *matCellDef="let element" [ngClass]="{'background-td': element.id === dealId}"> {{ element.salePercentage }} </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="STATUS">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         STATUS
@@ -75,7 +75,13 @@
 
 <div class="margin-right-25px flex-shrink-0 display-flex border-top-color-grey">
   <span class="flex-grow-1"></span>
-  <mat-paginator [length]="totalLength" [pageSizeOptions]="[5, 10, 20, 50, 100]" [pageIndex]="" [pageSize]="50" showFirstLastButtons
+  <mat-paginator
+    #paginator
+    [length]="totalLength"
+    [pageSizeOptions]="[5, 10, 20, 50, 100]"
+    [pageIndex]=""
+    [pageSize]="50"
+    showFirstLastButtons
     (page)="onPage()">
   </mat-paginator>
 </div>

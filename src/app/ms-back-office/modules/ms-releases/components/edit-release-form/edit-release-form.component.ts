@@ -103,7 +103,7 @@ export class EditReleaseFormComponent extends BaseReactiveFormComponent<Release>
 
     @Input() releases: Array<Release>;
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
 
     @ViewChild(MatSort) sort: MatSort;
 
