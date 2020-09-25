@@ -1,9 +1,9 @@
-    <!-- <shop-form class="flex-grow-1" 
-        [data]="data" 
-        [brands]="brands" 
+    <!-- <shop-form class="flex-grow-1"
+        [data]="data"
+        [brands]="brands"
         [categories]="categories"
-        [shops]="shops" 
-        (accept)="submit($event)" 
+        [shops]="shops"
+        (accept)="submit($event)"
         (cancel)="cancel()"
         [validationErrors]="validationErrors" (dataChange)="dataChanged()">
     </shop-form> -->
@@ -17,16 +17,16 @@
 
                 <mat-tab label="Shop">
 
-                    <shop-form class="flex-grow-1" 
-                        [data]="data" 
-                        [brands]="brands" 
+                    <shop-form class="flex-grow-1"
+                        [data]="data"
+                        [brands]="brands"
                         [categories]="categories"
                         [collections]="collections"
-                        [shops]="shops" 
+                        [shops]="shops"
                         [faceList] = "faceList"
-                        (accept)="submit()" 
+                        (accept)="submit()"
                         (cancel)="cancelClick()"
-                        [validationErrors]="validationErrors" 
+                        [validationErrors]="validationErrors"
                         (dataChange)="dataChanged()">
                     </shop-form>
 
@@ -50,7 +50,7 @@
 
                                 <!--div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column"-->
                                 <div
-                                    class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-row card-container justify-content-initial margin-top-10px">
+                                    class="flex-wrap-wrap display-flex flex-grow-1 flex-shrink-1 flex-direction-column card-container justify-content-initial margin-top-10px">
                                     <mat-card *ngFor="let shop of subShops"
                                         class="display-flex background-color-secondary flex-direction-column flex-shrink-1">
                                         <div class="image-container margin-10px flex-grow-1" #imageContainer>
@@ -86,10 +86,10 @@
                 </mat-tab>
 
                 <mat-tab label="Offers" class="width-50pc" *ngIf="data.type === 'virtual'">
-                    <offers-shop-table 
-                        [shopId]="shopId" 
+                    <offers-shop-table
+                        [shopId]="shopId"
                         [collections]="collections"
-                        [shop] = "data"  
+                        [shop] = "data"
                         [releases]="releases">
                     </offers-shop-table>
                 </mat-tab>

@@ -161,6 +161,7 @@ export class DealsShopTableComponent implements OnDestroy, AfterViewInit, OnInit
             data: {
                 urls: this.urls,
                 shopId: this.shopId,
+                shops: this.shops
             },
             disableClose: true
         });

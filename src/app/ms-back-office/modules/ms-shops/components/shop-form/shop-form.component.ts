@@ -211,7 +211,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
     ngAfterViewInit() {
         super.ngAfterViewInit();
         if (this.formType === 'edit') {
-            this.map = new ol.Map({
+            /*this.map = new ol.Map({
                 target: 'map',
                 layers: [
                     new ol.layer.Tile({
@@ -222,7 +222,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
                     center: ol.proj.fromLonLat([73.8567, 18.5204]),
                     zoom: 18
                 })
-            });
+            });*/
         }
         this.delay(700).then(() => {
             document.getElementById('name').click();
@@ -289,7 +289,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
     }
 
     createMap() {
-        const marker = new ol.Feature({
+        /* const marker = new ol.Feature({
             geometry: new ol.geom.Point(ol.proj.fromLonLat([this.lon, this.lat])),
             name: 'Marker'
         });
@@ -322,7 +322,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
                 center: ol.proj.fromLonLat([this.lon, this.lat]),
                 zoom: 18
             })
-        });
+        });*/
     }
 
     displayFn(val?: string): string | undefined {
@@ -504,7 +504,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
     }
 
     setMarkerByLonLat(lon: number, lat: number) {
-        let marker = new ol.Feature({
+        /*let marker = new ol.Feature({
             geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
             name: 'Marker'
         });
@@ -528,7 +528,7 @@ export class ShopFormComponent extends BaseReactiveFormComponent<Shop> implement
 
         this.map.getView().setCenter(ol.proj.fromLonLat([lon, lat]));
 
-        this.map.addLayer(VectorLayer);
+        this.map.addLayer(VectorLayer);*/
 
     }
 

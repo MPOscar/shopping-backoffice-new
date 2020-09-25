@@ -15,7 +15,7 @@ import { Country } from '../../../ms-shops/models/country';
 
 
 @Component({
-    selector: 'offer-form-new',
+    selector: 'app-offer-form-new',
     templateUrl: './offer-form-new.component.html',
     styleUrls: ['./offer-form-new.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

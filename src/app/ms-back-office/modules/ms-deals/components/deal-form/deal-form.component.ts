@@ -42,6 +42,7 @@ export class DealFormComponent extends BaseReactiveFormComponent<Deal> implement
     }
 
     ngOnInit() {
+      console.log(this.shops);
         const validationsErrors: any[] = [
             {
                 type: 'required',
