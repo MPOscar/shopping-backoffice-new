@@ -5,13 +5,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule,
+        TranslateModule
+    ],
   declarations: [
     FooterComponent,
     NavbarComponent,

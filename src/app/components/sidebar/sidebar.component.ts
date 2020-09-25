@@ -8,13 +8,18 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
+    { path: '/backoffice/home', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
+    { path: '/backoffice/styles', title: 'Styles',  icon:'ni-planet text-blue', class: '' },
+    { path: '/backoffice/brands', title: 'Brands',  icon:'ni-pin-3 text-orange', class: '' },
+    { path: '/backoffice/collections', title: 'Collections',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/backoffice/shops', title: 'Shops',  icon:'ni-bullet-list-67 text-red', class: '' },
+    { path: '/backoffice/deals', title: 'Deals',  icon:'ni-key-25 text-info', class: '' },
+    { path: '/backoffice/categories', title: 'Categories',  icon:'ni-circle-08 text-pink', class: '' },
+    { path: '/backoffice/releases', title: 'Releases',  icon:'ni-planet text-blue', class: '' },
+    { path: '/backoffice/offers', title: 'Offers',  icon:'ni-planet text-blue', class: '' },
+    { path: '/backoffice/urls', title: 'Urls',  icon:'ni-planet text-blue', class: '' },
+    { path: '/backoffice/tasks', title: 'Tasks',  icon:'ni-planet text-blue', class: '' },
+    { path: '/backoffice/blogs', title: 'Blogs',  icon:'ni-planet text-blue', class: '' }
 ];
 
 @Component({
