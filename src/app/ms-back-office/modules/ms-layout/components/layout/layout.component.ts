@@ -22,8 +22,8 @@ import { Shop } from '../../../ms-shops/models/shops';
 import { Style } from '../../../ms-style/models/style';
 //
 import { StylesService } from '../../../ms-style/services/styles.service';
-import { LayoutService } from "../../services/layout.service";
-import { LayoutSlider, UrlsListResponse } from "../../models/layout";
+import { LayoutService } from '../../services/layout.service';
+import { LayoutSlider, UrlsListResponse } from '../../models/layout';
 import { Filter, FilterItem } from '../../models/filters';
 
 
@@ -31,7 +31,7 @@ import { Filter, FilterItem } from '../../models/filters';
 const errorKey = 'Error';
 
 @Component({
-    selector: 'layout',
+    selector: 'app-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.scss']
 })
@@ -113,7 +113,7 @@ export class LayoutComponent implements OnInit {
             this.flag = true;
         },
             (error: HandledError) => this.errorHandlingService.handleUiError(errorKey, error)
-        )
+        );
     }
 
 }

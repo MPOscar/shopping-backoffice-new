@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../../../authentication/services/auth.service';
 
 @Component({
-    selector: 'layout-slider-topnav',
+    selector: 'app-layout-slider-topnav',
     templateUrl: './layout-slider-topnav.component.html',
     styleUrls: ['./layout-slider-topnav.component.scss']
 })

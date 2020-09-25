@@ -30,14 +30,14 @@ import { LayoutService } from '../../services/layout.service';
 import { HeadingFormComponent } from '../heading-form/heading-form.component';
 import { Deal } from '../../../ms-deals/models/deal';
 import { Offer } from '../../../ms-offers/models/offer';
-//import { setTranslations } from '@c/ngx-translate';
+// import { setTranslations } from '@c/ngx-translate';
 
 const errorKey = 'Error';
 
 const updatedMessageKey = 'Updated';
 
 @Component({
-  selector: 'sliders',
+  selector: 'app-sliders',
   templateUrl: './sliders.component.html',
   styleUrls: ['./sliders.component.scss']
 })
@@ -101,7 +101,7 @@ export class SlidersComponent implements AfterViewInit, CanDeactivateMixin {
     private translate: TranslateService,
     private toastr: ToastrService,
   ) {
-    //setTranslations(this.translate, TRANSLATIONS);
+    // setTranslations(this.translate, TRANSLATIONS);
   }
 
   ngOnInit() {

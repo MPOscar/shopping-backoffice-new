@@ -6,11 +6,11 @@
     <h1 *ngIf="formGroup.get('customized').value">CUSTOMIZED RELEASE</h1>
   </div>
 
-  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+  <div fxLayout="column" class="flex-grow-1 overflow-auto display-flex flex-direction-column">
 
-    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+    <div fxLayout="column" class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
 
-      <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+      <div fxFlex fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="20px">
 
         <div [fxFlex]="50" fxFlex fxLayout="column" fxLayout.lt-md="column">
 
@@ -111,7 +111,7 @@
 
             </div>
 
-            <div [fxFlex]="50" class="">
+            <div fxLayout="column" [fxFlex]="50" class="">
 
               <mat-form-field class="width-100pc">
 
@@ -263,8 +263,8 @@
 
 
         </div>
-        <div [fxFlex]="50" class="margin-right-25px">
-          <div>
+        <div fxLayout="column" [fxFlex]="50" class="margin-right-25px">
+          <div class="padding-bottom-25px">
             <mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="customized">Customized</mat-slide-toggle>
           </div>
           <div [fxFlex]="50" class="border margin-right-25px max-width-480px margin-bottom-20px">

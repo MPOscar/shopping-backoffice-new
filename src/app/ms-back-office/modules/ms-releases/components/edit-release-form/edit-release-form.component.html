@@ -2,16 +2,16 @@
       [formGroup]="formGroup"
       novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
 
-    <div fxLayout="row"
+    <div fxLayout="column"
          class="max-width-75pct customized justify-content-space-between flex-grow-0 padding-bottom-25px">
         <span class="flex-grow-1"></span>
     </div>
 
-    <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+    <div fxLayout="column" class="flex-grow-1 overflow-auto display-flex flex-direction-column">
 
-        <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+        <div fxLayout="column" class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
 
-            <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <div fxFlex fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="20px">
 
                 <div [fxFlex]="50" fxFlex fxLayout="column" fxLayout.lt-md="column">
 
@@ -127,7 +127,7 @@
                         </div>
 
 
-                        <div [fxFlex]="50" class="margin-right-25px">
+                        <div fxLayout="column" [fxFlex]="50" class="margin-right-25px">
                             <mat-form-field class="width-100pc">
 
                                 <input matInput [matDatepicker]="pickerUpdated" placeholder="Modified Date"
@@ -304,14 +304,12 @@
 
                 </div>
 
-                <div [fxFlex]="50" class="margin-right-25px">
+                <div fxLayout="column" [fxFlex]="50" class="margin-right-25px">
 
-                    <div>
-
+                    <div class="padding-bottom-25px">
                         <mat-slide-toggle class="padding-top-15px padding-bottom-15px" formControlName="customized">
                             Customized
                         </mat-slide-toggle>
-
                     </div>
 
                     <div [fxFlex]="50" class="border max-width-480px margin-bottom-20px">
