@@ -558,3 +558,7 @@ mat-form-field {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+:focus {
+  outline: 0;
+}
