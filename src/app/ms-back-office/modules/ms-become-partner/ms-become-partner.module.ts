@@ -26,6 +26,7 @@ import { EditBecomePartnerComponent } from './components/edit-become-partner/edi
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 //
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { MatRadioModule } from '@angular/material/radio';
     AskBeforeRefreshModule,
     ImageCardModule,
     ImagesCardModule,
-    ErrorMessagesModule
+    ErrorMessagesModule,
+    AngularEditorModule
   ],
   declarations: [
     BecomePartnerFormComponent,

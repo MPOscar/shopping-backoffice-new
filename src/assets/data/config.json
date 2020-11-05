@@ -1,6 +1,6 @@
 {
-  "productName": "More Snakers",
-  "systemName": "More Sneaker Systems",
+  "productName": "Shopping",
+  "systemName": "Shopping Backoffice Systems",
   "external": false,
   "apiConfigs": {
     "authentication": {
@@ -16,10 +16,10 @@
       "tokenExpirationTime": {
         "apiEndpoint": "token/expirationtime/"
       }
-    },   
+    },
     "analythics": {
       "apiEndpoint": "analytics/"
-    }, 
+    },
     "brands": {
       "apiEndpoint": "brands/"
     },
