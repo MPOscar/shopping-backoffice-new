@@ -1,65 +1,133 @@
-<mat-toolbar color="" class="fix-nav">
-    <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='home'}" (click)="setLayout('home')">
-        HOME 
+  <mat-tab-group class="padding-top-25px display-flex flex-grow-1">
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('home')">HOME</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('whats_new')">WHAT'S NEW</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('release_calendar')">RELEASE CALENDAR</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('releases')">RELEASES</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('brands')">BRANDS</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('categories')">CATEGORIES</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('sales')">SALES</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('shops')">SHOPS</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('customized')">CUSTOMIZED</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('blogs')">BLOG</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setLayout('contact')">CONTACT</span>
+      </ng-template>
+    </mat-tab>
+
+    <!--<div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='home'}" (click)="setLayout('home')">
+        HOME
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='whats_new'}" (click)="setLayout('whats_new')">
         WHAT'S NEW
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='release_calendar'}" (click)="setLayout('release_calendar')">
         RELEASE CALENDAR
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='releases'}" (click)="setLayout('releases')">
-        RELEASES 
+        RELEASES
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='brands'}" (click)="setLayout('brands')">
-        BRANDS 
+        BRANDS
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center"  [ngClass]="{'selected': selected ==='categories'}" (click)="setLayout('categories')">
-        CATEGORIES 
+        CATEGORIES
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center"  [ngClass]="{'selected': selected ==='sales'}" (click)="setLayout('sales')">
-        SALES 
+        SALES
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center"  [ngClass]="{'selected': selected ==='shops'}" (click)="setLayout('shops')">
-        SHOPS 
+        SHOPS
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center"  [ngClass]="{'selected': selected ==='customized'}" (click)="setLayout('customized')">
-        CUSTOMIZED 
+        CUSTOMIZED
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='blogs'}" (click)="setLayout('blogs')">
-        BLOG 
+        BLOG
     </div>
     <div>
-        |
+
     </div>
     <div class="nav-brand cursor-pointer display-flex flex-grow-1 justify-content-center" [ngClass]="{'selected': selected ==='contact'}" (click)="setLayout('contact')">
-        CONTACT 
-    </div>
-</mat-toolbar>
+        CONTACT
+    </div>-->
+
+  </mat-tab-group>

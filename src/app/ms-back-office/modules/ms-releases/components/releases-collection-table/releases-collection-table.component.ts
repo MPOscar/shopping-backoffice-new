@@ -146,12 +146,12 @@ export class ReleasesCollectionTableComponent implements OnInit {
             this.filter = this.createFilterFormGroup();
             this.releasesService.getReleases(
                 Object.assign({}, this.filter.value),
-                this.sort.active, this.sort.direction,
+                this.sort?.active, this.sort?.direction,
                 this.paginator.pageIndex, this.paginator.pageSize).subscribe((response: ReleasesListResponse) => {
                     this.releasesService.releasesList.next(response);
                 },
                     (err: HandledError) => {
-                        this.errorHandlingService.handleUiError(errorKey, err)
+                        this.errorHandlingService.handleUiError(errorKey, err);
                     });
         } else {
             this.releases = [];

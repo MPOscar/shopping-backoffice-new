@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild,} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 //
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -24,48 +24,46 @@ import { LayoutService } from '../../services/layout.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeadingFormComponent extends BaseReactiveFormComponent<LayoutHeading> implements OnInit {
+export class HeadingFormComponent extends BaseReactiveFormComponent<LayoutHeading> implements OnInit , AfterViewInit{
 
-    faces: FormControl;
+  faces: FormControl;
 
-    @ViewChild(ImageCardComponent) imageCardComponent: ImageCardComponent;
+  principal: Face;
 
-    constructor(public dialog: MatDialog,
-        private formBuilder: FormBuilder,
-        public translateService: TranslateService) {
-        super(translateService);
-    }
+  @ViewChild(ImageCardComponent) imageCardComponent: ImageCardComponent;
 
-    ngOnInit() {
-        const validationsErrors: any[] = [
-            {
-                type: 'required',
-                key: 'Required Field',
-                params: null,
-                translation: ''
-            }
-        ];
+  constructor(public dialog: MatDialog,
+      private formBuilder: FormBuilder,
+      public translateService: TranslateService) {
+      super(translateService);
+  }
 
-        this.validationErrorMessages = validationsErrors;
+  ngOnInit() {
+      const validationsErrors: any[] = [
+          {
+              type: 'required',
+              key: 'Required Field',
+              params: null,
+              translation: ''
+          }
+      ];
 
-        this.createFormGroup();
-        if (this.data.imgUrl) {
-            const face: Face = {
-                imgUrl: this.data.imgUrl,
-                state: State.Edited
-            };
-            this.formGroup.get('images').setValue([face]);
-            this.imageCardComponent.initialize(face);
-        }
-    }
+    this.principal = {
+      imgUrl: this.data.imgUrl,
+      state: State.Edited
+    };
 
-    createFormGroup() {
+    this.validationErrorMessages = validationsErrors;
+    this.createFormGroup();
+  }
+
+  createFormGroup() {
         this.formGroup = new FormGroup({
             title: new FormControl(this.data.title),
             keywords: new FormControl(this.data.keywords),
             description: new FormControl(this.data.description),
             displayOnPage: new FormControl(this.data.displayOnPage),
-            images: new FormControl(),
+            images: new FormControl(this.principal),
         });
     }
 

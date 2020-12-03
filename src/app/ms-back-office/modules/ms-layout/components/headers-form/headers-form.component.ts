@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 //
@@ -61,34 +61,31 @@ export class HeadersFormComponent extends BaseReactiveFormComponent<Header> impl
     }
 
     ngOnInit() {
-        this.shops = this.activatedRoute.snapshot.data.shops;
-        this.shops2 = this.activatedRoute.snapshot.data.shops;
-        const validationsErrors: any[] = [
-            {
-                type: 'required',
-                key: 'Required Field',
-                params: null,
-                translation: ''
-            }
-        ];
+      this.shops = this.activatedRoute.snapshot.data.shops;
+      this.shops2 = this.activatedRoute.snapshot.data.shops;
+      const validationsErrors: any[] = [
+          {
+              type: 'required',
+              key: 'Required Field',
+              params: null,
+              translation: ''
+          }
+      ];
 
-        this.validationErrorMessages = validationsErrors;
+      this.principal = {
+        imgUrl: this.data.imgUrl,
+        state: State.Edited
+      };
 
-        this.createFormGroup();
-        if (this.data.imgUrl) {
-            const face: Face = {
-                imgUrl: this.data.imgUrl,
-                state: State.Edited
-            };
-            this.formGroup.get('images').setValue([face]);
-            this.imageCardComponent.initialize(face);
-        }
+      this.validationErrorMessages = validationsErrors;
+      this.createFormGroup();
     }
+
 
     createFormGroup() {
         const urlRegexp = '(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?';
         this.formGroup = new FormGroup({
-            images: new FormControl(),
+            images: new FormControl(this.principal),
             display: new FormControl(this.data.display, [Validators.required]),
             label: new FormControl(this.data.label),
             displayOnPage: new FormControl(this.data.displayOnPage),

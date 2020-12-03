@@ -50,7 +50,8 @@ export class LayoutSliderTopnavComponent implements OnInit {
     }
 
     setLayout(layout: string) {
-        this.selected = layout;
-        this.layoutEventEmitter.emit(layout);
+      console.log(layout);
+      this.selected = layout;
+      this.layoutEventEmitter.emit(layout);
     }
 }

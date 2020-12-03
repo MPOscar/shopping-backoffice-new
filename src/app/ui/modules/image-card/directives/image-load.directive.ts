@@ -31,10 +31,6 @@ export class ImageLoadDirective implements AfterViewInit, OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (this.srcImage === undefined) {
-      throw new Error('Please you need to provide a valid image, file or url');
-    }
-
     if (this.container && this.container instanceof ElementRef) {
       this.container = this.container.nativeElement;
     }
@@ -76,7 +72,10 @@ export class ImageLoadDirective implements AfterViewInit, OnInit, OnChanges {
           this.loadImage.src = reader.result;
         }
       };
-      reader.readAsDataURL(this.srcImage);
+      if (this.srcImage !== undefined){
+        reader.readAsDataURL(this.srcImage);
+      }
+
     }
 
   }
