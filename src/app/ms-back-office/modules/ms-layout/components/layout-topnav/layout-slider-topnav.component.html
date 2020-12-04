@@ -1,68 +1,68 @@
-  <mat-tab-group class="padding-top-25px display-flex flex-grow-1">
+  <mat-tab-group (selectedTabChange)="onTabChanged($event);" class="padding-top-25px display-flex flex-grow-1">
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('home')">HOME</span>
+        <span>HOME</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('whats_new')">WHAT'S NEW</span>
+        <span>WHAT'S NEW</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('release_calendar')">RELEASE CALENDAR</span>
+        <span>RELEASE CALENDAR</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('releases')">RELEASES</span>
+        <span>RELEASES</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('brands')">BRANDS</span>
+        <span>BRANDS</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('categories')">CATEGORIES</span>
+        <span>CATEGORIES</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('sales')">SALES</span>
+        <span>SALES</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('shops')">SHOPS</span>
+        <span>SHOPS</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('customized')">CUSTOMIZED</span>
+        <span>CUSTOMIZED</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('blogs')">BLOG</span>
+        <span>BLOG</span>
       </ng-template>
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
-        <span (click)="setLayout('contact')">CONTACT</span>
+        <span>CONTACT</span>
       </ng-template>
     </mat-tab>
 

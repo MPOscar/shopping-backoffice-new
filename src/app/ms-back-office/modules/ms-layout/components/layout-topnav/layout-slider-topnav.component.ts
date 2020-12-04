@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 //
 import { AuthService } from '../../../../../authentication/services/auth.service';
+import {PAGES} from '../../models/pages';
 
 @Component({
     selector: 'app-layout-slider-topnav',
@@ -14,6 +15,8 @@ export class LayoutSliderTopnavComponent implements OnInit {
     selected = 'home';
 
     pushRightClass = 'push-right';
+
+    pages: string[] = PAGES;
 
     @Output() layoutEventEmitter: EventEmitter<any> = new EventEmitter();
 
@@ -53,5 +56,11 @@ export class LayoutSliderTopnavComponent implements OnInit {
       console.log(layout);
       this.selected = layout;
       this.layoutEventEmitter.emit(layout);
+    }
+
+    onTabChanged(event) {
+      console.log(this.pages[event.index]);
+      this.selected = this.pages[event.index];
+      this.layoutEventEmitter.emit(this.selected);
     }
 }
