@@ -1,10 +1,10 @@
 <!--h1>Select the page you want to configure</h1-->
 <app-layout-slider-topnav (layoutEventEmitter)="layoutEvent($event)"></app-layout-slider-topnav>
-<div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+<div class="flex-grow-1 h-100vh overflow-auto display-flex flex-direction-column">
 
-    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column h-100vh">
 
-        <mat-tab-group class="padding-top-25px display-flex flex-grow-1" *ngIf="flag">
+        <mat-tab-group class="padding-top-5px display-flex flex-grow-1 h-100vh" *ngIf="flag">
 
             <mat-tab label="Slider">
                 <app-sliders
