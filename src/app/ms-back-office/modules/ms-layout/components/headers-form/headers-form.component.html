@@ -1,7 +1,8 @@
 <form class="flex-grow-1 min-height-0 display-flex flex-direction-column" [askBeforeRefresh]="formGroup.dirty"
   [formGroup]="formGroup" novalidate role="form" (ngSubmit)="submitClicked()" autocomplete="off" inputFocus>
-  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column padding-top-25px">
-    <div class="flex-grow-1 flex-shrink-0 display-flex flex-direction-column">
+
+  <div class="flex-grow-1 overflow-auto display-flex flex-direction-column">
+
       <div class="mb-20 margin-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
         <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
           <div fxLayout="row" fxLayout.lt-md="column">
@@ -45,7 +46,6 @@
         </div>
       </div>
     </div>
-  </div>
 
   <div
     class="margin-right-25px padding-top-10px padding-bottom-10px flex-shrink-0 display-flex border-top-style-solid border-top-width-2px border-top-color-grey">

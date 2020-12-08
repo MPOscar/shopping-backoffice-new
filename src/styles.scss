@@ -562,3 +562,11 @@ mat-form-field {
 :focus {
   outline: 0;
 }
+
+.display-flex {
+  display: flex !important;
+}
+
+.flex-direction-column {
+  flex-direction: column !important;
+}

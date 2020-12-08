@@ -18,3 +18,7 @@ th {
     padding-bottom: 10px
 }
 
+::ng-deep .mat-tab-body-content{
+  display: flex !important;
+  flex-grow: 1 !important;
+}
