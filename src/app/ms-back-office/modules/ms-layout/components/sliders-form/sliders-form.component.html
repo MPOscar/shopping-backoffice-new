@@ -5,9 +5,11 @@
 
         <div class="flex-grow-1 flex-shrink-0 flex-direction-column">
 
-            <div class="mb-20 padding-top-25px" fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+            <div class="mb-20 padding-top-25px" fxFlex fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="20px">
 
                 <div [fxFlex]="100" fxFlex fxLayout="column" fxLayout.lt-md="column">
+
+                  <div>
 
                     <mat-radio-group matNativeControl [formControl]="display">
 
@@ -31,151 +33,177 @@
 
                     </mat-radio-group>
 
-                    <div class="padding-top-10px">
+                  </div>
 
-                        <mat-slide-toggle class="padding-top-15px padding-bottom-15px" matNativeControl
-                            [formControl]="displayOnPage">
-                            Display on this page</mat-slide-toggle>
+                  <div class="padding-top-10px">
 
-                    </div>
+                      <mat-slide-toggle class="padding-top-15px padding-bottom-15px" matNativeControl
+                          [formControl]="displayOnPage">
+                          Display on this page</mat-slide-toggle>
 
-                    <div fxLayout="row" fxLayout.lt-md="column" class="padding-top-10px">
+                  </div>
 
-                        <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+                </div>
 
-                            <mat-label>New Slide</mat-label>
+              <div>
 
-                            <div class="display-flex padding-top-20px padding-bottom-20px">
-                                <button mat-raised-button type="button" color="primary"
-                                    [ngClass]="{'color-danger' : !productValid}" (click)="newProduct()"
-                                    class="margin-top-10px font-height-custom">SELECT PRODUCT *</button>
-                            </div>
+                  <div fxLayout="row" fxLayout.lt-md="column" class="padding-top-10px">
+
+                      <div [fxFlex]="40" fxLayout="column" class="margin-right-25px">
+
+                          <mat-label>New Slide</mat-label>
+
+                          <div class="display-flex padding-top-20px padding-bottom-20px">
+                              <button mat-raised-button type="button" color="primary"
+                                  [ngClass]="{'color-danger' : !productValid}" (click)="newProduct()"
+                                  class="margin-top-10px font-height-custom">SELECT PRODUCT *</button>
+                          </div>
 
 
-                            <div class="max-width-480px" >
-                                <div class="display-flex">
-                                    <div [fxFlex]="60">
-                                        <div class="max-width-480px">
-                                            <image-card formControlName="faces" [principal] = "image" [disabled] = "disabledDropDown"></image-card>
+
+                          <div class="max-width-480px" >
+                              <div class="display-flex" fxLayout="column">
+
+                                <div style="width: 18rem;" class="padding-bottom-5px" *ngIf="setProductFlag">
+                                  <div class="card card-stats mb-4 mb-lg-0">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col">
+                                          <h5 class="card-title text-uppercase text-muted mb-0">Nombre:</h5>
+                                          <span class="h2 font-weight-bold mb-0">{{ getProductName() }}</span>
                                         </div>
-                                    </div>
-                                    <div [fxFlex]="40" class="display-flex align-items-center padding-left-5px" *ngIf="setProductFlag">
-                                        <div class="">
-                                            <div class="text-color">Type: </div>
-                                            <div class="display-flex align-items-center padding-bottom-20px">
-                                                <mat-icon *ngIf="typeOfProduct === 'collection'" class="sidenav-icon">
-                                                    collections</mat-icon>
-                                                <mat-icon *ngIf="typeOfProduct === 'offer'" class="sidenav-icon">
-                                                    business_center</mat-icon>
-                                                <mat-icon *ngIf="typeOfProduct === 'release'" class="sidenav-icon">
-                                                    new_releases</mat-icon>
-                                                {{typeOfProduct}}
-                                            </div>
-                                            <div class="">Name: </div>
-                                            <div>{{getProductName()}}</div>
+                                        <div class="col-auto">
+                                          <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                            <i class="ni ni-books" *ngIf="typeOfProduct === 'collection'"></i>
+                                            <i class="ni ni-briefcase-24" *ngIf="typeOfProduct === 'offer'"></i>
+                                            <i class="ni ni-spaceship" *ngIf="typeOfProduct === 'release'"></i>
+                                          </div>
                                         </div>
+                                      </div>
+                                      <p class="mt-3 mb-0 text-muted text-sm">
+                                        <span class="text-success mr-2"><i class="ni ni-like-2"></i> {{typeOfProduct.toUpperCase()}}</span>
+                                      </p>
                                     </div>
+                                  </div>
                                 </div>
 
-                            </div>
+                                <div [fxFlex]="60">
+                                      <div class="max-width-480px">
+                                          <image-card formControlName="faces" [principal] = "image" [disabled] = "disabledDropDown"></image-card>
+                                      </div>
+                                  </div>
 
-                            <mat-form-field class="margin-left-16px max-width-480px">
+                              </div>
 
-                                <mat-label>Descriptive Text</mat-label>
+                          </div>
 
-                                <input matInput type="text" formControlName="description" #type
-                                    id="descriptive">
+                          <mat-form-field class="margin-left-16px max-width-480px">
 
-                            </mat-form-field>
+                              <mat-label>Descriptive Text</mat-label>
+
+                              <input matInput type="text" formControlName="description" #type
+                                  id="descriptive">
+
+                          </mat-form-field>
+
+                      </div>
+
+                      <div [fxFlex]="10"
+                          class="margin-right-25px padding-bottom-25px align-items-center display-flex">
+                          <div *ngIf="!editSlideBoolean; else saveSlideButtom">
+                              <button mat-raised-button (click) = "submitClicked()"><mat-icon>add</mat-icon></button>
+                          </div>
+                          <ng-template #saveSlideButtom>
+                              <div>
+                                  <button mat-raised-button (click) = "submitClicked()"><mat-icon>save</mat-icon></button>
+                              </div>
+                          </ng-template>
+                      </div>
+
+                      <div [fxFlex]="40" class="margin-right-25px">
+
+                        <div class="card">
+
+                          <div class="card-body">
+
+                          <mat-label>Current Slides</mat-label>
+
+                          <div class="padding-top-25px">
+                              <div *ngFor="let offerDeal of slides" class="card">
+                                <div class="card-body">
+                                  <div *ngIf="offerDeal.entityType === 'offer'" fxLayout="row"
+                                      class="padding-top-10px">
+
+                                      <div [fxFlex]="30" class="margin-right-25px">
+                                          <img with="60" height="60"
+                                              [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageOffer(offerDeal.entityId)">
+                                      </div>
+                                      <div [fxFlex]="70" class="margin-right-25px">
+                                          <div>
+                                              Offer {{offerDeal.name}}
+                                          </div>
+                                          <div class="margin-top-10px">
+                                              {{offerDeal.description}}
+                                          </div>
+                                      </div>
+
+                                  </div>
+
+                                  <div *ngIf="offerDeal.entityType === 'collection'" fxLayout="row"
+                                      class="padding-top-10px">
+
+                                      <div [fxFlex]="30" class="margin-right-25px">
+                                          <img with="60" height="60"
+                                              [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageCollection(offerDeal.entityId)">
+                                      </div>
+                                      <div [fxFlex]="70" class="margin-right-25px">
+                                          <div>
+                                              Coollection {{offerDeal.entityId}}
+                                          </div>
+                                          <div class="margin-top-10px">
+                                              {{offerDeal.description}}
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div *ngIf="offerDeal.entityType === 'release'" fxLayout="row"
+                                      class="padding-top-10px">
+
+                                      <div [fxFlex]="30" class="margin-right-25px">
+                                          <img with="60" height="60"
+                                              [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageRelease(offerDeal.entityId)">
+                                      </div>
+                                      <div [fxFlex]="70" class="margin-right-25px">
+                                          <div>
+                                              Release {{offerDeal.entityId}}
+                                          </div>
+                                          <div class="margin-top-10px">
+                                              {{offerDeal.description}}
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <button mat-icon-button color="primary" type="button" [matTooltip]="Edit"
+                                          (click)="editSlide(offerDeal.id)">
+                                          <mat-icon>edit</mat-icon>
+                                      </button>
+                                      <button mat-icon-button color="primary" type="button" [matTooltip]="Delete"
+                                          (click)="deleteSlide(offerDeal.id)">
+                                          <mat-icon>delete</mat-icon>
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+
+                      </div>
 
                         </div>
 
-                        <div [fxFlex]="10"
-                            class="margin-right-25px padding-bottom-25px align-items-center display-flex">
-                            <div *ngIf="!editSlideBoolean; else saveSlideButtom">
-                                <button mat-raised-button (click) = "submitClicked()">{{ 'Add' }}</button>
-                            </div>
-                            <ng-template #saveSlideButtom>
-                                <div>
-                                    <button mat-raised-button (click) = "submitClicked()">{{ 'Save' }}</button>
-                                </div>
-                            </ng-template>
-                        </div>
+                      </div>
 
-                        <div [fxFlex]="40" class="margin-right-25px">
 
-                            <mat-label>Current Slides</mat-label>
-
-                            <div class="padding-top-25px">
-                                <div *ngFor="let offerDeal of slides">
-                                    <hr>
-                                    <div *ngIf="offerDeal.entityType === 'offer'" fxLayout="row"
-                                        class="padding-top-10px">
-
-                                        <div [fxFlex]="30" class="margin-right-25px">
-                                            <img with="60" height="60"
-                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageOffer(offerDeal.entityId)">
-                                        </div>
-                                        <div [fxFlex]="70" class="margin-right-25px">
-                                            <div>
-                                                Offer {{offerDeal.entityId}}
-                                            </div>
-                                            <div class="margin-top-10px">
-                                                {{offerDeal.description}}
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div *ngIf="offerDeal.entityType === 'collection'" fxLayout="row"
-                                        class="padding-top-10px">
-
-                                        <div [fxFlex]="30" class="margin-right-25px">
-                                            <img with="60" height="60"
-                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageCollection(offerDeal.entityId)">
-                                        </div>
-                                        <div [fxFlex]="70" class="margin-right-25px">
-                                            <div>
-                                                Coollection {{offerDeal.entityId}}
-                                            </div>
-                                            <div class="margin-top-10px">
-                                                {{offerDeal.description}}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div *ngIf="offerDeal.entityType === 'release'" fxLayout="row"
-                                        class="padding-top-10px">
-
-                                        <div [fxFlex]="30" class="margin-right-25px">
-                                            <img with="60" height="60"
-                                                [src]="offerDeal.imgUrl ? offerDeal.imgUrl : getImageRelease(offerDeal.entityId)">
-                                        </div>
-                                        <div [fxFlex]="70" class="margin-right-25px">
-                                            <div>
-                                                Release {{offerDeal.entityId}}
-                                            </div>
-                                            <div class="margin-top-10px">
-                                                {{offerDeal.description}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Edit"
-                                            (click)="editSlide(offerDeal.id)">
-                                            <mat-icon>edit</mat-icon>
-                                        </button>
-                                        <button mat-icon-button color="primary" type="button" [matTooltip]="Delete"
-                                            (click)="deleteSlide(offerDeal.id)">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+                  </div>
 
                 </div>
 

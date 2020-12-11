@@ -77,8 +77,6 @@ export class SlidersFormComponent extends BaseReactiveFormComponent<Slider> impl
 
     imgUrl: string;
 
-    filtersArray: Array<any>;
-
     slides: Array<any> = [];
 
     tabLabelName = new FormControl();

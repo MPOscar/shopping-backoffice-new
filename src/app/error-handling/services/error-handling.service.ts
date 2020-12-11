@@ -161,6 +161,7 @@ export class ErrorHandlingService {
                 handledError.logoutCommands = this.logoutCommands;
                 handledError.logoutNavigationExtras = this.logoutNavigationExtras;
                 handledError.message = errObj;
+                this.router.navigateByUrl('/login');
             } else {
                 // Checking if the error is caused by trying to authenticate with a wrong password
                 if (errObj.detail && errObj.detail[0] && errObj.detail[0].error_description) {

@@ -1,4 +1,8 @@
-<div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-column padding-0px-25px-25px-25px">
+<div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+
+<div class="display-flex flex-grow-1 flex-shrink-1 flex-direction-column">
   <div class="align-self-center display-flex width-250px  flex-shrink-1 flex-direction-row card-container">
     <mat-card class="border-2px-solid-black box-shadow-none flex-grow-1 margin-0 mat-card-principal" #imageContainer>
       <img class="height-100-pc width-100-pc" *ngIf="principal" imageLoad [srcImage]="principal.imgUrl ? principal.imgUrl : principal.file"
@@ -22,5 +26,9 @@
       <input #fileInput style="display:none" type="file" name="files" class="file-input glyphicon glyphicon-plus" accept="image/*"
         multiple/>
     </div>
+  </div>
+</div>
+
+
   </div>
 </div>

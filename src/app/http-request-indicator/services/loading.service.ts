@@ -22,15 +22,15 @@ const DEFAULT_CONFIG: LoadingOverlayConfig = {
 })
 export class LoadingService {
 
-    counter = 0;    
-    
+    counter = 0;
+
     loading$ = new Subject<boolean>();
 
     overlayRef: OverlayRef;
-    
+
     constructor(private router: Router, private overlay: Overlay) {
 
-        this.loading$.subscribe((loading: boolean) => {
+        /*this.loading$.subscribe((loading: boolean) => {
             if (loading) {
                 this.counter ++;
                 if (this.counter > 0 && !this.overlayRef) {
@@ -56,7 +56,7 @@ export class LoadingService {
             }else if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
                 this.loading$.next(false);
             }
-        });
+        });*/
     }
 
     private getOverlayConfig(config: LoadingOverlayConfig): OverlayConfig {
@@ -64,7 +64,7 @@ export class LoadingService {
           .global()
           .centerHorizontally()
           .centerVertically();
-    
+
         const overlayConfig = new OverlayConfig({
           hasBackdrop: config.hasBackdrop,
           backdropClass: config.backdropClass,
@@ -72,14 +72,14 @@ export class LoadingService {
           scrollStrategy: this.overlay.scrollStrategies.block(),
           positionStrategy
         });
-    
+
         return overlayConfig;
     }
 
     private createOverlay(config: LoadingOverlayConfig) {
         // Returns an OverlayConfig
         const overlayConfig = this.getOverlayConfig(config);
-    
+
         // Returns an OverlayRef
         return this.overlay.create(overlayConfig);
     }
